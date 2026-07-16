@@ -1,0 +1,304 @@
+/* ============================================================
+   PROJECT.CSS — sistema reutilizable de páginas de proyecto
+   Comparte tokens, chrome (nav/footer), botones, formularios y motion
+   con la landing. Aquí viven solo las secciones propias del proyecto.
+   Regla de arte: nunca texto/cifras encima de fotografías (salvo fondos
+   a sangre muy oscurecidos: hero y cierre). Las fotos respiran.
+   ============================================================ */
+
+/* Anclas de scroll libres del navbar fijo */
+:where(#resumen,#galeria,#plano,#caracteristicas,#invertir,#proceso,#ubicacion,#faq,#contacto,#relacionados){
+  scroll-margin-top:clamp(72px,10vh,104px)}
+
+/* Barra de progreso de lectura (hilo cobre superior) */
+.pp-progress{position:fixed;inset-block-start:0;inset-inline:0;height:2px;z-index:120;
+  background:transparent;pointer-events:none}
+.pp-progress__bar{height:100%;width:0;background:linear-gradient(90deg,var(--ep-copper-500),var(--ep-copper-300));
+  transform-origin:left;transition:width .1s linear}
+@media (prefers-reduced-motion:reduce){.pp-progress{display:none}}
+
+/* ============================================================
+   HERO DEL PROYECTO — fotografía/video a sangre, grade fílmico.
+   Excepción de la regla: texto permitido sobre fondo muy oscurecido.
+   ============================================================ */
+.pp-hero{position:relative;min-height:92svh;display:flex;overflow:hidden;background:var(--ep-bg-inset)}
+.pp-hero__bg{position:absolute;inset:0;z-index:0}
+.pp-hero__bg img,.pp-hero__bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:50% 50%;filter:contrast(1.05) saturate(.82) brightness(.72) sepia(.04)}
+.pp-hero__bg video{opacity:0;transition:opacity 1.2s var(--ep-ease-standard)}
+.pp-hero__bg video.is-live{opacity:1}
+.pp-hero__grade{position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(120% 90% at 30% 60%,rgba(13,11,9,.24) 0%,rgba(13,11,9,.52) 60%,rgba(13,11,9,.78) 100%),
+    linear-gradient(180deg,rgba(13,11,9,.55) 0%,rgba(13,11,9,.18) 34%,rgba(13,11,9,.40) 70%,rgba(13,11,9,.90) 100%)}
+.pp-hero__grade::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 320px rgba(13,11,9,.62)}
+.pp-hero__inner{position:relative;z-index:3;width:100%;max-width:var(--ep-content-max);margin-inline:auto;
+  min-height:92svh;display:flex;flex-direction:column;justify-content:flex-end;
+  padding-inline:var(--ep-grid-margin);padding-block:clamp(128px,20vh,200px) clamp(var(--ep-space-9),12vh,var(--ep-space-11))}
+.pp-crumb{display:inline-flex;align-items:center;gap:var(--ep-space-2);align-self:flex-start;
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:.01em;
+  color:var(--ep-carbon-200);margin-block-end:var(--ep-space-6);transition:color var(--ep-dur-fast)}
+.pp-crumb:hover{color:var(--ep-carbon-25)}
+.pp-crumb__arrow{color:var(--ep-copper-300)}
+.pp-hero__loc{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ep-copper-300);margin-block-end:var(--ep-space-4)}
+.pp-hero__title{font-family:var(--ep-font-display);font-weight:600;color:var(--ep-carbon-25);
+  font-size:clamp(2.6rem,6.4vw,5.4rem);line-height:1.02;letter-spacing:-.03em;text-wrap:balance;max-width:16ch;
+  margin-block-end:var(--ep-space-5)}
+.pp-hero__lead{font-family:var(--ep-font-sans);font-size:var(--ep-fs-lead);font-weight:400;letter-spacing:-.005em;
+  color:var(--ep-carbon-200);max-width:52ch;line-height:1.5;margin-block-end:var(--ep-space-7)}
+.pp-hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--ep-space-4)}
+.pp-hero__state{position:absolute;z-index:3;inset-block-start:clamp(96px,14vh,140px);inset-inline-end:var(--ep-grid-margin);
+  display:inline-flex;align-items:center;gap:var(--ep-space-2);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:.02em;
+  color:var(--ep-carbon-100);background:rgba(13,11,9,.42);backdrop-filter:blur(8px);
+  border:1px solid rgba(196,150,106,.34);border-radius:var(--ep-radius-pill);padding:8px var(--ep-space-4)}
+.pp-hero__state::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--ep-copper-400);
+  box-shadow:0 0 0 4px rgba(176,122,72,.18)}
+
+/* ============================================================
+   BANDA DE SÍNTESIS — cifras clave del proyecto (fondo oscuro)
+   ============================================================ */
+.pp-summary{background:var(--ep-bg-inset);border-block-end:1px solid var(--ep-border)}
+.pp-summary__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+@media (min-width:760px){.pp-summary__grid{grid-template-columns:repeat(4,1fr)}}
+.pp-summary__cell{padding:clamp(var(--ep-space-7),5vw,var(--ep-space-9)) clamp(var(--ep-space-5),3vw,var(--ep-space-7));
+  border-block-start:1px solid var(--ep-border);border-inline-start:1px solid var(--ep-border)}
+.pp-summary__cell:nth-child(2n){border-inline-end:1px solid var(--ep-border)}
+@media (min-width:760px){.pp-summary__cell:nth-child(2n){border-inline-end:0}
+  .pp-summary__cell:last-child{border-inline-end:1px solid var(--ep-border)}}
+.pp-summary__n{display:block;font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;line-height:1;
+  font-size:clamp(1.9rem,3.4vw,2.9rem);color:var(--ep-carbon-25)}
+.pp-summary__n small{font-size:.42em;color:var(--ep-copper-300);font-weight:400;margin-inline-start:.28em}
+.pp-summary__l{display:block;margin-block-start:var(--ep-space-3);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-muted);letter-spacing:.01em}
+
+/* ============================================================
+   RESUMEN EJECUTIVO — statement + cuerpo editorial (marfil)
+   ============================================================ */
+.pp-exec{background:var(--ep-bg-warm);color:var(--ep-text-on-warm)}
+.pp-exec__grid{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-6),5vw,var(--ep-space-9))}
+@media (min-width:900px){.pp-exec__grid{grid-template-columns:1.05fr .95fr;align-items:start}}
+.pp-eyebrow{display:inline-flex;align-items:center;gap:var(--ep-space-3);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ep-copper-600);margin-block-end:var(--ep-space-5)}
+.pp-eyebrow::before{content:"";width:26px;height:1px;background:var(--ep-copper-500)}
+.pp-exec--dark .pp-eyebrow{color:var(--ep-copper-300)}
+.pp-statement{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.025em;line-height:1.08;
+  font-size:clamp(1.8rem,3.6vw,2.9rem);color:var(--ep-carbon-900);text-wrap:balance;max-width:18ch}
+.pp-statement em{font-style:normal;font-weight:600;color:var(--ep-copper-600)}
+.pp-exec__body p{font-size:var(--ep-fs-body-lg);line-height:1.68;color:var(--ep-carbon-600);max-width:52ch}
+.pp-exec__body p + p{margin-block-start:var(--ep-space-5)}
+.pp-exec__facts{margin-block-start:var(--ep-space-7);display:flex;flex-direction:column}
+.pp-exec__fact{display:flex;align-items:baseline;justify-content:space-between;gap:var(--ep-space-5);
+  padding-block:var(--ep-space-4);border-block-start:1px solid var(--ep-border-warm)}
+.pp-exec__fact:last-child{border-block-end:1px solid var(--ep-border-warm)}
+.pp-exec__fact .k{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-carbon-500);letter-spacing:.01em}
+.pp-exec__fact .v{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(1.05rem,1.8vw,1.35rem);color:var(--ep-carbon-900);white-space:nowrap}
+.pp-exec__fact .v small{font-size:.62em;color:var(--ep-copper-600);font-weight:400;margin-inline-start:.3em}
+
+/* ============================================================
+   GALERÍA — mosaico editorial. Las fotos respiran, sin texto encima.
+   ============================================================ */
+.pp-gallery__head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:var(--ep-space-5);
+  margin-block-end:clamp(var(--ep-space-6),4vw,var(--ep-space-8))}
+.pp-gallery__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;
+  font-size:var(--ep-fs-h2);color:var(--ep-text-primary)}
+.pp-gallery__note{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-muted);max-width:34ch}
+.pp-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(var(--ep-space-3),1.4vw,var(--ep-space-5))}
+.pp-shot{position:relative;overflow:hidden;border-radius:var(--ep-radius-sm);background:var(--ep-surface-1);
+  grid-column:span 6;aspect-ratio:3/2;cursor:zoom-in}
+@media (min-width:720px){
+  .pp-shot{grid-column:span 2}
+  .pp-shot--wide{grid-column:span 4;aspect-ratio:16/9}
+  .pp-shot--tall{grid-column:span 2;aspect-ratio:3/4;grid-row:span 2}
+}
+.pp-shot img{width:100%;height:100%;object-fit:cover;transition:transform var(--ep-dur-slow) var(--ep-ease-ascenso),
+  filter var(--ep-dur-slow) var(--ep-ease-standard);filter:contrast(1.04) saturate(.9) brightness(.94)}
+.pp-shot:hover img{transform:scale(1.045);filter:contrast(1.04) saturate(.95) brightness(1)}
+.pp-shot::after{content:"";position:absolute;inset-block-end:var(--ep-space-3);inset-inline-end:var(--ep-space-3);
+  width:26px;height:26px;border-radius:50%;background:rgba(13,11,9,.5) center/12px no-repeat
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F6F1E9' stroke-width='2'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E");
+  opacity:0;transition:opacity var(--ep-dur-fast);backdrop-filter:blur(4px)}
+.pp-shot:hover::after{opacity:1}
+
+/* Lightbox */
+.pp-lightbox{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:clamp(var(--ep-space-5),5vw,var(--ep-space-9));background:rgba(9,8,6,.94);
+  opacity:0;visibility:hidden;transition:opacity var(--ep-dur-base) var(--ep-ease-standard),visibility var(--ep-dur-base)}
+.pp-lightbox.is-open{opacity:1;visibility:visible}
+.pp-lightbox img{max-width:100%;max-height:86svh;object-fit:contain;border-radius:var(--ep-radius-sm);
+  box-shadow:0 40px 120px -30px rgba(0,0,0,.8);transform:scale(.98);transition:transform var(--ep-dur-base) var(--ep-ease-ascenso)}
+.pp-lightbox.is-open img{transform:scale(1)}
+.pp-lightbox__close,.pp-lightbox__nav{position:absolute;display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:50%;color:var(--ep-carbon-25);background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);font-size:1.4rem;transition:background var(--ep-dur-fast),border-color var(--ep-dur-fast)}
+.pp-lightbox__close:hover,.pp-lightbox__nav:hover{background:rgba(255,255,255,.12);border-color:var(--ep-copper-400)}
+.pp-lightbox__close{inset-block-start:clamp(var(--ep-space-4),3vw,var(--ep-space-6));inset-inline-end:clamp(var(--ep-space-4),3vw,var(--ep-space-6))}
+.pp-lightbox__nav{inset-block-start:50%;transform:translateY(-50%)}
+.pp-lightbox__nav--prev{inset-inline-start:clamp(var(--ep-space-3),2vw,var(--ep-space-6))}
+.pp-lightbox__nav--next{inset-inline-end:clamp(var(--ep-space-3),2vw,var(--ep-space-6))}
+@media (prefers-reduced-motion:reduce){.pp-lightbox,.pp-lightbox img{transition:none}}
+
+/* ============================================================
+   MASTERPLAN / PLANO — el plano sobre un mat, texto SIEMPRE fuera
+   ============================================================ */
+.pp-plan{background:var(--ep-bg-inset)}
+.pp-plan__grid{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-6),4vw,var(--ep-space-8))}
+@media (min-width:960px){.pp-plan__grid{grid-template-columns:1.5fr 1fr;align-items:center}}
+.pp-plan__frame{position:relative;background:var(--ep-carbon-25);border-radius:var(--ep-radius-sm);
+  padding:clamp(var(--ep-space-4),3vw,var(--ep-space-7));box-shadow:var(--ep-elev-3)}
+.pp-plan__frame img{width:100%;height:auto;border-radius:2px}
+.pp-plan__tag{position:absolute;inset-block-start:var(--ep-space-4);inset-inline-start:var(--ep-space-4);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-micro);font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ep-copper-700);background:rgba(234,214,192,.7);padding:4px 10px;border-radius:var(--ep-radius-pill)}
+.pp-plan__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;font-size:var(--ep-fs-h2);
+  color:var(--ep-text-primary);margin-block-end:var(--ep-space-5);text-wrap:balance;max-width:16ch}
+.pp-plan__body p{color:var(--ep-text-secondary);line-height:1.66;max-width:46ch}
+.pp-plan__legend{margin-block-start:var(--ep-space-6);display:flex;flex-direction:column;gap:var(--ep-space-3)}
+.pp-plan__li{display:flex;align-items:baseline;gap:var(--ep-space-3);
+  font-size:var(--ep-fs-caption);color:var(--ep-text-secondary)}
+.pp-plan__li::before{content:"";width:9px;height:9px;flex:none;translate:0 -1px;border:1px solid var(--ep-copper-400);
+  background:linear-gradient(135deg,transparent 45%,var(--ep-copper-500) 45% 55%,transparent 55%)}
+
+/* ============================================================
+   CARACTERÍSTICAS — rejilla editorial (label cobre + descripción)
+   ============================================================ */
+.pp-features{background:var(--ep-bg-warm);color:var(--ep-text-on-warm)}
+.pp-features__grid{display:grid;grid-template-columns:1fr;gap:0;
+  margin-block-start:clamp(var(--ep-space-6),4vw,var(--ep-space-8));
+  border-block-start:1px solid var(--ep-border-warm)}
+@media (min-width:640px){.pp-features__grid{grid-template-columns:1fr 1fr}}
+@media (min-width:980px){.pp-features__grid{grid-template-columns:1fr 1fr 1fr}}
+.pp-feature{padding:clamp(var(--ep-space-6),3vw,var(--ep-space-7)) 0;
+  border-block-end:1px solid var(--ep-border-warm);padding-inline-end:var(--ep-space-6)}
+@media (min-width:640px){.pp-feature{padding-inline:0 var(--ep-space-7)}}
+.pp-feature__k{display:flex;align-items:center;gap:var(--ep-space-3);
+  font-family:var(--ep-font-sans);font-weight:600;font-size:var(--ep-fs-caption);letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ep-copper-600);margin-block-end:var(--ep-space-3)}
+.pp-feature__k::before{content:"";width:6px;height:6px;background:var(--ep-copper-500);rotate:45deg}
+.pp-feature__v{font-family:var(--ep-font-display);font-weight:500;font-size:clamp(1.15rem,1.8vw,1.4rem);
+  letter-spacing:-.015em;color:var(--ep-carbon-900);margin-block-end:var(--ep-space-2)}
+.pp-feature__d{font-size:var(--ep-fs-caption);line-height:1.6;color:var(--ep-carbon-600);max-width:34ch}
+
+/* ============================================================
+   ¿POR QUÉ INVERTIR? — argumentos, fondo oscuro, mucho aire
+   ============================================================ */
+.pp-why__head{max-width:40ch;margin-block-end:clamp(var(--ep-space-7),5vw,var(--ep-space-9))}
+.pp-why__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.025em;line-height:1.08;
+  font-size:clamp(1.9rem,3.6vw,3rem);color:var(--ep-text-primary);text-wrap:balance}
+.pp-why__title em{font-style:normal;font-weight:600;color:var(--ep-copper-300)}
+.pp-why__grid{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-6),3vw,var(--ep-space-7))}
+@media (min-width:720px){.pp-why__grid{grid-template-columns:1fr 1fr}}
+.pp-why__item{padding-block-start:var(--ep-space-5);border-block-start:1px solid var(--ep-border)}
+.pp-why__n{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;letter-spacing:.1em;
+  color:var(--ep-copper-400)}
+.pp-why__h{font-family:var(--ep-font-display);font-weight:600;font-size:clamp(1.2rem,2vw,1.5rem);letter-spacing:-.015em;
+  color:var(--ep-carbon-25);margin-block:var(--ep-space-3) var(--ep-space-3)}
+.pp-why__p{color:var(--ep-text-secondary);line-height:1.66;max-width:44ch}
+
+/* ============================================================
+   PROCESO DE COMPRA — pasos numerados, línea de lindero
+   ============================================================ */
+.pp-process{background:var(--ep-bg-inset)}
+.pp-process__grid{display:grid;grid-template-columns:1fr;gap:0;
+  margin-block-start:clamp(var(--ep-space-6),4vw,var(--ep-space-8))}
+@media (min-width:820px){.pp-process__grid{grid-template-columns:repeat(4,1fr)}}
+.pp-step{position:relative;padding:var(--ep-space-7) var(--ep-space-6) var(--ep-space-7) 0;
+  border-block-start:1px solid var(--ep-border)}
+@media (min-width:820px){.pp-step{border-block-start:0;border-inline-start:1px solid var(--ep-border);
+  padding:0 var(--ep-space-6) 0 var(--ep-space-5);min-height:220px}}
+.pp-step__n{font-family:var(--ep-font-display);font-weight:600;font-size:clamp(1.6rem,2.4vw,2rem);
+  letter-spacing:-.02em;color:var(--ep-copper-400);line-height:1}
+.pp-step__n::before{content:"";display:block;width:24px;height:2px;background:var(--ep-copper-500);
+  margin-block-end:var(--ep-space-4)}
+.pp-step__h{font-family:var(--ep-font-display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em;
+  color:var(--ep-carbon-25);margin-block:var(--ep-space-4) var(--ep-space-3)}
+.pp-step__p{font-size:var(--ep-fs-caption);line-height:1.6;color:var(--ep-text-secondary);max-width:30ch}
+
+/* ============================================================
+   UBICACIÓN — texto + datos (sin mapa embebido externo). Foto opcional.
+   ============================================================ */
+.pp-loc__grid{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-6),4vw,var(--ep-space-8))}
+@media (min-width:900px){.pp-loc__grid{grid-template-columns:1fr 1fr;align-items:center}}
+.pp-loc__media{position:relative;overflow:hidden;border-radius:var(--ep-radius-sm);aspect-ratio:4/3;background:var(--ep-surface-1)}
+.pp-loc__media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.88) brightness(.9)}
+.pp-loc__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;font-size:var(--ep-fs-h2);
+  color:var(--ep-text-primary);margin-block-end:var(--ep-space-5);text-wrap:balance;max-width:16ch}
+.pp-loc__p{color:var(--ep-text-secondary);line-height:1.66;max-width:46ch;margin-block-end:var(--ep-space-6)}
+.pp-loc__dist{display:flex;flex-direction:column}
+.pp-loc__row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--ep-space-5);
+  padding-block:var(--ep-space-4);border-block-start:1px solid var(--ep-border)}
+.pp-loc__row:last-child{border-block-end:1px solid var(--ep-border)}
+.pp-loc__row .k{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-secondary)}
+.pp-loc__row .v{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.015em;color:var(--ep-carbon-25);
+  white-space:nowrap}
+.pp-loc__row .v small{font-size:.62em;color:var(--ep-copper-300);font-weight:400;margin-inline-start:.3em}
+
+/* ============================================================
+   FAQ — acordeón sobrio
+   ============================================================ */
+.pp-faq{background:var(--ep-bg-warm);color:var(--ep-text-on-warm)}
+.pp-faq__wrap{max-width:var(--ep-editorial-max);margin-inline:auto}
+.pp-faq__list{margin-block-start:clamp(var(--ep-space-6),4vw,var(--ep-space-8));
+  border-block-start:1px solid var(--ep-border-warm)}
+.pp-qa{border-block-end:1px solid var(--ep-border-warm)}
+.pp-qa__q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:var(--ep-space-5);
+  padding-block:clamp(var(--ep-space-5),2.4vw,var(--ep-space-6));text-align:start;
+  font-family:var(--ep-font-display);font-weight:500;font-size:clamp(1.05rem,1.7vw,1.3rem);letter-spacing:-.01em;
+  color:var(--ep-carbon-900);transition:color var(--ep-dur-fast)}
+.pp-qa__q:hover{color:var(--ep-copper-600)}
+.pp-qa__ico{position:relative;width:16px;height:16px;flex:none}
+.pp-qa__ico::before,.pp-qa__ico::after{content:"";position:absolute;background:var(--ep-copper-600);
+  transition:transform var(--ep-dur-base) var(--ep-ease-ascenso),opacity var(--ep-dur-base)}
+.pp-qa__ico::before{inset-inline:0;inset-block-start:50%;height:1.5px;translate:0 -50%}
+.pp-qa__ico::after{inset-block:0;inset-inline-start:50%;width:1.5px;translate:-50% 0}
+.pp-qa[data-open] .pp-qa__ico::after{transform:scaleY(0);opacity:0}
+.pp-qa__a{overflow:hidden;height:0;transition:height var(--ep-dur-base) var(--ep-ease-standard)}
+.pp-qa__a-inner{padding-block-end:clamp(var(--ep-space-5),2.4vw,var(--ep-space-6));
+  color:var(--ep-carbon-600);line-height:1.68;max-width:60ch}
+@media (prefers-reduced-motion:reduce){.pp-qa__a{transition:none}}
+
+/* ============================================================
+   PROYECTOS RELACIONADOS — puertas a las otras páginas
+   ============================================================ */
+.pp-related__head{margin-block-end:clamp(var(--ep-space-6),4vw,var(--ep-space-8))}
+.pp-related__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;font-size:var(--ep-fs-h2);
+  color:var(--ep-text-primary)}
+.pp-related__grid{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-5),2.4vw,var(--ep-space-6))}
+@media (min-width:680px){.pp-related__grid{grid-template-columns:repeat(3,1fr)}}
+.pp-card{position:relative;display:block;overflow:hidden;border-radius:var(--ep-radius-sm);
+  background:var(--ep-surface-1);border:1px solid var(--ep-border);isolation:isolate;
+  transition:transform var(--ep-dur-base) var(--ep-ease-ascenso),border-color var(--ep-dur-base)}
+.pp-card:hover{transform:translateY(-4px);border-color:var(--ep-copper-500)}
+.pp-card__media{position:relative;aspect-ratio:4/3;overflow:hidden}
+.pp-card__media img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.86) brightness(.82);
+  transition:transform var(--ep-dur-slow) var(--ep-ease-ascenso),filter var(--ep-dur-slow)}
+.pp-card:hover .pp-card__media img{transform:scale(1.05);filter:contrast(1.04) saturate(.92) brightness(.92)}
+.pp-card__body{padding:var(--ep-space-5) var(--ep-space-5) var(--ep-space-6)}
+.pp-card__loc{font-family:var(--ep-font-sans);font-size:var(--ep-fs-micro);font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ep-copper-300)}
+.pp-card__name{font-family:var(--ep-font-display);font-weight:500;font-size:1.25rem;letter-spacing:-.01em;
+  color:var(--ep-carbon-25);margin-block:var(--ep-space-2) var(--ep-space-4)}
+.pp-card__go{display:inline-flex;align-items:center;gap:var(--ep-space-2);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;color:var(--ep-copper-300)}
+.pp-card__go .a{transition:transform var(--ep-dur-fast)}
+.pp-card:hover .pp-card__go .a{transform:translateX(4px)}
+
+/* ============================================================
+   VARIANTE "PRÓXIMAMENTE" (Villa Luisa — sin fotografías)
+   ============================================================ */
+.pp-hero--soon .pp-hero__bg{background:
+  radial-gradient(120% 90% at 70% 20%,rgba(122,82,48,.22),transparent 60%),
+  linear-gradient(160deg,var(--ep-carbon-900),var(--ep-carbon-950))}
+.pp-soon-note{display:inline-flex;align-items:center;gap:var(--ep-space-3);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-secondary);
+  border:1px dashed var(--ep-border);border-radius:var(--ep-radius-md);padding:var(--ep-space-4) var(--ep-space-5);
+  margin-block-start:var(--ep-space-6)}
+.pp-soon-note b{color:var(--ep-copper-300);font-weight:600}
+
+/* Reveal escalonado propio (hereda .ep-reveal de base.css) */
+.pp-hero .ep-rise{opacity:0;transform:translateY(12px)}
+.pp-hero .ep-rise.is-in{opacity:1;transform:none;
+  transition:opacity var(--ep-dur-slow) var(--ep-ease-standard),transform var(--ep-dur-slow) var(--ep-ease-revelado)}

@@ -1,0 +1,34 @@
+/* ============================================================
+   LOADER — entrada cinematográfica (curtain reveal)
+   Fondo carbón · marca centrada · línea fina que se completa ·
+   marca asciende · cortina sube · página aparece. ~1.4s.
+   ============================================================ */
+.ep-loader{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;
+  background:var(--ep-bg-inset);
+  transition:transform var(--ep-dur-umbral) var(--ep-ease-umbral),visibility 0s linear .8s}
+.ep-loader__inner{display:flex;flex-direction:column;align-items:center;gap:var(--ep-space-7);
+  transform:translateY(0);opacity:1;
+  transition:transform var(--ep-dur-slow) var(--ep-ease-ascenso),opacity var(--ep-dur-base) var(--ep-ease-standard)}
+.ep-loader__mark{height:clamp(96px,13vw,150px);width:auto;filter:brightness(0) invert(1);opacity:.97}
+.ep-loader__line{position:relative;width:120px;height:1px;background:rgba(237,230,218,.14);overflow:hidden}
+.ep-loader__line i{position:absolute;inset:0 100% 0 0;background:var(--ep-copper-400);
+  animation:ep-load 1.05s var(--ep-ease-ascenso) forwards}
+@keyframes ep-load{to{inset:0 0 0 0}}
+
+/* Estado final: marca asciende y se desvanece, cortina sube */
+.ep-loader.is-done{transform:translateY(-100%)}
+.ep-loader.is-done .ep-loader__inner{transform:translateY(-16px);opacity:0}
+
+/* Bloqueo de scroll mientras carga */
+html.ep-loading,html.ep-loading body{overflow:hidden}
+
+/* Página: aparece suave detrás de la cortina */
+.ep-stage{opacity:0;transform:translateY(8px)}
+html.ep-ready .ep-stage{opacity:1;transform:none;
+  transition:opacity var(--ep-dur-slow) var(--ep-ease-standard),transform var(--ep-dur-umbral) var(--ep-ease-revelado)}
+
+@media (prefers-reduced-motion:reduce){
+  .ep-loader{display:none}
+  html.ep-loading,html.ep-loading body{overflow:auto}
+  .ep-stage{opacity:1;transform:none}
+}

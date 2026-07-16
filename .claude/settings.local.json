@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__21st__search",
+      "mcp__claude_ai_higgsfield__generate_image",
+      "mcp__claude_ai_higgsfield__job_status",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('design/tokens.json','utf8'\\)\\); console.log\\('tokens.json OK'\\)\")",
+      "mcp__claude_ai_Google_Drive__search_files",
+      "mcp__claude_ai_Google_Drive__read_file_content",
+      "mcp__claude_ai_Google_Drive__get_file_metadata",
+      "mcp__claude_ai_Google_Drive__download_file_content",
+      "Bash(python - C:/Users/57304/AppData/Local/Temp/claude/C--Users-57304-OneDrive---SENA-Escritorio-inversiones-el-poblado/ec0f7e83-48c4-460d-8249-4519ccc755cd/scratchpad/qa C:/Users/57304/.claude/projects/C--Users-57304-OneDrive---SENA-Escritorio-inversiones-el-poblado/ec0f7e83-48c4-460d-8249-4519ccc755cd/tool-results/mcp-claude_ai_Google_Drive-download_file_content-1783979766031.txt:poblado_91ae985c C:/Users/57304/.claude/projects/C--Users-57304-OneDrive---SENA-Escritorio-inversiones-el-poblado/ec0f7e83-48c4-460d-8249-4519ccc755cd/tool-results/mcp-claude_ai_Google_Drive-download_file_content-1783979781091.txt:poblado_245a9e50 C:/Users/57304/.claude/projects/C--Users-57304-OneDrive---SENA-Escritorio-inversiones-el-poblado/ec0f7e83-48c4-460d-8249-4519ccc755cd/tool-results/mcp-claude_ai_Google_Drive-download_file_content-1783979782088.txt:apiay_213d7795 C:/Users/57304/.claude/projects/C--Users-57304-OneDrive---SENA-Escritorio-inversiones-el-poblado/ec0f7e83-48c4-460d-8249-4519ccc755cd/tool-results/mcp-claude_ai_Google_Drive-download_file_content-1783979781464.txt:llanerita_f430e18f)",
+      "Bash(python *)",
+      "Bash(python -m http.server 8099)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8099/index.html)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code} %{size_download}bytes\\\\n\" \"http://localhost:8099/assets/llanerita-campestre/fotos/llanerita_arbol-atardecer-reflejo.jpg\")"
+    ]
+  }
+}

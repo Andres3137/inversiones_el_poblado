@@ -1,0 +1,396 @@
+<!doctype html>
+<!-- Recursos temporales anotados como comentarios internos (data-mp="MP-xx"), sin render visual. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inversiones El Poblado — Inversión en tierra en el Meta</title>
+  <meta name="description" content="Parcelaciones campestres de inversión en Acacías y Villavicencio (Meta). Tu lote propio en una zona con proyección de valorización. Villas del Poblado, Llanerita Campestre, Villas de Apiay y Villa Luisa." />
+  <meta name="theme-color" content="#14110E" />
+  <link rel="canonical" href="https://inversioneselpoblado.co/" />
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Inversiones El Poblado — Inversión en tierra en el Meta" />
+  <meta property="og:description" content="Parcelaciones campestres con proyección de valorización en Acacías y Villavicencio." />
+  <meta property="og:image" content="assets/llanerita-campestre/fotos/llanerita_arbol-atardecer-reflejo.jpg" />
+  <meta property="og:locale" content="es_CO" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <!-- Una sola familia de marca: General Sans (pesos 400–700) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles/tokens.css?v=22" />
+  <link rel="stylesheet" href="styles/base.css?v=22" />
+  <link rel="stylesheet" href="styles/components.css?v=22" />
+  <link rel="stylesheet" href="styles/sections.css?v=22" />
+  <link rel="stylesheet" href="styles/scenes.css?v=22" />
+  <link rel="stylesheet" href="styles/brand.css?v=22" />
+  <link rel="stylesheet" href="styles/loader.css?v=22" />
+
+  <!-- Datos estructurados (SEO · autoridad) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"RealEstateAgent",
+    "name":"Inversiones El Poblado",
+    "areaServed":["Acacías, Meta","Villavicencio, Meta"],
+    "description":"Parcelaciones campestres de inversión en el Meta, Colombia.",
+    "knowsAbout":["Inversión en tierra","Valorización","Parcelaciones campestres"]
+  }
+  </script>
+</head>
+<body>
+  <!-- ============ LOADER (curtain reveal) ============ -->
+  <div class="ep-loader" data-loader aria-hidden="true">
+    <div class="ep-loader__inner">
+      <img class="ep-loader__mark" src="assets/marca/logo/logo_el-poblado.svg" alt="" />
+      <span class="ep-loader__line"><i></i></span>
+    </div>
+  </div>
+
+  <a class="ep-skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="ep-stage">
+    <nav class="ep-nav" data-nav aria-label="Principal">
+      <a class="ep-nav__brand" href="#inicio" aria-label="Inversiones El Poblado — inicio">
+        <img src="assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+      </a>
+      <ul class="ep-nav__links" data-nav-links>
+        <li><a class="ep-nav__link" href="#inicio" data-i18n="nav.home">Inicio</a></li>
+        <li><a class="ep-nav__link" href="#territorio" data-i18n="nav.territory">Territorio</a></li>
+        <li><a class="ep-nav__link" href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a class="ep-nav__link" href="#nosotros" data-i18n="nav.about">Nosotros</a></li>
+        <li><a class="ep-nav__link" href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <div class="ep-nav__actions">
+        <button class="ep-toggle ep-toggle--lang" type="button" data-lang-toggle aria-label="Cambiar idioma · Change language" title="Español / English">
+          <span class="ep-toggle__globe" aria-hidden="true"></span><span data-lang-label>Español</span>
+        </button>
+        <button class="ep-toggle" type="button" data-currency-toggle aria-label="Cambiar moneda"><b>COP</b><span aria-hidden="true"> / </span>USD</button>
+        <a class="ep-btn ep-btn--primary ep-btn--sm" href="#contacto" data-i18n="nav.cta">Solicitar información</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="ep-stage">
+    <!-- ============ HERO (portada de marca) ============ -->
+    <section class="ep-hero ep-grain" id="inicio" aria-labelledby="hero-title">
+      <!-- Fondo: video temporal a sangre completa (MP-01). Poster/fallback = mejor fotografía. -->
+      <div class="ep-hero__bg">
+        <img
+          src="assets/llanerita-campestre/fotos/llanerita_arbol-atardecer-reflejo.jpg"
+          alt="Atardecer sobre un potrero en los Llanos del Meta, con un árbol reflejado en el agua."
+          fetchpriority="high" decoding="async" />
+        <video data-hero-video data-src="assets/videos/videofondoinmobiliaria.mp4" data-slow="0.85"
+          muted loop playsinline preload="auto"
+          poster="assets/llanerita-campestre/fotos/llanerita_arbol-atardecer-reflejo.jpg" aria-hidden="true" hidden>
+          <source src="" type="video/mp4" />
+        </video>
+      </div>
+      <div class="ep-hero__grade"></div>
+
+      <div class="ep-hero__inner">
+        <p class="ep-hero__mast ep-rise" data-i18n="hero.mast">Parcelaciones campestres en el Meta</p>
+        <h1 class="ep-hero__title ep-rise" id="hero-title" data-i18n="hero.title">
+          La tierra es la inversión<br />que <em>no deja de crecer.</em>
+        </h1>
+        <p class="ep-hero__lead ep-rise" data-i18n="hero.lead">
+          Parcelaciones campestres en Acacías y Villavicencio. Tu lote propio,
+          en una zona que apenas comienza a valorizarse.
+        </p>
+        <div class="ep-hero__actions ep-rise">
+          <a class="ep-btn ep-btn--primary" href="#contacto" data-i18n="hero.cta1">Solicitar información</a>
+          <a class="ep-btn ep-btn--ghost" href="#proyectos"><span data-i18n="hero.cta2">Ver los proyectos</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESCENA 01 · EL TERRITORIO (stack fotográfico vivo) ============ -->
+    <section class="ep-terr" id="territorio" aria-labelledby="terr-title">
+      <div class="ep-terr__inner">
+        <div class="ep-terr__stack" data-terr-stack>
+          <figure class="ep-terr__card ep-terr__card--1" data-ty="-70" data-sc="-0.04">
+            <img src="assets/llanerita-campestre/fotos/llanerita_arbol-caballos-estanque.jpg" alt="Caballos junto a un estanque bajo un árbol en el Llano." decoding="async" loading="lazy" />
+          </figure>
+          <figure class="ep-terr__card ep-terr__card--2" data-ty="60" data-sc="0.05">
+            <img src="assets/llanerita-campestre/fotos/llanerita_arbol-atardecer-reflejo.jpg" alt="Árbol reflejado en el agua al atardecer en el Llano." decoding="async" loading="lazy" />
+          </figure>
+          <figure class="ep-terr__card ep-terr__card--3" data-ty="-45" data-sc="0.02">
+            <img src="assets/villas-del-poblado/fotos/poblado_lote-mojones.jpg" alt="Mojones que delimitan un lote en una parcelación." decoding="async" loading="lazy" />
+          </figure>
+          <figure class="ep-terr__card ep-terr__card--4" data-ty="80" data-sc="-0.03">
+            <img src="assets/llanerita-campestre/fotos/llanerita_cerca-potrero.jpg" alt="Cerca y potrero abierto hacia el horizonte llanero." decoding="async" loading="lazy" />
+          </figure>
+        </div>
+
+        <div class="ep-terr__side">
+          <div>
+            <h2 class="ep-terr__statement ep-reveal" id="terr-title" data-i18n="terr.title">La tierra del Llano, <em>vista de cerca.</em></h2>
+            <p class="ep-terr__lead ep-lead ep-reveal" data-delay="120" data-i18n="terr.lead">Un corredor de piedemonte entre Acacías y Villavicencio: agua, horizonte y suelo fértil. Lo recorremos lote a lote.</p>
+          </div>
+
+          <!-- Lectura editorial de la zona (contenido demo, se reemplaza con el real) -->
+          <div class="ep-terr__notes ep-reveal" data-delay="140">
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n1k">Crecimiento del Meta</span>
+              <p data-i18n="terr.n1v">Uno de los departamentos con mayor dinámica de desarrollo del país: obra vial, agroindustria y turismo en expansión.</p>
+            </div>
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n2k">Cercanía a Villavicencio</span>
+              <p data-i18n="terr.n2v">La capital del Llano a pocos minutos: servicios, comercio y salud al lado de la tranquilidad del campo.</p>
+            </div>
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n3k">Acceso por vías principales</span>
+              <p data-i18n="terr.n3v">Conexión directa al corredor Bogotá–Villavicencio–Acacías, la columna vertebral del piedemonte.</p>
+            </div>
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n4k">Entrar temprano</span>
+              <p data-i18n="terr.n4v">El mayor recorrido de valorización ocurre en las primeras etapas, cuando el precio aún es de tierra.</p>
+            </div>
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n5k">Infraestructura instalada</span>
+              <p data-i18n="terr.n5v">Vías internas, energía y redes que se ejecutan etapa por etapa. Obra real que sostiene el valor.</p>
+            </div>
+            <div class="ep-terr__note">
+              <span class="ep-terr__nk" data-i18n="terr.n6k">Naturaleza y tranquilidad</span>
+              <p data-i18n="terr.n6v">Horizonte abierto, agua y aire limpio. Un lugar para invertir y, con el tiempo, para habitar.</p>
+            </div>
+          </div>
+
+          <div class="ep-terr__data ep-reveal" data-delay="160">
+            <div class="ep-terr__datum"><span class="k" data-i18n="terr.d1">Proyectos en el corredor</span><span class="v">4</span></div>
+            <div class="ep-terr__datum"><span class="k" data-i18n="terr.d2">Municipios con presencia</span><span class="v">2</span></div>
+            <div class="ep-terr__datum ep-terr__datum--soft"><span class="k" data-i18n="terr.d3">Valorización proyectada</span><span class="v" data-i18n="common.study">En estudio</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESCENA 02 · EL ORIGEN (Nosotros) ============ -->
+    <section class="ep-origin" id="nosotros" aria-labelledby="about-title">
+      <div class="ep-origin__wrap">
+        <div class="ep-origin__grid">
+          <figure class="ep-origin__figure ep-plot ep-plot--warm ep-scene-in">
+            <!-- foto protagonista temporal (MP-04) -->
+            <img src="assets/villas-del-poblado/fotos/poblado_cielo-llanero.jpg" alt="Cielo llanero sobre una parcelación campestre." decoding="async" />
+          </figure>
+
+          <div class="ep-origin__card ep-scene-in">
+            <h2 class="ep-origin__statement" id="about-title" data-i18n="origin.title">Conocemos la tierra del Llano porque <em>es la nuestra.</em></h2>
+            <div class="ep-origin__body">
+              <p data-i18n="origin.p1">Inversiones El Poblado desarrolla parcelaciones campestres en Acacías y Villavicencio: lotes con vías, redes y energía, pensados para quien invierte temprano en una región que apenas empieza a valorizarse.</p>
+            </div>
+
+            <!-- Bloques editoriales (contenido demo, se reemplaza con el real) -->
+            <div class="ep-origin__points">
+              <div class="ep-origin__point">
+                <span class="ep-origin__pk" data-i18n="origin.pk1">Experiencia</span>
+                <p data-i18n="origin.pv1">Un equipo local que vive y construye en el territorio, con años acompañando inversiones en el Meta.</p>
+              </div>
+              <div class="ep-origin__point">
+                <span class="ep-origin__pk" data-i18n="origin.pk2">Acompañamiento</span>
+                <p data-i18n="origin.pv2">Te guiamos de principio a fin: elección del lote, escrituración y proceso de inversión, sin letra pequeña.</p>
+              </div>
+              <div class="ep-origin__point">
+                <span class="ep-origin__pk" data-i18n="origin.pk3">Infraestructura</span>
+                <p data-i18n="origin.pv3">Vías internas, redes de energía y agua instaladas etapa por etapa. Obra real, verificable.</p>
+              </div>
+              <div class="ep-origin__point">
+                <span class="ep-origin__pk" data-i18n="origin.pk4">Valorización</span>
+                <p data-i18n="origin.pv4">Cercanía a Villavicencio y desarrollo vial en marcha: una zona con recorrido de plusvalía por delante.</p>
+              </div>
+            </div>
+
+            <div class="ep-origin__meta">
+              <div><span class="k" data-i18n="origin.mk1">Región</span><span class="v">Meta</span></div>
+              <div><span class="k" data-i18n="origin.mk2">Proyectos</span><span class="v">4</span></div>
+              <div><span class="k" data-i18n="origin.mk3">Municipios</span><span class="v">2</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESCENA 03 · PROYECTOS (cada uno un producto) ============ -->
+    <section class="ep-portfolio" id="proyectos" aria-labelledby="proj-title">
+      <header class="ep-portfolio__head">
+        <h2 class="ep-portfolio__title ep-reveal" id="proj-title" data-i18n="port.title">Cuatro proyectos. Una misma <em>tierra que crece.</em></h2>
+        <p class="ep-portfolio__note ep-reveal" data-delay="120" data-i18n="port.note">Cifras de referencia para visualizar el proyecto. Se sustituyen por los datos definitivos del cliente.</p>
+      </header>
+
+      <!-- 01 · Villas del Poblado -->
+      <article class="ep-proj ep-scene-in">
+        <div class="ep-proj__media">
+          <img src="assets/villas-del-poblado/fotos/poblado_casa-terminada-atardecer.jpg" alt="Casa terminada al atardecer en Villas del Poblado, Acacías." decoding="async" data-parallax />
+        </div>
+        <div class="ep-proj__panel">
+          <p class="ep-proj__loc" data-i18n="p1.loc">Acacías · Proyecto principal</p>
+          <h3 class="ep-proj__name">Villas del Poblado</h3>
+          <p class="ep-proj__desc" data-i18n="p1.desc">La parcelación insignia. Lotes con vías, redes y energía instaladas, casas ya construidas y una comunidad que empieza a habitar la tierra.</p>
+          <div class="ep-proj__serv"><span data-i18n="serv.water">Agua</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.roads">Vías internas</span><span data-i18n="serv.gas">Gas natural</span></div>
+          <!-- datos de ejemplo (MP-09) -->
+          <div class="ep-proj__spec">
+            <div class="ep-fig"><span class="ep-fig__n">96</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
+            <div class="ep-fig"><span class="ep-fig__n">600–1.000<small>m²</small></span><span class="ep-fig__l" data-i18n="spec.area">Área por lote</span></div>
+            <div class="ep-fig"><span class="ep-fig__n"><span data-cop="85000000">$85.000.000</span> <small data-cur-unit>COP</small></span><span class="ep-fig__l" data-i18n="spec.from">Precio desde · demo</span></div>
+          </div>
+          <div class="ep-proj__val"><span class="v" data-i18n="val.appr">Valorización +</span><span class="t" data-i18n="p1.valt">Zona en consolidación, con vías y servicios ya instalados. Proyección de ejemplo.</span></div>
+          <div class="ep-proj__foot">
+            <span class="ep-proj__state" data-i18n="state.dev">En desarrollo</span>
+            <a class="ep-btn ep-btn--ghost ep-btn--sm" href="proyectos/villas-del-poblado.html"><span data-i18n="p1.cta">Explorar Villas del Poblado</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 · Llanerita Campestre -->
+      <article class="ep-proj ep-proj--rev ep-scene-in">
+        <div class="ep-proj__media">
+          <img src="assets/llanerita-campestre/fotos/llanerita_arbol-cielo-azul.jpg" alt="Árbol solitario bajo cielo azul en Llanerita Campestre, Villavicencio." decoding="async" data-parallax />
+        </div>
+        <div class="ep-proj__panel">
+          <p class="ep-proj__loc">Villavicencio</p>
+          <h3 class="ep-proj__name">Llanerita Campestre</h3>
+          <p class="ep-proj__desc" data-i18n="p2.desc">Naturaleza abierta a minutos de la ciudad. Un entorno de potreros, agua y horizonte para quien busca campo con plusvalía urbana cercana.</p>
+          <div class="ep-proj__serv"><span data-i18n="serv.water">Agua</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.roads">Vías internas</span><span data-i18n="serv.gate">Portería</span></div>
+          <div class="ep-proj__spec">
+            <div class="ep-fig"><span class="ep-fig__n">60</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
+            <div class="ep-fig"><span class="ep-fig__n">500–900<small>m²</small></span><span class="ep-fig__l" data-i18n="spec.area">Área por lote</span></div>
+            <div class="ep-fig"><span class="ep-fig__n"><span data-cop="62000000">$62.000.000</span> <small data-cur-unit>COP</small></span><span class="ep-fig__l" data-i18n="spec.from">Precio desde · demo</span></div>
+          </div>
+          <div class="ep-proj__val"><span class="v" data-i18n="val.appr">Valorización +</span><span class="t" data-i18n="p2.valt">Cercanía a Villavicencio con precio de campo. Proyección de ejemplo.</span></div>
+          <div class="ep-proj__foot">
+            <span class="ep-proj__state" data-i18n="state.dev">En desarrollo</span>
+            <a class="ep-btn ep-btn--ghost ep-btn--sm" href="proyectos/llanerita-campestre.html"><span data-i18n="p2.cta">Ver disponibilidad</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 · Villas de Apiay -->
+      <article class="ep-proj ep-scene-in">
+        <div class="ep-proj__media">
+          <img src="assets/villas-de-apiay/fotos/apiay_portal-acceso.jpg" alt="Portal de acceso en obra en Villas de Apiay." decoding="async" data-parallax />
+        </div>
+        <div class="ep-proj__panel">
+          <p class="ep-proj__loc">Apiay · Villavicencio</p>
+          <h3 class="ep-proj__name">Villas de Apiay</h3>
+          <p class="ep-proj__desc" data-i18n="p3.desc">Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.</p>
+          <div class="ep-proj__serv"><span data-i18n="serv.roadsWork">Vías en obra</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.access">Acceso</span></div>
+          <div class="ep-proj__spec">
+            <div class="ep-fig"><span class="ep-fig__n">48</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
+            <div class="ep-fig"><span class="ep-fig__n">600–1.200<small>m²</small></span><span class="ep-fig__l" data-i18n="spec.area">Área por lote</span></div>
+            <div class="ep-fig"><span class="ep-fig__n"><span data-cop="48000000">$48.000.000</span> <small data-cur-unit>COP</small></span><span class="ep-fig__l" data-i18n="spec.from">Precio desde · demo</span></div>
+          </div>
+          <div class="ep-proj__val"><span class="v" data-i18n="val.entry">Precio de entrada</span><span class="t" data-i18n="p3.valt">Etapa temprana: el momento de mayor recorrido. Proyección de ejemplo.</span></div>
+          <div class="ep-proj__foot">
+            <span class="ep-proj__state" data-i18n="state.dev">En desarrollo</span>
+            <a class="ep-btn ep-btn--ghost ep-btn--sm" href="proyectos/villas-de-apiay.html"><span data-i18n="p3.cta">Conocer proyecto</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 04 · Villa Luisa -->
+      <article class="ep-proj ep-proj--rev ep-scene-in">
+        <div class="ep-proj__media">
+          <img src="assets/villas-del-poblado/fotos/poblado_cimientos-atardecer.jpg" alt="Cimientos al atardecer, etapa temprana de urbanización." decoding="async" data-parallax />
+        </div>
+        <div class="ep-proj__panel">
+          <p class="ep-proj__loc">Campestre · Meta</p>
+          <h3 class="ep-proj__name">Villa Luisa</h3>
+          <p class="ep-proj__desc" data-i18n="p4.desc">El próximo capítulo. Un proyecto en definición para quienes quieran entrar desde el primer trazo, cuando el precio es apenas una promesa.</p>
+          <div class="ep-proj__serv"><span data-i18n="serv.design">En diseño</span></div>
+          <div class="ep-proj__spec">
+            <div class="ep-fig"><span class="ep-fig__n" data-i18n="p4.phasev">Diseño</span><span class="ep-fig__l" data-i18n="spec.phase">Fase actual</span></div>
+            <div class="ep-fig"><span class="ep-fig__n">2026</span><span class="ep-fig__l" data-i18n="spec.opening">Apertura estimada</span></div>
+          </div>
+          <div class="ep-proj__val"><span class="v" data-i18n="val.list">Lista privada</span><span class="t" data-i18n="p4.valt">Acceso anticipado a la primera etapa antes del lanzamiento.</span></div>
+          <div class="ep-proj__foot">
+            <span class="ep-proj__state ep-proj__state--soon" data-i18n="state.soon">Próximamente</span>
+            <a class="ep-btn ep-btn--ghost ep-btn--sm" href="proyectos/villa-luisa.html"><span data-i18n="p4.cta">Unirme a la lista</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- ============ ESCENA 04 · INVITACIÓN (contacto) ============ -->
+    <section class="ep-cta" id="contacto" aria-labelledby="invite-title">
+      <div class="ep-cta__photo" aria-hidden="true">
+        <!-- foto temporal (MP-07) -->
+        <img src="assets/villas-del-poblado/fotos/poblado_familia-acceso.jpg" alt="" decoding="async" />
+      </div>
+
+      <div class="ep-cta__wrap">
+        <h2 class="ep-cta__title ep-reveal" id="invite-title" data-i18n="cta.title">Solicita acceso al <em>portafolio privado.</em></h2>
+        <p class="ep-cta__lead ep-reveal" data-delay="120" data-i18n="cta.lead">Te compartimos disponibilidad, precios y proyección de valorización de cada proyecto — con discreción.</p>
+
+        <div class="ep-cta__card ep-scene-in">
+          <form class="ep-cta__form" onsubmit="return false" novalidate>
+            <div class="ep-field"><label for="f-name" data-i18n="form.name">Nombre</label><input id="f-name" type="text" data-i18n-ph="form.name.ph" placeholder="Tu nombre" /></div>
+            <div class="ep-field"><label for="f-contact" data-i18n="form.contact">Correo o WhatsApp</label><input id="f-contact" type="text" data-i18n-ph="form.contact.ph" placeholder="Cómo te contactamos" /></div>
+            <div class="ep-field full">
+              <label id="f-proj-label" data-i18n="form.project">Proyecto de interés</label>
+              <!-- Dropdown personalizado (no <select> nativo) -->
+              <div class="ep-select" data-select>
+                <button type="button" class="ep-select__btn" data-select-btn aria-haspopup="listbox" aria-expanded="false" aria-labelledby="f-proj-label">
+                  <span data-select-value>Villas del Poblado (Acacías)</span>
+                  <span class="ep-select__chev" aria-hidden="true"></span>
+                </button>
+                <ul class="ep-select__list" role="listbox" data-select-list tabindex="-1" aria-labelledby="f-proj-label">
+                  <li class="ep-select__opt is-selected" role="option" data-value="poblado" aria-selected="true">Villas del Poblado (Acacías)</li>
+                  <li class="ep-select__opt" role="option" data-value="llanerita" aria-selected="false">Llanerita Campestre</li>
+                  <li class="ep-select__opt" role="option" data-value="apiay" aria-selected="false">Villas de Apiay</li>
+                  <li class="ep-select__opt" role="option" data-value="luisa" aria-selected="false">Villa Luisa</li>
+                  <li class="ep-select__opt" role="option" data-value="all" aria-selected="false" data-i18n="form.all">Todo el portafolio</li>
+                </ul>
+                <input type="hidden" name="proyecto" data-select-input value="poblado" />
+              </div>
+            </div>
+          </form>
+          <div class="ep-cta__actions">
+            <button class="ep-btn ep-btn--primary" type="button" data-i18n="cta.submit">Solicitar información</button>
+            <a class="ep-btn ep-btn--ghost" href="#contacto"><span>WhatsApp</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="ep-cta__note" data-i18n="cta.note">Respondemos con discreción · Sin compromiso</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="ep-footer ep-stage">
+    <div class="ep-container">
+      <div class="ep-footer__cols">
+        <div class="ep-footer__brand ep-reveal">
+          <img src="assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+          <p data-i18n="footer.tagline">Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.</p>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.projects">Proyectos</h4>
+          <a href="proyectos/villas-del-poblado.html">Villas del Poblado</a>
+          <a href="proyectos/llanerita-campestre.html">Llanerita Campestre</a>
+          <a href="proyectos/villas-de-apiay.html">Villas de Apiay</a>
+          <a href="proyectos/villa-luisa.html">Villa Luisa</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="footer.explore">Explorar</h4>
+          <a href="#territorio" data-i18n="nav.territory">Territorio</a>
+          <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
+          <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.contact">Contacto</h4>
+          <a href="#contacto" data-i18n="footer.request">Solicitar información</a>
+          <a href="#contacto">WhatsApp</a>
+        </div>
+      </div>
+      <div class="ep-footer__bottom">
+        <span data-i18n="footer.copy">© 2026 Inversiones El Poblado · Meta, Colombia</span>
+        <span class="ep-mp" data-mp="MP-08" data-i18n="footer.legal">Registro y aliado financiero · pendiente</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=22" defer></script>
+</body>
+</html>

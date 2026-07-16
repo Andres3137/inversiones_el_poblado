@@ -1,0 +1,412 @@
+<!doctype html>
+<!-- Página de proyecto · sistema reutilizable (styles/project.css + js/project.js). Cifras y textos demo, se reemplazan con los reales. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Villas de Apiay — Parcelación en Apiay, Villavicencio · Inversiones El Poblado</title>
+  <meta name="description" content="Villas de Apiay: infraestructura en marcha en Apiay (Meta). Vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza." />
+  <meta name="theme-color" content="#14110E" />
+  <link rel="canonical" href="https://inversioneselpoblado.co/proyectos/villas-de-apiay.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Villas de Apiay — Apiay, Villavicencio" />
+  <meta property="og:description" content="Infraestructura en marcha. La etapa temprana, donde el valor apenas comienza." />
+  <meta property="og:image" content="../assets/villas-de-apiay/fotos/apiay_portal-acceso.jpg" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles/tokens.css?v=22" />
+  <link rel="stylesheet" href="../styles/base.css?v=22" />
+  <link rel="stylesheet" href="../styles/components.css?v=22" />
+  <link rel="stylesheet" href="../styles/sections.css?v=22" />
+  <link rel="stylesheet" href="../styles/scenes.css?v=22" />
+  <link rel="stylesheet" href="../styles/brand.css?v=22" />
+  <link rel="stylesheet" href="../styles/project.css?v=22" />
+  <link rel="stylesheet" href="../styles/loader.css?v=22" />
+</head>
+<body>
+  <div class="pp-progress" aria-hidden="true"><span class="pp-progress__bar" data-progress></span></div>
+
+  <div class="ep-loader" data-loader aria-hidden="true">
+    <div class="ep-loader__inner">
+      <img class="ep-loader__mark" src="../assets/marca/logo/logo_el-poblado.svg" alt="" />
+      <span class="ep-loader__line"><i></i></span>
+    </div>
+  </div>
+
+  <a class="ep-skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <header class="ep-stage">
+    <nav class="ep-nav" data-nav aria-label="Principal">
+      <a class="ep-nav__brand" href="../index.html" aria-label="Inversiones El Poblado — inicio">
+        <img src="../assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+      </a>
+      <ul class="ep-nav__links" data-nav-links>
+        <li><a class="ep-nav__link" href="../index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+        <li><a class="ep-nav__link" href="../index.html#territorio" data-i18n="nav.territory">Territorio</a></li>
+        <li><a class="ep-nav__link" href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a class="ep-nav__link" href="../index.html#nosotros" data-i18n="nav.about">Nosotros</a></li>
+        <li><a class="ep-nav__link" href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <div class="ep-nav__actions">
+        <button class="ep-toggle ep-toggle--lang" type="button" data-lang-toggle aria-label="Cambiar idioma · Change language" title="Español / English">
+          <span class="ep-toggle__globe" aria-hidden="true"></span><span data-lang-label>Español</span>
+        </button>
+        <button class="ep-toggle" type="button" data-currency-toggle aria-label="Cambiar moneda"><b>COP</b><span aria-hidden="true"> / </span>USD</button>
+        <a class="ep-btn ep-btn--primary ep-btn--sm" href="#contacto" data-i18n="nav.cta">Solicitar información</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="ep-stage">
+    <!-- HERO -->
+    <section class="pp-hero ep-grain" aria-labelledby="pp-title">
+      <div class="pp-hero__bg">
+        <img src="../assets/villas-de-apiay/fotos/apiay_portal-acceso.jpg" alt="Portal de acceso en obra en Villas de Apiay." fetchpriority="high" decoding="async" />
+      </div>
+      <div class="pp-hero__grade"></div>
+      <span class="pp-hero__state" data-i18n="state.dev">En desarrollo</span>
+      <div class="pp-hero__inner">
+        <a class="pp-crumb ep-rise" href="../index.html#proyectos"><span class="pp-crumb__arrow" aria-hidden="true">←</span> <span data-i18n="crumb.back">Volver al portafolio</span></a>
+        <p class="pp-hero__loc ep-rise" data-i18n="h.loc">Apiay · Villavicencio · Meta</p>
+        <h1 class="pp-hero__title ep-rise" id="pp-title">Villas de Apiay</h1>
+        <p class="pp-hero__lead ep-rise" data-i18n="h.lead">Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.</p>
+        <div class="pp-hero__actions ep-rise">
+          <a class="ep-btn ep-btn--primary" href="#contacto" data-i18n="h.cta1">Solicitar información</a>
+          <a class="ep-btn ep-btn--ghost" href="#galeria"><span data-i18n="h.cta2">Ver la galería</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÍNTESIS -->
+    <section class="pp-summary" aria-label="Cifras clave">
+      <div class="pp-summary__grid">
+        <div class="pp-summary__cell"><span class="pp-summary__n">48</span><span class="pp-summary__l" data-i18n="s.lots">Lotes proyectados</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n">600–1.200<small>m²</small></span><span class="pp-summary__l" data-i18n="s.area">Área por lote</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n"><span data-cop="48000000">$48.000.000</span> <small data-cur-unit>COP</small></span><span class="pp-summary__l" data-i18n="s.from">Precio desde · demo</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n" data-i18n="s.stagev">Temprana</span><span class="pp-summary__l" data-i18n="s.stage">Etapa actual</span></div>
+      </div>
+    </section>
+
+    <!-- RESUMEN EJECUTIVO -->
+    <section class="pp-exec ep-section" id="resumen" aria-labelledby="exec-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.summary">Resumen ejecutivo</p>
+        <div class="pp-exec__grid">
+          <div><h2 class="pp-statement" id="exec-title" data-i18n="ex.title">El momento de <em>mayor recorrido.</em></h2></div>
+          <div>
+            <div class="pp-exec__body">
+              <p data-i18n="ex.p1">Villas de Apiay está en su etapa temprana: movimiento de tierra, vías compactándose y portales de acceso en construcción. Se ve la obra avanzar.</p>
+              <p data-i18n="ex.p2">Entrar aquí es entrar en el punto donde el precio es más bajo y el recorrido de valorización, más largo. El riesgo de la etapa temprana, con su recompensa.</p>
+            </div>
+            <div class="pp-exec__facts">
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k1">Municipio</span><span class="v">Apiay · Villavicencio</span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k2">Estado del proyecto</span><span class="v" data-i18n="ex.stagev">Etapa temprana</span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k3">Precio desde</span><span class="v"><span data-cop="48000000">$48.000.000</span> <small data-cur-unit>COP</small></span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k4">Valorización proyectada</span><span class="v" data-i18n="common.study">En estudio</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="ep-section" id="galeria" aria-labelledby="gal-title">
+      <div class="ep-container">
+        <div class="pp-gallery__head">
+          <h2 class="pp-gallery__title" id="gal-title" data-i18n="sec.gallery">Galería</h2>
+          <p class="pp-gallery__note" data-i18n="gallery.note">Fotografías del proyecto y su entorno. Material de referencia.</p>
+        </div>
+        <div class="pp-grid">
+          <figure class="pp-shot pp-shot--wide" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_via-maquinaria.jpg" alt="Maquinaria trabajando en las vías del proyecto." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot pp-shot--tall" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_portal-acceso.jpg" alt="Portal de acceso en obra." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_via-compactador.jpg" alt="Compactador nivelando una vía interna." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_casa-obra.jpg" alt="Vivienda en obra en Villas de Apiay." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_casa-obra-2.jpg" alt="Segunda vivienda en construcción." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-de-apiay/fotos/apiay_base-piedra.jpg" alt="Base de piedra para una vía o placa." loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- MASTERPLAN -->
+    <section class="pp-plan ep-section" id="plano" aria-labelledby="plan-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.plan">Masterplan</p>
+        <div class="pp-plan__grid">
+          <figure class="pp-plan__frame">
+            <span class="pp-plan__tag" data-i18n="plan.tag">Plano · demo</span>
+            <img src="../assets/villas-de-apiay/planos/plano_villas-de-apiay.png" alt="Plano general de loteo de Villas de Apiay." loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="pp-plan__title" id="plan-title" data-i18n="plan.title">El proyecto <em>que se está trazando.</em></h2>
+            <div class="pp-plan__body"><p data-i18n="plan.p">Distribución general del loteo, vías internas y accesos en desarrollo. El plano definitivo, con áreas exactas y disponibilidad por lote, se comparte en la asesoría.</p></div>
+            <div class="pp-plan__legend">
+              <div class="pp-plan__li" data-i18n="plan.l1">Lotes de 600 a 1.200 m²</div>
+              <div class="pp-plan__li" data-i18n="plan.l2">Vías internas en compactación</div>
+              <div class="pp-plan__li" data-i18n="plan.l3">Portales de acceso en obra</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARACTERÍSTICAS -->
+    <section class="pp-features ep-section" id="caracteristicas" aria-labelledby="feat-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.features">Características</p>
+        <h2 class="pp-statement" id="feat-title" data-i18n="f.title">Obra real, <em>avanzando a la vista.</em></h2>
+        <div class="pp-features__grid">
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f1k">Vías</span><span class="pp-feature__v" data-i18n="f1v">En compactación</span><p class="pp-feature__d" data-i18n="f1d">Maquinaria trabajando las vías internas del proyecto.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f2k">Acceso</span><span class="pp-feature__v" data-i18n="f2v">Portales en obra</span><p class="pp-feature__d" data-i18n="f2d">Portales de ingreso a la parcelación en construcción.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f3k">Energía</span><span class="pp-feature__v" data-i18n="f3v">Proyectada</span><p class="pp-feature__d" data-i18n="f3d">Redes eléctricas contempladas para las etapas siguientes.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f4k">Movimiento de tierra</span><span class="pp-feature__v" data-i18n="f4v">En ejecución</span><p class="pp-feature__d" data-i18n="f4d">Nivelación y bases de piedra para vías y plataformas.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f5k">Precio</span><span class="pp-feature__v" data-i18n="f5v">De entrada</span><p class="pp-feature__d" data-i18n="f5d">El valor más bajo del portafolio por estar en etapa temprana.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f6k">Escritura</span><span class="pp-feature__v" data-i18n="f6v">Lote propio</span><p class="pp-feature__d" data-i18n="f6d">Compra con acompañamiento jurídico hasta la escrituración.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ INVERTIR -->
+    <section class="ep-section" id="invertir" aria-labelledby="why-title">
+      <div class="ep-container">
+        <div class="pp-why__head">
+          <p class="pp-eyebrow" data-i18n="sec.why">Por qué invertir</p>
+          <h2 class="pp-why__title" id="why-title" data-i18n="w.title">Entrar cuando <em>apenas comienza.</em></h2>
+        </div>
+        <div class="pp-why__grid">
+          <div class="pp-why__item"><p class="pp-why__n">01</p><h3 class="pp-why__h" data-i18n="w1h">Precio de entrada</h3><p class="pp-why__p" data-i18n="w1p">El valor más bajo del portafolio. La etapa temprana es donde el recorrido de valorización es más largo.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">02</p><h3 class="pp-why__h" data-i18n="w2h">Obra que avanza</h3><p class="pp-why__p" data-i18n="w2p">No es un plano en papel: hay maquinaria, vías compactándose y portales levantándose. El avance es verificable.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">03</p><h3 class="pp-why__h" data-i18n="w3h">Cerca de Villavicencio</h3><p class="pp-why__p" data-i18n="w3p">En Apiay, dentro del área de influencia de la capital del Meta y su crecimiento hacia el sur.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">04</p><h3 class="pp-why__h" data-i18n="w4h">Lotes amplios</h3><p class="pp-why__p" data-i18n="w4p">Hasta 1.200 m²: espacio para proyectar con calma una casa de campo a futuro.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="pp-process ep-section" id="proceso" aria-labelledby="proc-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.process">Proceso de compra</p>
+        <h2 class="pp-why__title" id="proc-title" data-i18n="process.title">Un proceso claro, <em>sin letra pequeña.</em></h2>
+        <div class="pp-process__grid">
+          <div class="pp-step"><p class="pp-step__n">01</p><h3 class="pp-step__h" data-i18n="step1.h">Conversación inicial</h3><p class="pp-step__p" data-i18n="step1.p">Nos cuentas qué buscas. Te compartimos disponibilidad, precios y proyección — con discreción.</p></div>
+          <div class="pp-step"><p class="pp-step__n">02</p><h3 class="pp-step__h" data-i18n="step2.h">Visita guiada</h3><p class="pp-step__p" data-i18n="step2.p">Recorremos el proyecto contigo, lote a lote, para que elijas con los pies en la tierra.</p></div>
+          <div class="pp-step"><p class="pp-step__n">03</p><h3 class="pp-step__h" data-i18n="step3.h">Reserva del lote</h3><p class="pp-step__p" data-i18n="step3.p">Apartas tu lote con un acuerdo claro. Definimos plan de pago a tu medida.</p></div>
+          <div class="pp-step"><p class="pp-step__n">04</p><h3 class="pp-step__h" data-i18n="step4.h">Escrituración</h3><p class="pp-step__p" data-i18n="step4.p">Formalizamos la compra con acompañamiento jurídico de principio a fin.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UBICACIÓN -->
+    <section class="ep-section" id="ubicacion" aria-labelledby="loc-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.location">Ubicación</p>
+        <div class="pp-loc__grid">
+          <div class="pp-loc__media"><img src="../assets/villas-de-apiay/fotos/apiay_via-compactador.jpg" alt="Vía interna en compactación en Villas de Apiay." loading="lazy" decoding="async" data-parallax /></div>
+          <div>
+            <h2 class="pp-loc__title" id="loc-title" data-i18n="loc.title">Apiay, al sur <em>de Villavicencio.</em></h2>
+            <p class="pp-loc__p" data-i18n="loc.p">En el corregimiento de Apiay, dentro del área de influencia de Villavicencio. Distancias de referencia (demo):</p>
+            <div class="pp-loc__dist">
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r1">Villavicencio (centro)</span><span class="v">25 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r2">Aeropuerto Vanguardia</span><span class="v">30 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r3">Acacías</span><span class="v">40 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r4">Bogotá</span><span class="v">3 <small data-i18n="unit.h">h</small></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="pp-faq ep-section" id="faq" aria-labelledby="faq-title">
+      <div class="ep-container">
+        <div class="pp-faq__wrap">
+          <p class="pp-eyebrow" data-i18n="sec.faq">Preguntas frecuentes</p>
+          <h2 class="pp-statement" id="faq-title" data-i18n="faq.title">Lo que suelen <em>preguntarnos.</em></h2>
+          <div class="pp-faq__list">
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q1">¿Qué significa "etapa temprana"?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a1">Que la infraestructura se está construyendo ahora: vías, accesos y movimiento de tierra en proceso. Por eso el precio es de entrada.</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q2">¿El lote se entrega con escritura?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a2">Sí. La compra se formaliza mediante escritura pública, con acompañamiento jurídico durante todo el proceso.</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q3">¿Cuándo tendrá todos los servicios?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a3">Los servicios se instalan por etapas. En la asesoría te compartimos el cronograma de obra vigente. (Fechas demo.)</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q4">¿Puedo pagar a plazos?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a4">Sí. Manejamos planes de pago que se ajustan a cada persona. (Condiciones demo.)</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q5">¿Cómo agendo una visita?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a5">Escríbenos por el formulario o WhatsApp y coordinamos un recorrido guiado para que veas la obra en marcha.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="ep-cta" id="contacto" aria-labelledby="invite-title">
+      <div class="ep-cta__photo" aria-hidden="true">
+        <img src="../assets/villas-de-apiay/fotos/apiay_via-maquinaria.jpg" alt="" decoding="async" />
+      </div>
+      <div class="ep-cta__wrap">
+        <h2 class="ep-cta__title ep-reveal" id="invite-title" data-i18n="cta.title">Solicita información de <em>este proyecto.</em></h2>
+        <p class="ep-cta__lead ep-reveal" data-delay="120" data-i18n="cta.lead">Te compartimos disponibilidad, precios y proyección de valorización — con discreción y sin compromiso.</p>
+        <div class="ep-cta__card ep-scene-in">
+          <form class="ep-cta__form" onsubmit="return false" novalidate>
+            <div class="ep-field"><label for="f-name" data-i18n="form.name">Nombre</label><input id="f-name" type="text" data-i18n-ph="form.name.ph" placeholder="Tu nombre" /></div>
+            <div class="ep-field"><label for="f-contact" data-i18n="form.contact">Correo o WhatsApp</label><input id="f-contact" type="text" data-i18n-ph="form.contact.ph" placeholder="Cómo te contactamos" /></div>
+            <div class="ep-field full">
+              <label id="f-proj-label" data-i18n="form.project">Proyecto de interés</label>
+              <div class="ep-select" data-select>
+                <button type="button" class="ep-select__btn" data-select-btn aria-haspopup="listbox" aria-expanded="false" aria-labelledby="f-proj-label">
+                  <span data-select-value>Villas de Apiay</span>
+                  <span class="ep-select__chev" aria-hidden="true"></span>
+                </button>
+                <ul class="ep-select__list" role="listbox" data-select-list tabindex="-1" aria-labelledby="f-proj-label">
+                  <li class="ep-select__opt" role="option" data-value="poblado" aria-selected="false">Villas del Poblado (Acacías)</li>
+                  <li class="ep-select__opt" role="option" data-value="llanerita" aria-selected="false">Llanerita Campestre</li>
+                  <li class="ep-select__opt is-selected" role="option" data-value="apiay" aria-selected="true">Villas de Apiay</li>
+                  <li class="ep-select__opt" role="option" data-value="luisa" aria-selected="false">Villa Luisa</li>
+                  <li class="ep-select__opt" role="option" data-value="all" aria-selected="false" data-i18n="form.all">Todo el portafolio</li>
+                </ul>
+                <input type="hidden" name="proyecto" data-select-input value="apiay" />
+              </div>
+            </div>
+          </form>
+          <div class="ep-cta__actions">
+            <button class="ep-btn ep-btn--primary" type="button" data-i18n="cta.submit">Solicitar información</button>
+            <a class="ep-btn ep-btn--ghost" href="#contacto"><span>WhatsApp</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="ep-cta__note" data-i18n="cta.note">Respondemos con discreción · Sin compromiso</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELACIONADOS -->
+    <section class="ep-section" id="relacionados" aria-labelledby="rel-title">
+      <div class="ep-container">
+        <div class="pp-related__head"><h2 class="pp-related__title" id="rel-title" data-i18n="related.title">Otros proyectos del portafolio</h2></div>
+        <div class="pp-related__grid">
+          <a class="pp-card" href="villas-del-poblado.html">
+            <div class="pp-card__media"><img src="../assets/villas-del-poblado/fotos/poblado_casa-terminada-atardecer.jpg" alt="Villas del Poblado, Acacías." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc">Acacías</span><h3 class="pp-card__name">Villas del Poblado</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+          <a class="pp-card" href="llanerita-campestre.html">
+            <div class="pp-card__media"><img src="../assets/llanerita-campestre/fotos/llanerita_arbol-cielo-azul.jpg" alt="Llanerita Campestre, Villavicencio." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc">Villavicencio</span><h3 class="pp-card__name">Llanerita Campestre</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+          <a class="pp-card" href="villa-luisa.html">
+            <div class="pp-card__media"><img src="../assets/villa-luisa/planos/plano_villa-luisa.png" alt="Villa Luisa, plano del próximo proyecto." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc" data-i18n="state.soon">Próximamente</span><h3 class="pp-card__name">Villa Luisa</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ep-footer ep-stage">
+    <div class="ep-container">
+      <div class="ep-footer__cols">
+        <div class="ep-footer__brand ep-reveal">
+          <img src="../assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+          <p data-i18n="footer.tagline">Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.</p>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.projects">Proyectos</h4>
+          <a href="villas-del-poblado.html">Villas del Poblado</a>
+          <a href="llanerita-campestre.html">Llanerita Campestre</a>
+          <a href="villas-de-apiay.html">Villas de Apiay</a>
+          <a href="villa-luisa.html">Villa Luisa</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="footer.explore">Explorar</h4>
+          <a href="../index.html#territorio" data-i18n="nav.territory">Territorio</a>
+          <a href="../index.html#nosotros" data-i18n="nav.about">Nosotros</a>
+          <a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.contact">Contacto</h4>
+          <a href="#contacto" data-i18n="footer.request">Solicitar información</a>
+          <a href="#contacto">WhatsApp</a>
+        </div>
+      </div>
+      <div class="ep-footer__bottom">
+        <span data-i18n="footer.copy">© 2026 Inversiones El Poblado · Meta, Colombia</span>
+        <span class="ep-mp" data-i18n="footer.legal">Registro y aliado financiero · pendiente</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="pp-lightbox" data-lightbox aria-hidden="true">
+    <button class="pp-lightbox__close" type="button" data-lb-close aria-label="Cerrar">✕</button>
+    <button class="pp-lightbox__nav pp-lightbox__nav--prev" type="button" data-lb-prev aria-label="Anterior">‹</button>
+    <img data-lb-img src="" alt="" />
+    <button class="pp-lightbox__nav pp-lightbox__nav--next" type="button" data-lb-next aria-label="Siguiente">›</button>
+  </div>
+
+  <script>
+  window.EP_PAGE_I18N = {
+    es: {
+      "h.loc": "Apiay · Villavicencio · Meta",
+      "h.lead": "Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.",
+      "h.cta1": "Solicitar información", "h.cta2": "Ver la galería",
+      "s.lots": "Lotes proyectados", "s.area": "Área por lote", "s.from": "Precio desde · demo", "s.stage": "Etapa actual", "s.stagev": "Temprana",
+      "ex.title": "El momento de <em>mayor recorrido.</em>",
+      "ex.p1": "Villas de Apiay está en su etapa temprana: movimiento de tierra, vías compactándose y portales de acceso en construcción. Se ve la obra avanzar.",
+      "ex.p2": "Entrar aquí es entrar en el punto donde el precio es más bajo y el recorrido de valorización, más largo. El riesgo de la etapa temprana, con su recompensa.",
+      "ex.k1": "Municipio", "ex.k2": "Estado del proyecto", "ex.k3": "Precio desde", "ex.k4": "Valorización proyectada", "ex.stagev": "Etapa temprana", "common.study": "En estudio",
+      "plan.title": "El proyecto <em>que se está trazando.</em>",
+      "plan.p": "Distribución general del loteo, vías internas y accesos en desarrollo. El plano definitivo, con áreas exactas y disponibilidad por lote, se comparte en la asesoría.",
+      "plan.l1": "Lotes de 600 a 1.200 m²", "plan.l2": "Vías internas en compactación", "plan.l3": "Portales de acceso en obra",
+      "f.title": "Obra real, <em>avanzando a la vista.</em>",
+      "f1k": "Vías", "f1v": "En compactación", "f1d": "Maquinaria trabajando las vías internas del proyecto.",
+      "f2k": "Acceso", "f2v": "Portales en obra", "f2d": "Portales de ingreso a la parcelación en construcción.",
+      "f3k": "Energía", "f3v": "Proyectada", "f3d": "Redes eléctricas contempladas para las etapas siguientes.",
+      "f4k": "Movimiento de tierra", "f4v": "En ejecución", "f4d": "Nivelación y bases de piedra para vías y plataformas.",
+      "f5k": "Precio", "f5v": "De entrada", "f5d": "El valor más bajo del portafolio por estar en etapa temprana.",
+      "f6k": "Escritura", "f6v": "Lote propio", "f6d": "Compra con acompañamiento jurídico hasta la escrituración.",
+      "w.title": "Entrar cuando <em>apenas comienza.</em>",
+      "w1h": "Precio de entrada", "w1p": "El valor más bajo del portafolio. La etapa temprana es donde el recorrido de valorización es más largo.",
+      "w2h": "Obra que avanza", "w2p": "No es un plano en papel: hay maquinaria, vías compactándose y portales levantándose. El avance es verificable.",
+      "w3h": "Cerca de Villavicencio", "w3p": "En Apiay, dentro del área de influencia de la capital del Meta y su crecimiento hacia el sur.",
+      "w4h": "Lotes amplios", "w4p": "Hasta 1.200 m²: espacio para proyectar con calma una casa de campo a futuro.",
+      "loc.title": "Apiay, al sur <em>de Villavicencio.</em>",
+      "loc.p": "En el corregimiento de Apiay, dentro del área de influencia de Villavicencio. Distancias de referencia (demo):",
+      "loc.r1": "Villavicencio (centro)", "loc.r2": "Aeropuerto Vanguardia", "loc.r3": "Acacías", "loc.r4": "Bogotá", "unit.min": "min", "unit.h": "h",
+      "faq.title": "Lo que suelen <em>preguntarnos.</em>",
+      "q1": "¿Qué significa «etapa temprana»?", "a1": "Que la infraestructura se está construyendo ahora: vías, accesos y movimiento de tierra en proceso. Por eso el precio es de entrada.",
+      "q2": "¿El lote se entrega con escritura?", "a2": "Sí. La compra se formaliza mediante escritura pública, con acompañamiento jurídico durante todo el proceso.",
+      "q3": "¿Cuándo tendrá todos los servicios?", "a3": "Los servicios se instalan por etapas. En la asesoría te compartimos el cronograma de obra vigente. (Fechas demo.)",
+      "q4": "¿Puedo pagar a plazos?", "a4": "Sí. Manejamos planes de pago que se ajustan a cada persona. (Condiciones demo.)",
+      "q5": "¿Cómo agendo una visita?", "a5": "Escríbenos por el formulario o WhatsApp y coordinamos un recorrido guiado para que veas la obra en marcha."
+    },
+    en: {
+      "h.loc": "Apiay · Villavicencio · Meta",
+      "h.lead": "Infrastructure underway: compacted roads, machinery at work and access portals. The early stage, where value is just beginning.",
+      "h.cta1": "Request information", "h.cta2": "View the gallery",
+      "s.lots": "Projected lots", "s.area": "Area per lot", "s.from": "Price from · demo", "s.stage": "Current stage", "s.stagev": "Early",
+      "ex.title": "The moment with <em>the most upside.</em>",
+      "ex.p1": "Villas de Apiay is in its early stage: earthworks, roads being compacted and access portals under construction. You can see the work advancing.",
+      "ex.p2": "Entering here means entering at the point where the price is lowest and the appreciation runway is longest. The risk of the early stage, with its reward.",
+      "ex.k1": "Municipality", "ex.k2": "Project status", "ex.k3": "Price from", "ex.k4": "Projected appreciation", "ex.stagev": "Early stage", "common.study": "Under study",
+      "plan.title": "The project <em>being drawn.</em>",
+      "plan.p": "General layout of the plots, internal roads and access under development. The final plan, with exact areas and per-lot availability, is shared during the advisory.",
+      "plan.l1": "Lots from 600 to 1,200 m²", "plan.l2": "Internal roads being compacted", "plan.l3": "Access portals under construction",
+      "f.title": "Real work, <em>advancing in view.</em>",
+      "f1k": "Roads", "f1v": "Being compacted", "f1d": "Machinery working the project's internal roads.",
+      "f2k": "Access", "f2v": "Portals in progress", "f2d": "Entry portals to the development under construction.",
+      "f3k": "Power", "f3v": "Projected", "f3d": "Electrical networks planned for the following stages.",
+      "f4k": "Earthworks", "f4v": "In execution", "f4d": "Leveling and stone bases for roads and platforms.",
+      "f5k": "Price", "f5v": "Entry level", "f5d": "The lowest value in the portfolio, being at an early stage.",
+      "f6k": "Deed", "f6v": "Your own lot", "f6d": "Purchase with legal guidance through to the deed.",
+      "w.title": "Enter when <em>it's just beginning.</em>",
+      "w1h": "Entry price", "w1p": "The lowest value in the portfolio. The early stage is where the appreciation runway is longest.",
+      "w2h": "Work advancing", "w2p": "It's not a plan on paper: there's machinery, roads being compacted and portals going up. The progress is verifiable.",
+      "w3h": "Close to Villavicencio", "w3p": "In Apiay, within the Meta capital's area of influence and its growth toward the south.",
+      "w4h": "Large lots", "w4p": "Up to 1,200 m²: room to calmly plan a future country home.",
+      "loc.title": "Apiay, south <em>of Villavicencio.</em>",
+      "loc.p": "In the Apiay district, within Villavicencio's area of influence. Reference distances (demo):",
+      "loc.r1": "Villavicencio (center)", "loc.r2": "Vanguardia Airport", "loc.r3": "Acacías", "loc.r4": "Bogotá", "unit.min": "min", "unit.h": "h",
+      "faq.title": "What people usually <em>ask us.</em>",
+      "q1": "What does \"early stage\" mean?", "a1": "That the infrastructure is being built now: roads, access and earthworks in process. That's why the price is entry level.",
+      "q2": "Is the lot delivered with a deed?", "a2": "Yes. The purchase is formalized through a public deed, with legal guidance throughout the process.",
+      "q3": "When will it have all services?", "a3": "Services are installed in stages. During the advisory we share the current works schedule. (Demo dates.)",
+      "q4": "Can I pay in installments?", "a4": "Yes. We offer payment plans tailored to each person. (Demo terms.)",
+      "q5": "How do I schedule a visit?", "a5": "Write to us via the form or WhatsApp and we'll arrange a guided tour so you can see the work underway."
+    }
+  };
+  </script>
+  <script src="../js/project.js?v=22" defer></script>
+</body>
+</html>

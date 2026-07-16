@@ -1,0 +1,425 @@
+<!doctype html>
+<!-- Página de proyecto · sistema reutilizable (styles/project.css + js/project.js). Cifras y textos demo, se reemplazan con los reales. -->
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Villas del Poblado — Parcelación campestre en Acacías · Inversiones El Poblado</title>
+  <meta name="description" content="Villas del Poblado: la parcelación insignia en Acacías (Meta). Lotes con vías, redes y energía, casas construidas y una comunidad que empieza a habitar la tierra." />
+  <meta name="theme-color" content="#14110E" />
+  <link rel="canonical" href="https://inversioneselpoblado.co/proyectos/villas-del-poblado.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Villas del Poblado — Acacías, Meta" />
+  <meta property="og:description" content="La parcelación insignia de Inversiones El Poblado en Acacías." />
+  <meta property="og:image" content="../assets/villas-del-poblado/fotos/poblado_casa-terminada-atardecer.jpg" />
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../styles/tokens.css?v=22" />
+  <link rel="stylesheet" href="../styles/base.css?v=22" />
+  <link rel="stylesheet" href="../styles/components.css?v=22" />
+  <link rel="stylesheet" href="../styles/sections.css?v=22" />
+  <link rel="stylesheet" href="../styles/scenes.css?v=22" />
+  <link rel="stylesheet" href="../styles/brand.css?v=22" />
+  <link rel="stylesheet" href="../styles/project.css?v=22" />
+  <link rel="stylesheet" href="../styles/loader.css?v=22" />
+</head>
+<body>
+  <div class="pp-progress" aria-hidden="true"><span class="pp-progress__bar" data-progress></span></div>
+
+  <!-- ===== LOADER ===== -->
+  <div class="ep-loader" data-loader aria-hidden="true">
+    <div class="ep-loader__inner">
+      <img class="ep-loader__mark" src="../assets/marca/logo/logo_el-poblado.svg" alt="" />
+      <span class="ep-loader__line"><i></i></span>
+    </div>
+  </div>
+
+  <a class="ep-skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+
+  <!-- ===== NAVBAR (chrome compartido) ===== -->
+  <header class="ep-stage">
+    <nav class="ep-nav" data-nav aria-label="Principal">
+      <a class="ep-nav__brand" href="../index.html" aria-label="Inversiones El Poblado — inicio">
+        <img src="../assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+      </a>
+      <ul class="ep-nav__links" data-nav-links>
+        <li><a class="ep-nav__link" href="../index.html#inicio" data-i18n="nav.home">Inicio</a></li>
+        <li><a class="ep-nav__link" href="../index.html#territorio" data-i18n="nav.territory">Territorio</a></li>
+        <li><a class="ep-nav__link" href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a class="ep-nav__link" href="../index.html#nosotros" data-i18n="nav.about">Nosotros</a></li>
+        <li><a class="ep-nav__link" href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <div class="ep-nav__actions">
+        <button class="ep-toggle ep-toggle--lang" type="button" data-lang-toggle aria-label="Cambiar idioma · Change language" title="Español / English">
+          <span class="ep-toggle__globe" aria-hidden="true"></span><span data-lang-label>Español</span>
+        </button>
+        <button class="ep-toggle" type="button" data-currency-toggle aria-label="Cambiar moneda"><b>COP</b><span aria-hidden="true"> / </span>USD</button>
+        <a class="ep-btn ep-btn--primary ep-btn--sm" href="#contacto" data-i18n="nav.cta">Solicitar información</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="ep-stage">
+    <!-- ===== HERO ===== -->
+    <section class="pp-hero ep-grain" aria-labelledby="pp-title">
+      <div class="pp-hero__bg">
+        <img src="../assets/villas-del-poblado/fotos/poblado_casa-terminada-atardecer.jpg" alt="Casa terminada al atardecer en Villas del Poblado, Acacías." fetchpriority="high" decoding="async" />
+      </div>
+      <div class="pp-hero__grade"></div>
+      <span class="pp-hero__state" data-i18n="state.dev">En desarrollo</span>
+      <div class="pp-hero__inner">
+        <a class="pp-crumb ep-rise" href="../index.html#proyectos"><span class="pp-crumb__arrow" aria-hidden="true">←</span> <span data-i18n="crumb.back">Volver al portafolio</span></a>
+        <p class="pp-hero__loc ep-rise" data-i18n="h.loc">Acacías · Meta · Proyecto principal</p>
+        <h1 class="pp-hero__title ep-rise" id="pp-title">Villas del Poblado</h1>
+        <p class="pp-hero__lead ep-rise" data-i18n="h.lead">La parcelación insignia: lotes con vías, redes y energía instaladas, casas ya construidas y una comunidad que empieza a habitar la tierra.</p>
+        <div class="pp-hero__actions ep-rise">
+          <a class="ep-btn ep-btn--primary" href="#contacto" data-i18n="h.cta1">Solicitar información</a>
+          <a class="ep-btn ep-btn--ghost" href="#galeria"><span data-i18n="h.cta2">Ver la galería</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BANDA DE SÍNTESIS ===== -->
+    <section class="pp-summary" aria-label="Cifras clave">
+      <div class="pp-summary__grid">
+        <div class="pp-summary__cell"><span class="pp-summary__n">96</span><span class="pp-summary__l" data-i18n="s.lots">Lotes proyectados</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n">600–1.000<small>m²</small></span><span class="pp-summary__l" data-i18n="s.area">Área por lote</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n"><span data-cop="85000000">$85.000.000</span> <small data-cur-unit>COP</small></span><span class="pp-summary__l" data-i18n="s.from">Precio desde · demo</span></div>
+        <div class="pp-summary__cell"><span class="pp-summary__n">4</span><span class="pp-summary__l" data-i18n="s.serv">Servicios instalados</span></div>
+      </div>
+    </section>
+
+    <!-- ===== RESUMEN EJECUTIVO ===== -->
+    <section class="pp-exec ep-section" id="resumen" aria-labelledby="exec-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.summary">Resumen ejecutivo</p>
+        <div class="pp-exec__grid">
+          <div>
+            <h2 class="pp-statement" id="exec-title" data-i18n="ex.title">Una parcelación <em>ya en marcha,</em> no una promesa.</h2>
+          </div>
+          <div>
+            <div class="pp-exec__body">
+              <p data-i18n="ex.p1">Villas del Poblado es el proyecto más consolidado del portafolio. En Acacías, a minutos del casco urbano, sobre el corredor que conecta con Villavicencio.</p>
+              <p data-i18n="ex.p2">Los lotes cuentan con vías internas, redes de energía y agua, y ya hay casas construidas habitándose. Invertir aquí es entrar en una comunidad que existe, con servicios verificables sobre el terreno.</p>
+            </div>
+            <div class="pp-exec__facts">
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k1">Municipio</span><span class="v">Acacías, Meta</span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k2">Estado del proyecto</span><span class="v" data-i18n="state.dev">En desarrollo</span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k3">Precio desde</span><span class="v"><span data-cop="85000000">$85.000.000</span> <small data-cur-unit>COP</small></span></div>
+              <div class="pp-exec__fact"><span class="k" data-i18n="ex.k4">Valorización proyectada</span><span class="v" data-i18n="common.study">En estudio</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALERÍA ===== -->
+    <section class="ep-section" id="galeria" aria-labelledby="gal-title">
+      <div class="ep-container">
+        <div class="pp-gallery__head">
+          <h2 class="pp-gallery__title" id="gal-title" data-i18n="sec.gallery">Galería</h2>
+          <p class="pp-gallery__note" data-i18n="gallery.note">Fotografías del proyecto y su entorno. Material de referencia.</p>
+        </div>
+        <div class="pp-grid">
+          <figure class="pp-shot pp-shot--wide" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_casa-dospisos-obra.jpg" alt="Casa de dos pisos en obra en Villas del Poblado." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot pp-shot--tall" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_lote-mojones.jpg" alt="Mojones delimitando un lote en la parcelación." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_via-acceso.jpg" alt="Vía de acceso interna del proyecto." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_porton-acceso.jpg" alt="Portón de acceso a Villas del Poblado." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_postes-luz.jpg" alt="Postes de energía instalados en el proyecto." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_estructura-obra.jpg" alt="Estructura de una vivienda en obra." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_redes-zanja.jpg" alt="Zanja con redes de servicios en instalación." loading="lazy" decoding="async" /></figure>
+          <figure class="pp-shot" data-shot><img src="../assets/villas-del-poblado/fotos/poblado_cielo-llanero.jpg" alt="Cielo llanero sobre la parcelación." loading="lazy" decoding="async" /></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MASTERPLAN ===== -->
+    <section class="pp-plan ep-section" id="plano" aria-labelledby="plan-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.plan">Masterplan</p>
+        <div class="pp-plan__grid">
+          <figure class="pp-plan__frame">
+            <span class="pp-plan__tag" data-i18n="plan.tag">Plano · demo</span>
+            <img src="../assets/villas-del-poblado/planos/plano_villas-del-poblado.png" alt="Plano general de loteo de Villas del Poblado." loading="lazy" decoding="async" />
+          </figure>
+          <div>
+            <h2 class="pp-plan__title" id="plan-title" data-i18n="plan.title">Cada lote, un lugar <em>en el plano.</em></h2>
+            <div class="pp-plan__body">
+              <p data-i18n="plan.p">Distribución general del loteo, vías internas y zonas comunes. El plano definitivo, con áreas exactas y disponibilidad por lote, se comparte en la asesoría.</p>
+            </div>
+            <div class="pp-plan__legend">
+              <div class="pp-plan__li" data-i18n="plan.l1">Lotes residenciales de 600 a 1.000 m²</div>
+              <div class="pp-plan__li" data-i18n="plan.l2">Vías internas y accesos vehiculares</div>
+              <div class="pp-plan__li" data-i18n="plan.l3">Zonas comunes y áreas verdes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CARACTERÍSTICAS ===== -->
+    <section class="pp-features ep-section" id="caracteristicas" aria-labelledby="feat-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.features">Características</p>
+        <h2 class="pp-statement" id="feat-title" data-i18n="f.title">Lo que hace de la tierra <em>un lugar para vivir.</em></h2>
+        <div class="pp-features__grid">
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f1k">Agua</span><span class="pp-feature__v" data-i18n="f1v">Red instalada</span><p class="pp-feature__d" data-i18n="f1d">Acueducto veredal con acometida a cada lote.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f2k">Energía</span><span class="pp-feature__v" data-i18n="f2v">Postería en obra</span><p class="pp-feature__d" data-i18n="f2d">Redes eléctricas y postería instaladas por etapas.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f3k">Vías</span><span class="pp-feature__v" data-i18n="f3v">Internas compactadas</span><p class="pp-feature__d" data-i18n="f3d">Accesos vehiculares a cada lote dentro del proyecto.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f4k">Gas</span><span class="pp-feature__v" data-i18n="f4v">Natural domiciliario</span><p class="pp-feature__d" data-i18n="f4d">Proyección de red de gas natural para las viviendas.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f5k">Comunidad</span><span class="pp-feature__v" data-i18n="f5v">Casas habitadas</span><p class="pp-feature__d" data-i18n="f5d">Viviendas construidas y familias que ya habitan el proyecto.</p></div>
+          <div class="pp-feature"><span class="pp-feature__k" data-i18n="f6k">Escritura</span><span class="pp-feature__v" data-i18n="f6v">Lote propio</span><p class="pp-feature__d" data-i18n="f6d">Compra con acompañamiento jurídico hasta la escrituración.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ¿POR QUÉ INVERTIR? ===== -->
+    <section class="ep-section" id="invertir" aria-labelledby="why-title">
+      <div class="ep-container">
+        <div class="pp-why__head">
+          <p class="pp-eyebrow" data-i18n="sec.why">Por qué invertir</p>
+          <h2 class="pp-why__title" id="why-title" data-i18n="w.title">La tierra que ya <em>tiene comunidad.</em></h2>
+        </div>
+        <div class="pp-why__grid">
+          <div class="pp-why__item"><p class="pp-why__n">01</p><h3 class="pp-why__h" data-i18n="w1h">Proyecto consolidado</h3><p class="pp-why__p" data-i18n="w1p">No compras sobre plano vacío: hay vías, servicios y casas habitándose. El riesgo de "que arranque" ya pasó.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">02</p><h3 class="pp-why__h" data-i18n="w2h">Corredor en crecimiento</h3><p class="pp-why__p" data-i18n="w2p">Acacías es una de las ciudades más dinámicas del Meta, sobre el eje que conecta con Villavicencio y Bogotá.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">03</p><h3 class="pp-why__h" data-i18n="w3h">Servicios que sostienen el valor</h3><p class="pp-why__p" data-i18n="w3p">La infraestructura instalada es lo que diferencia un lote de campo de una parcelación con plusvalía real.</p></div>
+          <div class="pp-why__item"><p class="pp-why__n">04</p><h3 class="pp-why__h" data-i18n="w4h">Uso flexible</h3><p class="pp-why__p" data-i18n="w4p">Para construir tu casa de campo, para renta futura o simplemente para conservar tierra que se valoriza.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESO DE COMPRA ===== -->
+    <section class="pp-process ep-section" id="proceso" aria-labelledby="proc-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.process">Proceso de compra</p>
+        <h2 class="pp-why__title" id="proc-title" data-i18n="process.title">Un proceso claro, <em>sin letra pequeña.</em></h2>
+        <div class="pp-process__grid">
+          <div class="pp-step"><p class="pp-step__n">01</p><h3 class="pp-step__h" data-i18n="step1.h">Conversación inicial</h3><p class="pp-step__p" data-i18n="step1.p">Nos cuentas qué buscas. Te compartimos disponibilidad, precios y proyección — con discreción.</p></div>
+          <div class="pp-step"><p class="pp-step__n">02</p><h3 class="pp-step__h" data-i18n="step2.h">Visita guiada</h3><p class="pp-step__p" data-i18n="step2.p">Recorremos el proyecto contigo, lote a lote, para que elijas con los pies en la tierra.</p></div>
+          <div class="pp-step"><p class="pp-step__n">03</p><h3 class="pp-step__h" data-i18n="step3.h">Reserva del lote</h3><p class="pp-step__p" data-i18n="step3.p">Apartas tu lote con un acuerdo claro. Definimos plan de pago a tu medida.</p></div>
+          <div class="pp-step"><p class="pp-step__n">04</p><h3 class="pp-step__h" data-i18n="step4.h">Escrituración</h3><p class="pp-step__p" data-i18n="step4.p">Formalizamos la compra con acompañamiento jurídico de principio a fin.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== UBICACIÓN ===== -->
+    <section class="ep-section" id="ubicacion" aria-labelledby="loc-title">
+      <div class="ep-container">
+        <p class="pp-eyebrow" data-i18n="sec.location">Ubicación</p>
+        <div class="pp-loc__grid">
+          <div class="pp-loc__media"><img src="../assets/villas-del-poblado/fotos/poblado_via-acceso.jpg" alt="Vía de acceso hacia Villas del Poblado." loading="lazy" decoding="async" data-parallax /></div>
+          <div>
+            <h2 class="pp-loc__title" id="loc-title" data-i18n="loc.title">Acacías, sobre el corredor <em>del piedemonte.</em></h2>
+            <p class="pp-loc__p" data-i18n="loc.p">A minutos del casco urbano de Acacías y sobre la vía que conecta con Villavicencio y Bogotá. Distancias de referencia (demo):</p>
+            <div class="pp-loc__dist">
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r1">Casco urbano de Acacías</span><span class="v">10 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r2">Villavicencio</span><span class="v">40 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r3">Aeropuerto Vanguardia</span><span class="v">45 <small data-i18n="unit.min">min</small></span></div>
+              <div class="pp-loc__row"><span class="k" data-i18n="loc.r4">Bogotá</span><span class="v">3 <small data-i18n="unit.h">h</small></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="pp-faq ep-section" id="faq" aria-labelledby="faq-title">
+      <div class="ep-container">
+        <div class="pp-faq__wrap">
+          <p class="pp-eyebrow" data-i18n="sec.faq">Preguntas frecuentes</p>
+          <h2 class="pp-statement" id="faq-title" data-i18n="faq.title">Lo que suelen <em>preguntarnos.</em></h2>
+          <div class="pp-faq__list">
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q1">¿El lote se entrega con escritura?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a1">Sí. La compra se formaliza mediante escritura pública, con acompañamiento jurídico durante todo el proceso.</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q2">¿Puedo pagar a plazos?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a2">Sí. Manejamos planes de pago que se ajustan a cada persona. Los definimos en la conversación inicial. (Condiciones demo.)</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q3">¿Ya tiene servicios instalados?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a3">El proyecto cuenta con vías internas, redes de agua y energía instaladas por etapas. En la visita verificas el estado sobre el terreno.</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q4">¿Puedo construir de inmediato?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a4">Sí, respetando las normas del proyecto. De hecho ya hay casas construidas y habitadas dentro de la parcelación.</div></div></div>
+            <div class="pp-qa" data-qa><button class="pp-qa__q" type="button"><span data-i18n="q5">¿Cómo agendo una visita?</span><span class="pp-qa__ico" aria-hidden="true"></span></button><div class="pp-qa__a"><div class="pp-qa__a-inner" data-i18n="a5">Escríbenos por el formulario o WhatsApp y coordinamos un recorrido guiado en la fecha que te convenga.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTO (reutiliza .ep-cta) ===== -->
+    <section class="ep-cta" id="contacto" aria-labelledby="invite-title">
+      <div class="ep-cta__photo" aria-hidden="true">
+        <img src="../assets/villas-del-poblado/fotos/poblado_familia-acceso.jpg" alt="" decoding="async" />
+      </div>
+      <div class="ep-cta__wrap">
+        <h2 class="ep-cta__title ep-reveal" id="invite-title" data-i18n="cta.title">Solicita información de <em>este proyecto.</em></h2>
+        <p class="ep-cta__lead ep-reveal" data-delay="120" data-i18n="cta.lead">Te compartimos disponibilidad, precios y proyección de valorización — con discreción y sin compromiso.</p>
+        <div class="ep-cta__card ep-scene-in">
+          <form class="ep-cta__form" onsubmit="return false" novalidate>
+            <div class="ep-field"><label for="f-name" data-i18n="form.name">Nombre</label><input id="f-name" type="text" data-i18n-ph="form.name.ph" placeholder="Tu nombre" /></div>
+            <div class="ep-field"><label for="f-contact" data-i18n="form.contact">Correo o WhatsApp</label><input id="f-contact" type="text" data-i18n-ph="form.contact.ph" placeholder="Cómo te contactamos" /></div>
+            <div class="ep-field full">
+              <label id="f-proj-label" data-i18n="form.project">Proyecto de interés</label>
+              <div class="ep-select" data-select>
+                <button type="button" class="ep-select__btn" data-select-btn aria-haspopup="listbox" aria-expanded="false" aria-labelledby="f-proj-label">
+                  <span data-select-value>Villas del Poblado (Acacías)</span>
+                  <span class="ep-select__chev" aria-hidden="true"></span>
+                </button>
+                <ul class="ep-select__list" role="listbox" data-select-list tabindex="-1" aria-labelledby="f-proj-label">
+                  <li class="ep-select__opt is-selected" role="option" data-value="poblado" aria-selected="true">Villas del Poblado (Acacías)</li>
+                  <li class="ep-select__opt" role="option" data-value="llanerita" aria-selected="false">Llanerita Campestre</li>
+                  <li class="ep-select__opt" role="option" data-value="apiay" aria-selected="false">Villas de Apiay</li>
+                  <li class="ep-select__opt" role="option" data-value="luisa" aria-selected="false">Villa Luisa</li>
+                  <li class="ep-select__opt" role="option" data-value="all" aria-selected="false" data-i18n="form.all">Todo el portafolio</li>
+                </ul>
+                <input type="hidden" name="proyecto" data-select-input value="poblado" />
+              </div>
+            </div>
+          </form>
+          <div class="ep-cta__actions">
+            <button class="ep-btn ep-btn--primary" type="button" data-i18n="cta.submit">Solicitar información</button>
+            <a class="ep-btn ep-btn--ghost" href="#contacto"><span>WhatsApp</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+          </div>
+          <p class="ep-cta__note" data-i18n="cta.note">Respondemos con discreción · Sin compromiso</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROYECTOS RELACIONADOS ===== -->
+    <section class="ep-section" id="relacionados" aria-labelledby="rel-title">
+      <div class="ep-container">
+        <div class="pp-related__head">
+          <h2 class="pp-related__title" id="rel-title" data-i18n="related.title">Otros proyectos del portafolio</h2>
+        </div>
+        <div class="pp-related__grid">
+          <a class="pp-card" href="llanerita-campestre.html">
+            <div class="pp-card__media"><img src="../assets/llanerita-campestre/fotos/llanerita_arbol-cielo-azul.jpg" alt="Llanerita Campestre, Villavicencio." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc">Villavicencio</span><h3 class="pp-card__name">Llanerita Campestre</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+          <a class="pp-card" href="villas-de-apiay.html">
+            <div class="pp-card__media"><img src="../assets/villas-de-apiay/fotos/apiay_portal-acceso.jpg" alt="Villas de Apiay, Apiay." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc">Apiay · Villavicencio</span><h3 class="pp-card__name">Villas de Apiay</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+          <a class="pp-card" href="villa-luisa.html">
+            <div class="pp-card__media"><img src="../assets/villa-luisa/planos/plano_villa-luisa.png" alt="Villa Luisa, plano del próximo proyecto." loading="lazy" decoding="async" /></div>
+            <div class="pp-card__body"><span class="pp-card__loc" data-i18n="state.soon">Próximamente</span><h3 class="pp-card__name">Villa Luisa</h3><span class="pp-card__go"><span data-i18n="card.go">Ver proyecto</span> <span class="a" aria-hidden="true">→</span></span></div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (chrome compartido) ===== -->
+  <footer class="ep-footer ep-stage">
+    <div class="ep-container">
+      <div class="ep-footer__cols">
+        <div class="ep-footer__brand ep-reveal">
+          <img src="../assets/marca/logo/logo_el-poblado.svg" alt="Inversiones El Poblado" />
+          <p data-i18n="footer.tagline">Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.</p>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.projects">Proyectos</h4>
+          <a href="villas-del-poblado.html">Villas del Poblado</a>
+          <a href="llanerita-campestre.html">Llanerita Campestre</a>
+          <a href="villas-de-apiay.html">Villas de Apiay</a>
+          <a href="villa-luisa.html">Villa Luisa</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="footer.explore">Explorar</h4>
+          <a href="../index.html#territorio" data-i18n="nav.territory">Territorio</a>
+          <a href="../index.html#nosotros" data-i18n="nav.about">Nosotros</a>
+          <a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a>
+        </div>
+        <div class="ep-footer__col">
+          <h4 data-i18n="nav.contact">Contacto</h4>
+          <a href="#contacto" data-i18n="footer.request">Solicitar información</a>
+          <a href="#contacto">WhatsApp</a>
+        </div>
+      </div>
+      <div class="ep-footer__bottom">
+        <span data-i18n="footer.copy">© 2026 Inversiones El Poblado · Meta, Colombia</span>
+        <span class="ep-mp" data-i18n="footer.legal">Registro y aliado financiero · pendiente</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="pp-lightbox" data-lightbox aria-hidden="true">
+    <button class="pp-lightbox__close" type="button" data-lb-close aria-label="Cerrar">✕</button>
+    <button class="pp-lightbox__nav pp-lightbox__nav--prev" type="button" data-lb-prev aria-label="Anterior">‹</button>
+    <img data-lb-img src="" alt="" />
+    <button class="pp-lightbox__nav pp-lightbox__nav--next" type="button" data-lb-next aria-label="Siguiente">›</button>
+  </div>
+
+  <!-- Diccionario de página (ES/EN) — se fusiona con el común en project.js -->
+  <script>
+  window.EP_PAGE_I18N = {
+    es: {
+      "h.loc": "Acacías · Meta · Proyecto principal",
+      "h.lead": "La parcelación insignia: lotes con vías, redes y energía instaladas, casas ya construidas y una comunidad que empieza a habitar la tierra.",
+      "h.cta1": "Solicitar información", "h.cta2": "Ver la galería",
+      "s.lots": "Lotes proyectados", "s.area": "Área por lote", "s.from": "Precio desde · demo", "s.serv": "Servicios instalados",
+      "ex.title": "Una parcelación <em>ya en marcha,</em> no una promesa.",
+      "ex.p1": "Villas del Poblado es el proyecto más consolidado del portafolio. En Acacías, a minutos del casco urbano, sobre el corredor que conecta con Villavicencio.",
+      "ex.p2": "Los lotes cuentan con vías internas, redes de energía y agua, y ya hay casas construidas habitándose. Invertir aquí es entrar en una comunidad que existe, con servicios verificables sobre el terreno.",
+      "ex.k1": "Municipio", "ex.k2": "Estado del proyecto", "ex.k3": "Precio desde", "ex.k4": "Valorización proyectada", "common.study": "En estudio",
+      "plan.title": "Cada lote, un lugar <em>en el plano.</em>",
+      "plan.p": "Distribución general del loteo, vías internas y zonas comunes. El plano definitivo, con áreas exactas y disponibilidad por lote, se comparte en la asesoría.",
+      "plan.l1": "Lotes residenciales de 600 a 1.000 m²", "plan.l2": "Vías internas y accesos vehiculares", "plan.l3": "Zonas comunes y áreas verdes",
+      "f.title": "Lo que hace de la tierra <em>un lugar para vivir.</em>",
+      "f1k": "Agua", "f1v": "Red instalada", "f1d": "Acueducto veredal con acometida a cada lote.",
+      "f2k": "Energía", "f2v": "Postería en obra", "f2d": "Redes eléctricas y postería instaladas por etapas.",
+      "f3k": "Vías", "f3v": "Internas compactadas", "f3d": "Accesos vehiculares a cada lote dentro del proyecto.",
+      "f4k": "Gas", "f4v": "Natural domiciliario", "f4d": "Proyección de red de gas natural para las viviendas.",
+      "f5k": "Comunidad", "f5v": "Casas habitadas", "f5d": "Viviendas construidas y familias que ya habitan el proyecto.",
+      "f6k": "Escritura", "f6v": "Lote propio", "f6d": "Compra con acompañamiento jurídico hasta la escrituración.",
+      "w.title": "La tierra que ya <em>tiene comunidad.</em>",
+      "w1h": "Proyecto consolidado", "w1p": "No compras sobre plano vacío: hay vías, servicios y casas habitándose. El riesgo de «que arranque» ya pasó.",
+      "w2h": "Corredor en crecimiento", "w2p": "Acacías es una de las ciudades más dinámicas del Meta, sobre el eje que conecta con Villavicencio y Bogotá.",
+      "w3h": "Servicios que sostienen el valor", "w3p": "La infraestructura instalada es lo que diferencia un lote de campo de una parcelación con plusvalía real.",
+      "w4h": "Uso flexible", "w4p": "Para construir tu casa de campo, para renta futura o simplemente para conservar tierra que se valoriza.",
+      "loc.title": "Acacías, sobre el corredor <em>del piedemonte.</em>",
+      "loc.p": "A minutos del casco urbano de Acacías y sobre la vía que conecta con Villavicencio y Bogotá. Distancias de referencia (demo):",
+      "loc.r1": "Casco urbano de Acacías", "loc.r2": "Villavicencio", "loc.r3": "Aeropuerto Vanguardia", "loc.r4": "Bogotá", "unit.min": "min", "unit.h": "h",
+      "faq.title": "Lo que suelen <em>preguntarnos.</em>",
+      "q1": "¿El lote se entrega con escritura?", "a1": "Sí. La compra se formaliza mediante escritura pública, con acompañamiento jurídico durante todo el proceso.",
+      "q2": "¿Puedo pagar a plazos?", "a2": "Sí. Manejamos planes de pago que se ajustan a cada persona. Los definimos en la conversación inicial. (Condiciones demo.)",
+      "q3": "¿Ya tiene servicios instalados?", "a3": "El proyecto cuenta con vías internas, redes de agua y energía instaladas por etapas. En la visita verificas el estado sobre el terreno.",
+      "q4": "¿Puedo construir de inmediato?", "a4": "Sí, respetando las normas del proyecto. De hecho ya hay casas construidas y habitadas dentro de la parcelación.",
+      "q5": "¿Cómo agendo una visita?", "a5": "Escríbenos por el formulario o WhatsApp y coordinamos un recorrido guiado en la fecha que te convenga."
+    },
+    en: {
+      "h.loc": "Acacías · Meta · Flagship project",
+      "h.lead": "The flagship development: lots with roads, utilities and power installed, homes already built and a community starting to inhabit the land.",
+      "h.cta1": "Request information", "h.cta2": "View the gallery",
+      "s.lots": "Projected lots", "s.area": "Area per lot", "s.from": "Price from · demo", "s.serv": "Installed services",
+      "ex.title": "A development <em>already underway,</em> not a promise.",
+      "ex.p1": "Villas del Poblado is the most consolidated project in the portfolio. In Acacías, minutes from town, on the corridor that connects to Villavicencio.",
+      "ex.p2": "The lots have internal roads, power and water networks, and there are already homes being lived in. Investing here means entering a community that exists, with services verifiable on the ground.",
+      "ex.k1": "Municipality", "ex.k2": "Project status", "ex.k3": "Price from", "ex.k4": "Projected appreciation", "common.study": "Under study",
+      "plan.title": "Every lot, a place <em>on the plan.</em>",
+      "plan.p": "General layout of the plots, internal roads and common areas. The final plan, with exact areas and per-lot availability, is shared during the advisory.",
+      "plan.l1": "Residential lots from 600 to 1,000 m²", "plan.l2": "Internal roads and vehicle access", "plan.l3": "Common areas and green spaces",
+      "f.title": "What turns land <em>into a place to live.</em>",
+      "f1k": "Water", "f1v": "Network installed", "f1d": "Rural aqueduct with a connection to every lot.",
+      "f2k": "Power", "f2v": "Poles in progress", "f2d": "Electrical networks and poles installed in stages.",
+      "f3k": "Roads", "f3v": "Compacted internal", "f3d": "Vehicle access to every lot within the project.",
+      "f4k": "Gas", "f4v": "Natural, domestic", "f4d": "Projected natural-gas network for the homes.",
+      "f5k": "Community", "f5v": "Homes inhabited", "f5d": "Built homes and families already living in the project.",
+      "f6k": "Deed", "f6v": "Your own lot", "f6d": "Purchase with legal guidance through to the deed.",
+      "w.title": "The land that already <em>has a community.</em>",
+      "w1h": "Consolidated project", "w1p": "You're not buying an empty plan: there are roads, services and homes being lived in. The \"will it start\" risk is behind you.",
+      "w2h": "Growing corridor", "w2p": "Acacías is one of the most dynamic cities in the Meta, on the axis connecting Villavicencio and Bogotá.",
+      "w3h": "Services that sustain value", "w3p": "Installed infrastructure is what sets a field lot apart from a development with real upside.",
+      "w4h": "Flexible use", "w4p": "To build your country home, for future rental, or simply to hold land that appreciates.",
+      "loc.title": "Acacías, on the <em>foothill corridor.</em>",
+      "loc.p": "Minutes from the town of Acacías and on the road connecting to Villavicencio and Bogotá. Reference distances (demo):",
+      "loc.r1": "Town of Acacías", "loc.r2": "Villavicencio", "loc.r3": "Vanguardia Airport", "loc.r4": "Bogotá", "unit.min": "min", "unit.h": "h",
+      "faq.title": "What people usually <em>ask us.</em>",
+      "q1": "Is the lot delivered with a deed?", "a1": "Yes. The purchase is formalized through a public deed, with legal guidance throughout the process.",
+      "q2": "Can I pay in installments?", "a2": "Yes. We offer payment plans tailored to each person. We define them in the first conversation. (Demo terms.)",
+      "q3": "Does it already have services installed?", "a3": "The project has internal roads, water and power networks installed in stages. On the visit you verify the state on the ground.",
+      "q4": "Can I build right away?", "a4": "Yes, following the project's rules. In fact there are already homes built and inhabited within the development.",
+      "q5": "How do I schedule a visit?", "a5": "Write to us via the form or WhatsApp and we'll arrange a guided tour on the date that suits you."
+    }
+  };
+  </script>
+  <script src="../js/project.js?v=22" defer></script>
+</body>
+</html>

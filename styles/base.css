@@ -1,0 +1,93 @@
+/* ============================================================
+   BASE — reset, tipografía, layout primitives, grano de marca
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  font-family:var(--ep-font-sans);
+  font-size:var(--ep-fs-body);
+  line-height:var(--ep-lh-body);
+  color:var(--ep-text-primary);
+  background:var(--ep-bg-base);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img,video{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+ul{list-style:none}
+
+/* ---- Tipografía de marca ---- */
+.ep-overline{
+  font-family:var(--ep-font-mono);
+  font-size:var(--ep-fs-micro);
+  letter-spacing:var(--ep-tracking-mono);
+  text-transform:uppercase;
+  color:var(--ep-accent);
+}
+.ep-mono{font-family:var(--ep-font-mono);letter-spacing:.04em}
+.ep-display{
+  font-family:var(--ep-font-display);
+  font-weight:300;
+  line-height:var(--ep-lh-tight);
+  letter-spacing:var(--ep-tracking-display);
+}
+.ep-serif{font-family:var(--ep-font-serif-text);font-weight:400}
+/* Deck / subtítulo — voz funcional (General Sans), identidad compartida con menú/labels/botones */
+.ep-lead{font-family:var(--ep-font-sans);font-weight:400;font-size:var(--ep-fs-lead);
+  line-height:1.55;letter-spacing:-.005em;color:var(--ep-text-secondary)}
+
+/* ---- Layout ---- */
+.ep-container{
+  width:100%;
+  max-width:var(--ep-content-max);
+  margin-inline:auto;
+  padding-inline:var(--ep-grid-margin);
+}
+.ep-section{padding-block:clamp(var(--ep-space-10),12vw,var(--ep-space-12))}
+
+/* Objetivos de scroll (anclas del menú) libres del navbar fijo */
+:where(#inicio,#territorio,#nosotros,#proyectos,#contacto){scroll-margin-top:clamp(72px,10vh,104px)}
+
+/* Transición suave al cambiar idioma / moneda (sin recargar) */
+html[data-switching] main,
+html[data-switching] .ep-footer,
+html[data-switching] .ep-nav__links{opacity:.5;transition:opacity .18s var(--ep-ease-standard)}
+main,.ep-footer,.ep-nav__links{transition:opacity .2s var(--ep-ease-standard)}
+
+/* ---- Accesibilidad ---- */
+:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 1.5px var(--ep-bg-base),0 0 0 3px var(--ep-border-focus);
+  border-radius:var(--ep-radius-sm);
+}
+.ep-skip{
+  position:absolute;left:var(--ep-space-4);top:-100px;z-index:200;
+  background:var(--ep-surface-1);color:var(--ep-text-primary);
+  padding:var(--ep-space-3) var(--ep-space-4);border-radius:var(--ep-radius-md);
+  transition:top var(--ep-dur-fast) var(--ep-ease-standard);
+}
+.ep-skip:focus{top:var(--ep-space-4)}
+.ep-visually-hidden{
+  position:absolute!important;width:1px;height:1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0;margin:-1px;
+}
+
+/* ---- Grano fílmico de marca (textura global sutil) ---- */
+.ep-grain::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  opacity:var(--ep-opacity-grain);mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- Reveal (motion) ---- */
+.ep-reveal{opacity:0;transform:translateY(var(--ep-shift-reveal))}
+.ep-reveal.is-in{
+  opacity:1;transform:none;
+  transition:opacity var(--ep-dur-slow) var(--ep-ease-revelado),
+             transform var(--ep-dur-slow) var(--ep-ease-revelado);
+}
+@media (prefers-reduced-motion:reduce){
+  .ep-reveal{opacity:1;transform:none;transition:none}
+}

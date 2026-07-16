@@ -1,0 +1,105 @@
+/* ============================================================
+   EL UMBRAL — Design Tokens (de /design/tokens.json)
+   Capas: primitive -> semantic -> component
+   Los componentes consumen semantic, nunca primitive.
+   ============================================================ */
+:root {
+  /* ---- Primitive · Neutros cálidos (Carbón -> Marfil) ---- */
+  --ep-carbon-950:#0D0B09; --ep-carbon-900:#14110E; --ep-carbon-800:#1F1B16;
+  --ep-carbon-700:#2C2721; --ep-carbon-600:#3D362D; --ep-carbon-500:#574E42;
+  --ep-carbon-400:#8A827A; --ep-carbon-300:#B4ABA0; --ep-carbon-200:#D3CABB;
+  --ep-carbon-100:#E4DCD0; --ep-carbon-50:#EDE6DA;  --ep-carbon-25:#F6F1E9;
+  /* ---- Primitive · Oro cobre (acento único) ---- */
+  --ep-copper-700:#7A5230; --ep-copper-600:#94663C; --ep-copper-500:#B07A48;
+  --ep-copper-400:#C4966A; --ep-copper-300:#D8B591; --ep-copper-200:#EAD6C0;
+  /* ---- Primitive · Verde ladera (solo dato positivo) ---- */
+  --ep-ladera-700:#1D2A22; --ep-ladera-600:#2E4034; --ep-ladera-500:#3E5647; --ep-ladera-300:#7A9482;
+
+  /* ---- Semantic · Background ---- */
+  --ep-bg-base:var(--ep-carbon-900);
+  --ep-bg-warm:var(--ep-carbon-50);
+  --ep-bg-inset:var(--ep-carbon-950);
+  --ep-bg-overlay:rgba(13,11,9,.72);
+  /* ---- Semantic · Surface ---- */
+  --ep-surface-1:var(--ep-carbon-800);
+  --ep-surface-2:var(--ep-carbon-700);
+  --ep-surface-warm:var(--ep-carbon-25);
+  /* ---- Semantic · Accent ---- */
+  --ep-accent:var(--ep-copper-500);
+  --ep-accent-hover:var(--ep-copper-400);
+  --ep-accent-press:var(--ep-copper-600);
+  /* ---- Semantic · Text ---- */
+  --ep-text-primary:var(--ep-carbon-50);
+  --ep-text-secondary:var(--ep-carbon-300);
+  --ep-text-muted:var(--ep-carbon-400);
+  --ep-text-on-warm:var(--ep-carbon-900);
+  /* ---- Semantic · Success / Border ---- */
+  --ep-success:var(--ep-ladera-600);
+  --ep-success-fg:var(--ep-ladera-300);
+  --ep-border:var(--ep-carbon-700);
+  --ep-border-warm:var(--ep-copper-200);
+  --ep-border-focus:var(--ep-copper-400);
+
+  /* ---- Opacidades ---- */
+  --ep-opacity-disabled:.38; --ep-opacity-muted:.64; --ep-opacity-veil:.72;
+  --ep-opacity-hover-tint:.08; --ep-opacity-grain:.06;
+
+  /* ============================================================
+     SISTEMA TIPOGRÁFICO — dos voces, una identidad.
+     UNA sola grotesca para toda la interfaz = General Sans. Identidad por PESO, no por familia.
+       · Hero .............. 600 (semibold)      · Botones ......... 600
+       · Títulos sección ... 600 (semibold)      · Formularios ..... 500
+       · Títulos proyecto .. 500 (medium)        · Cifras/datos .... 600
+       · Menú / labels ..... 500 (medium)        · Texto de apoyo .. 400 (regular)
+     Tracking negativo (-.02/-.03em) en títulos grandes para solidez.
+     ÉNFASIS = peso (600/700/800) + tamaño + color cobre + espaciado. NUNCA itálica ni serif.
+     Una sola familia en toda la marca (estilo Stripe/Vercel/Apple), sin recursos "de IA".
+     ============================================================ */
+  --ep-font-display:"General Sans",system-ui,-apple-system,"Segoe UI",sans-serif; /* grotesca de marca (títulos) */
+  --ep-font-sans:"General Sans",system-ui,-apple-system,"Segoe UI",sans-serif;    /* misma familia: UI/cuerpo */
+  --ep-font-serif-text:var(--ep-font-sans);   /* sin serif: alias a la grotesca (compat) */
+  --ep-font-mono:"Space Mono",ui-monospace,"SFMono-Regular",monospace; /* solo datos técnicos */
+
+  --ep-fs-display-1:clamp(2.75rem,7vw,5.5rem);
+  --ep-fs-display-2:clamp(2.25rem,5vw,4rem);
+  --ep-fs-h1:clamp(2rem,4vw,3rem);
+  --ep-fs-h2:clamp(1.5rem,3vw,2.25rem);
+  --ep-fs-h3:clamp(1.3rem,2.2vw,1.75rem);
+  --ep-fs-lead:clamp(1.2rem,1.7vw,1.5rem);   /* subtítulo/deck (serif) */
+  --ep-fs-data-xl:clamp(2.75rem,5vw,4.5rem);
+  --ep-fs-body-lg:1.15rem;
+  --ep-fs-body:1rem;
+  --ep-fs-caption:.8125rem;
+  --ep-fs-micro:.6875rem;
+  --ep-lh-tight:1.05; --ep-lh-body:1.6;
+  --ep-tracking-display:-.02em; --ep-tracking-mono:.12em;
+
+  /* ---- Espaciado (base 4px) ---- */
+  --ep-space-1:4px;  --ep-space-2:8px;   --ep-space-3:12px; --ep-space-4:16px;
+  --ep-space-5:24px; --ep-space-6:32px;  --ep-space-7:48px; --ep-space-8:64px;
+  --ep-space-9:96px; --ep-space-10:128px;--ep-space-11:160px;--ep-space-12:200px;
+
+  /* ---- Grid ---- */
+  --ep-grid-margin:clamp(20px,6vw,120px);
+  --ep-content-max:1240px;
+  --ep-editorial-max:720px;
+  --ep-bleed-max:1600px;
+
+  /* ---- Radios ---- */
+  --ep-radius-none:0; --ep-radius-sm:2px; --ep-radius-md:4px; --ep-radius-lg:8px; --ep-radius-pill:999px;
+
+  /* ---- Sombras (cálidas, teñidas de carbón) ---- */
+  --ep-elev-1:0 1px 2px rgba(13,11,9,.20);
+  --ep-elev-2:0 4px 16px rgba(13,11,9,.24);
+  --ep-elev-3:0 12px 40px rgba(13,11,9,.30);
+  --ep-elev-warm:0 8px 32px rgba(122,82,48,.14);
+
+  /* ---- Motion ---- */
+  --ep-ease-ascenso:cubic-bezier(.22,1,.36,1);
+  --ep-ease-umbral:cubic-bezier(.83,0,.17,1);
+  --ep-ease-revelado:cubic-bezier(.16,1,.3,1);
+  --ep-ease-standard:cubic-bezier(.4,0,.2,1);
+  --ep-dur-instant:120ms; --ep-dur-fast:240ms; --ep-dur-base:360ms;
+  --ep-dur-slow:560ms; --ep-dur-umbral:760ms;
+  --ep-shift-reveal:24px; --ep-stagger:60ms; --ep-magnet-max:6px;
+}
