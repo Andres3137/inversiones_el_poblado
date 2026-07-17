@@ -32,7 +32,9 @@
   const note = document.querySelector("[data-form-note]");
   if (!btn || !note) return;
 
-  const noteDefault = note.textContent;
+  /* La nota vuelve a su texto por diccionario, no por copia: si se cachea
+     el textContent inicial se restaura en el idioma que hubiera al cargar. */
+  const noteReset = () => window.EP_I18N?.t("cta.note") ?? note.textContent;
   const isEn = () => document.documentElement.lang === "en";
   const T = {
     missing: () => (isEn() ? "Please add your name and a way to reach you." : "Falta tu nombre y cómo contactarte."),
@@ -107,7 +109,7 @@
       console.error("[EP_FORM] Falló el envío:", err);
     } finally {
       btn.disabled = false;
-      setTimeout(() => say(noteDefault, ""), 6000);
+      setTimeout(() => say(noteReset(), ""), 6000);
     }
   };
 

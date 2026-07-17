@@ -107,13 +107,9 @@
 .ep-origin__pk{display:block;font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;
   letter-spacing:.01em;color:var(--ep-copper-600);margin-block-end:var(--ep-space-2)}
 .ep-origin__point p{font-size:var(--ep-fs-caption);color:var(--ep-carbon-600);line-height:1.55;max-width:34ch}
-@media (max-width:520px){.ep-origin__points{grid-template-columns:1fr;gap:var(--ep-space-5)}}
-@media (max-width:820px){
-  .ep-origin__grid{display:block}
-  .ep-origin__figure{aspect-ratio:4/3;margin-block-end:calc(var(--ep-space-8) * -1);
-    width:88%;margin-inline-start:auto}
-  .ep-origin__card{margin-block-start:calc(var(--ep-space-9) * -1);width:94%;position:relative}
-}
+/* La composición móvil de esta escena vive entera en responsive.css §05.
+   Aquí no hay reglas de móvil: dos juegos compitiendo por orden de carga
+   (foto primero vs. tarjeta primero) hacían que ganara el último en silencio. */
 
 /* ============================================================
    ESCENA 03 · PROYECTOS — cada uno un producto premium

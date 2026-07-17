@@ -351,11 +351,12 @@
     if (cur && valEl) valEl.textContent = cur.textContent.trim();
   });
 
-  /* --- i18n: chrome común (nav/footer/labels) + diccionario de página --- */
-  const SHARED = {
+  /* --- Vocabulario de las páginas de proyecto ---
+     El estado (idioma, moneda, persistencia, toggles) vive en i18n.js.
+     Aquí va lo que comparten las 4 páginas de proyecto; encima se registra
+     el diccionario propio de cada una (window.EP_PAGE_I18N), que manda.   */
+  window.EP_I18N.register({
     es: {
-      "skip": "Saltar al contenido",
-      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.sim": "Simulador",
       "crumb.back": "Volver al portafolio",
       "sec.summary": "Resumen ejecutivo", "sec.gallery": "Galería", "sec.plan": "Masterplan", "sec.features": "Características",
       "sec.why": "Por qué invertir", "sec.process": "Proceso de compra", "sec.location": "Ubicación", "sec.faq": "Preguntas frecuentes",
@@ -371,19 +372,11 @@
       "step4.h": "Escrituración", "step4.p": "Formalizamos la compra con acompañamiento jurídico de principio a fin.",
       "cta.title": "Solicita información de <em>este proyecto.</em>",
       "cta.lead": "Te compartimos disponibilidad, precios y proyección de valorización — con discreción y sin compromiso.",
-      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o teléfono", "form.contact.ph": "Cómo te contactamos",
-      "form.project": "Proyecto de interés", "form.all": "Todo el portafolio",
       "form.msg": "Mensaje", "form.msg.ph": "Cuéntanos qué buscas (opcional)",
-      "cta.submit": "Solicitar información", "cta.note": "Respondemos con discreción · Sin compromiso",
       "related.title": "Otros proyectos del portafolio", "card.go": "Ver proyecto",
-      "footer.tagline": "Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.",
-      "footer.explore": "Explorar", "footer.finance": "Financiación",
-      "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registro y aliado financiero · pendiente",
-      "state.dev": "En desarrollo", "state.soon": "Próximamente", "common.demo": "Cifras de referencia · demo"
+      "common.demo": "Cifras de referencia · demo"
     },
     en: {
-      "skip": "Skip to content",
-      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.sim": "Simulator",
       "crumb.back": "Back to portfolio",
       "sec.summary": "Executive summary", "sec.gallery": "Gallery", "sec.plan": "Masterplan", "sec.features": "Features",
       "sec.why": "Why invest", "sec.process": "Buying process", "sec.location": "Location", "sec.faq": "FAQ",
@@ -399,61 +392,15 @@
       "step4.h": "Deeds", "step4.p": "We formalize the purchase with legal guidance from start to finish.",
       "cta.title": "Request information about <em>this project.</em>",
       "cta.lead": "We share availability, prices and appreciation projections — discreetly and with no commitment.",
-      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or phone", "form.contact.ph": "How we reach you",
-      "form.project": "Project of interest", "form.all": "The whole portfolio",
       "form.msg": "Message", "form.msg.ph": "Tell us what you're after (optional)",
-      "cta.submit": "Request information", "cta.note": "We reply discreetly · No commitment",
       "related.title": "Other projects in the portfolio", "card.go": "View project",
-      "footer.tagline": "Land investment in the Llano. Countryside land plots in Acacías and Villavicencio.",
-      "footer.explore": "Explore", "footer.finance": "Financing",
-      "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registration and financial partner · pending",
-      "state.dev": "In development", "state.soon": "Coming soon", "common.demo": "Reference figures · demo"
+      "common.demo": "Reference figures · demo"
     }
-  };
-  const PAGE = window.EP_PAGE_I18N || { es: {}, en: {} };
-  const dictFor = (lang) => Object.assign({}, SHARED[lang] || SHARED.es, PAGE[lang] || {});
+  });
 
-  const applyLang = (lang) => {
-    const dict = dictFor(lang);
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n")];
-      if (v != null) el.innerHTML = v;
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n-ph")];
-      if (v != null) el.setAttribute("placeholder", v);
-    });
-    root.setAttribute("lang", lang);
-    // Hay dos juegos de controles (navbar y menú móvil): se actualizan todos
-    document.querySelectorAll("[data-lang-label]").forEach((el) => {
-      el.textContent = lang === "en" ? "English" : "Español";
-    });
-    syncSelects();
-  };
+  /* El diccionario propio de la página se registra después: manda sobre lo anterior. */
+  window.EP_I18N.register(window.EP_PAGE_I18N);
 
-  /* --- Moneda (COP / USD) — factor fijo demo --- */
-  const RATE = 4200;
-  const applyCur = (cur) => {
-    document.querySelectorAll("[data-cop]").forEach((el) => {
-      const cop = parseFloat(el.dataset.cop) || 0;
-      el.textContent = cur === "usd" ? "$" + Math.round(cop / RATE).toLocaleString("en-US") : "$" + cop.toLocaleString("es-CO");
-    });
-    document.querySelectorAll("[data-cur-unit]").forEach((el) => { el.textContent = cur === "usd" ? "USD" : "COP"; });
-    document.querySelectorAll("[data-currency-toggle]").forEach((b) => {
-      b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
-    });
-  };
-
-  const swap = (fn) => { root.setAttribute("data-switching", ""); fn(); setTimeout(() => root.removeAttribute("data-switching"), 200); };
-
-  let lang = localStorage.getItem("ep-lang") || "es";
-  let cur = localStorage.getItem("ep-cur") || "cop";
-  applyLang(lang); applyCur(cur);
-
-  document.querySelectorAll("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
-    lang = lang === "es" ? "en" : "es"; localStorage.setItem("ep-lang", lang); swap(() => applyLang(lang));
-  }));
-  document.querySelectorAll("[data-currency-toggle]").forEach((b) => b.addEventListener("click", () => {
-    cur = cur === "cop" ? "usd" : "cop"; localStorage.setItem("ep-cur", cur); swap(() => applyCur(cur));
-  }));
+  /* El dropdown pinta el texto de la opción elegida: refrescarlo al traducir. */
+  document.addEventListener("ep:lang", syncSelects);
 })();

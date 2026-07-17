@@ -231,26 +231,40 @@ html[data-menu-open] .ep-menu__foot{opacity:1;transform:none;transition-delay:33
 @media (max-width:1023.98px){
   .ep-origin{padding-block:clamp(64px,14vw,96px)}
   .ep-origin__grid{display:flex;flex-direction:column;gap:0}
+
+  /* La tarjeta abre la escena. Su borde inferior cae sobre la foto: ahí es
+     donde se lee como lámina (sobre el marfil casi no contrasta, y eso es
+     justo lo que la hacía desaparecer en vertical). */
   .ep-origin__card{order:1;grid-column:auto;grid-row:auto;width:100%;
     margin:0;position:relative;z-index:3;
-    padding:clamp(var(--ep-space-6),6vw,var(--ep-space-8))}
-  /* La foto asciende por detrás de la tarjeta: capa, no apilado */
+    padding:clamp(var(--ep-space-6),6vw,var(--ep-space-8));
+    box-shadow:0 30px 70px -40px rgba(61,54,45,.45)}
+
+  /* La foto sangra al borde derecho de la pantalla y sube por detrás de la
+     tarjeta. El solape es amplio y a propósito: capa, no apilado. */
   .ep-origin__figure{order:2;grid-column:auto;grid-row:auto;
-    width:86%;margin-inline-start:auto;margin-block:calc(var(--ep-space-7) * -1) 0;
-    aspect-ratio:4/3;z-index:1;box-shadow:0 40px 80px -50px rgba(61,54,45,.7)}
+    align-self:stretch;width:auto;
+    margin-block:calc(var(--ep-space-8) * -1) 0;
+    margin-inline:clamp(var(--ep-space-6),9vw,var(--ep-space-8)) calc(var(--ep-grid-margin) * -1);
+    aspect-ratio:4/3;z-index:1;
+    box-shadow:0 30px 60px -40px rgba(61,54,45,.5)}
+
   .ep-origin__statement{font-size:clamp(1.7rem,6.6vw,2.3rem);max-width:15ch}
   .ep-origin__body{margin-block-start:var(--ep-space-5);max-width:42ch}
-  .ep-origin__points{grid-template-columns:1fr 1fr;gap:var(--ep-space-5) var(--ep-space-6);
+  .ep-origin__points{gap:var(--ep-space-5) var(--ep-space-6);
     margin-block:var(--ep-space-6);padding-block-start:var(--ep-space-5)}
-  .ep-origin__point p{max-width:30ch}
-  .ep-origin__meta{gap:var(--ep-space-6);margin-block-start:var(--ep-space-6);
-    padding-block-start:var(--ep-space-5)}
+  .ep-origin__point p{max-width:34ch}
+  /* Meta en retícula: tres datos alineados, no tres bloques flotando */
+  .ep-origin__meta{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--ep-space-4);
+    margin-block-start:var(--ep-space-6);padding-block-start:var(--ep-space-5)}
 }
-@media (max-width:600px){
+/* Dentro de la tarjeta, dos columnas de texto solo caben con holgura en tablet */
+@media (max-width:767.98px){
   .ep-origin__points{grid-template-columns:1fr;gap:var(--ep-space-5)}
-  .ep-origin__point p{max-width:40ch}
-  .ep-origin__figure{width:92%}
-  .ep-origin__meta{gap:var(--ep-space-5) var(--ep-space-7)}
+  .ep-origin__point p{max-width:42ch}
+}
+@media (max-width:389.98px){
+  .ep-origin__meta{grid-template-columns:1fr 1fr;gap:var(--ep-space-4) var(--ep-space-5)}
 }
 
 /* ============================================================

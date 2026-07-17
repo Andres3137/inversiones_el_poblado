@@ -189,18 +189,19 @@
     if (cur && valEl) valEl.textContent = cur.textContent.trim();
   });
 
-  /* --- i18n (ES / EN) — sin recargar, recuerda elección --- */
-  const I18N = {
+  /* --- Vocabulario de la landing ---
+     El estado (idioma, moneda, persistencia, toggles) vive en i18n.js.
+     Aquí solo se declara lo que esta página dice; el chrome común
+     (nav, footer, formulario, estados) ya lo aporta i18n.js.          */
+  window.EP_I18N.register({
     es: {
-      "skip": "Saltar al contenido",
-      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.sim": "Simulador",
       "hero.mast": "Parcelaciones campestres en el Meta",
       "hero.title": "La tierra es la inversión<br />que <em>no deja de crecer.</em>",
       "hero.lead": "Parcelaciones campestres en Acacías y Villavicencio. Tu lote propio, en una zona que apenas comienza a valorizarse.",
       "hero.cta1": "Solicitar información", "hero.cta2": "Ver los proyectos",
       "terr.title": "La tierra del Llano, <em>vista de cerca.</em>",
       "terr.lead": "Un corredor de piedemonte entre Acacías y Villavicencio: agua, horizonte y suelo fértil. Lo recorremos lote a lote.",
-      "terr.d1": "Proyectos en el corredor", "terr.d2": "Municipios con presencia", "terr.d3": "Valorización proyectada", "common.study": "En estudio",
+      "terr.d1": "Proyectos en el corredor", "terr.d2": "Municipios con presencia", "terr.d3": "Valorización proyectada",
       "terr.n1k": "Crecimiento del Meta", "terr.n1v": "Uno de los departamentos con mayor dinámica de desarrollo del país: obra vial, agroindustria y turismo en expansión.",
       "terr.n2k": "Cercanía a Villavicencio", "terr.n2v": "La capital del Llano a pocos minutos: servicios, comercio y salud al lado de la tranquilidad del campo.",
       "terr.n3k": "Acceso por vías principales", "terr.n3v": "Conexión directa al corredor Bogotá–Villavicencio–Acacías, la columna vertebral del piedemonte.",
@@ -220,7 +221,6 @@
       "serv.roads12": "Vías de 12 m", "serv.roads14": "Vías hasta 14 m", "serv.roads12w": "Vías de 12 m · en obra",
       "spec.lots": "Lotes proyectados", "spec.area": "Área por lote", "spec.from": "Precio desde · demo", "spec.phase": "Fase actual", "spec.opening": "Apertura estimada",
       "val.appr": "Valorización +", "val.entry": "Precio de entrada", "val.list": "Lista privada",
-      "state.dev": "En desarrollo", "state.soon": "Próximamente",
       "p1.loc": "Acacías · Proyecto principal", "p1.desc": "La parcelación insignia. Lotes con vías, redes y energía instaladas, casas ya construidas y una comunidad que empieza a habitar la tierra.", "p1.valt": "Zona en consolidación, con vías y servicios ya instalados. Proyección de ejemplo.", "p1.cta": "Explorar Villas del Poblado",
       "p2.desc": "Naturaleza abierta a minutos de la ciudad. Un entorno de potreros, agua y horizonte para quien busca campo con plusvalía urbana cercana.", "p2.valt": "Cercanía a Villavicencio con precio de campo. Proyección de ejemplo.", "p2.cta": "Ver disponibilidad",
       "p3.desc": "Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.", "p3.valt": "Etapa temprana: el momento de mayor recorrido. Proyección de ejemplo.", "p3.cta": "Conocer proyecto",
@@ -236,21 +236,15 @@
       "fin.rPrice": "Valor del lote · demo", "fin.rFin": "Valor financiado", "fin.rTotal": "Total a pagar",
       "fin.note": "Cálculo aproximado sobre precios de referencia (demo). No constituye una oferta comercial: los valores definitivos se confirman en la asesoría.",
       "cta.title": "Solicita acceso al <em>portafolio privado.</em>", "cta.lead": "Te compartimos disponibilidad, precios y proyección de valorización de cada proyecto — con discreción.",
-      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o teléfono", "form.contact.ph": "Cómo te contactamos", "form.project": "Proyecto de interés", "form.all": "Todo el portafolio",
-      "cta.submit": "Solicitar información", "cta.note": "Respondemos con discreción · Sin compromiso",
-      "footer.tagline": "Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.",
-      "footer.explore": "Explorar", "footer.finance": "Financiación", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registro y aliado financiero · pendiente"
     },
     en: {
-      "skip": "Skip to content",
-      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.sim": "Simulator",
       "hero.mast": "Countryside land plots in the Meta region",
       "hero.title": "Land is the investment<br />that <em>keeps on growing.</em>",
       "hero.lead": "Countryside land plots in Acacías and Villavicencio. Your own lot, in an area just beginning to appreciate.",
       "hero.cta1": "Request information", "hero.cta2": "See the projects",
       "terr.title": "The land of the Llano, <em>up close.</em>",
       "terr.lead": "A foothill corridor between Acacías and Villavicencio: water, horizon and fertile soil. We walk it lot by lot.",
-      "terr.d1": "Projects in the corridor", "terr.d2": "Municipalities with presence", "terr.d3": "Projected appreciation", "common.study": "Under study",
+      "terr.d1": "Projects in the corridor", "terr.d2": "Municipalities with presence", "terr.d3": "Projected appreciation",
       "terr.n1k": "Growth of the Meta", "terr.n1v": "One of the country's most dynamic regions: road works, agribusiness and tourism all expanding.",
       "terr.n2k": "Close to Villavicencio", "terr.n2v": "The capital of the Llano just minutes away: services, retail and healthcare beside the calm of the countryside.",
       "terr.n3k": "Access via main roads", "terr.n3v": "Direct connection to the Bogotá–Villavicencio–Acacías corridor, the backbone of the foothills.",
@@ -270,7 +264,6 @@
       "serv.roads12": "12 m roads", "serv.roads14": "Roads up to 14 m", "serv.roads12w": "12 m roads · in progress",
       "spec.lots": "Projected lots", "spec.area": "Area per lot", "spec.from": "Price from · demo", "spec.phase": "Current phase", "spec.opening": "Estimated opening",
       "val.appr": "Appreciation +", "val.entry": "Entry price", "val.list": "Private list",
-      "state.dev": "In development", "state.soon": "Coming soon",
       "p1.loc": "Acacías · Flagship project", "p1.desc": "The flagship development. Lots with roads, utilities and power installed, homes already built and a community starting to inhabit the land.", "p1.valt": "Consolidating area, with roads and services already installed. Example projection.", "p1.cta": "Explore Villas del Poblado",
       "p2.desc": "Open nature minutes from the city. A setting of pastures, water and horizon for those seeking country land with nearby urban upside.", "p2.valt": "Close to Villavicencio at country prices. Example projection.", "p2.cta": "Check availability",
       "p3.desc": "Infrastructure underway: compacted roads, machinery at work and access portals. The early stage, where value is just beginning.", "p3.valt": "Early stage: the moment with the most upside. Example projection.", "p3.cta": "Discover project",
@@ -286,62 +279,12 @@
       "fin.rPrice": "Lot value · demo", "fin.rFin": "Financed amount", "fin.rTotal": "Total to pay",
       "fin.note": "Approximate calculation on reference prices (demo). This is not a commercial offer: final values are confirmed during the advisory.",
       "cta.title": "Request access to the <em>private portfolio.</em>", "cta.lead": "We share availability, prices and appreciation projections for each project — discreetly.",
-      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or phone", "form.contact.ph": "How we reach you", "form.project": "Project of interest", "form.all": "The whole portfolio",
-      "cta.submit": "Request information", "cta.note": "We reply discreetly · No commitment",
-      "footer.tagline": "Land investment in the Llano. Countryside land plots in Acacías and Villavicencio.",
-      "footer.explore": "Explore", "footer.finance": "Financing", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registration and financial partner · pending"
-    }
-  };
+    },
+  });
 
-  const applyLang = (lang) => {
-    const dict = I18N[lang] || I18N.es;
-    document.querySelectorAll("[data-i18n]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n")];
-      if (v != null) el.innerHTML = v;
-    });
-    document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
-      const v = dict[el.getAttribute("data-i18n-ph")];
-      if (v != null) el.setAttribute("placeholder", v);
-    });
-    document.documentElement.setAttribute("lang", lang);
-    // Hay dos juegos de controles (navbar y menú móvil): se actualizan todos
-    document.querySelectorAll("[data-lang-label]").forEach((el) => {
-      el.textContent = lang === "en" ? "English" : "Español";
-    });
-    syncSelects();
-  };
-
-  /* --- Moneda (COP / USD) — factor fijo demo --- */
-  const RATE = 4200; // COP por USD (temporal)
-  const applyCur = (cur) => {
-    document.querySelectorAll("[data-cop]").forEach((el) => {
-      const cop = parseFloat(el.dataset.cop) || 0;
-      el.textContent = cur === "usd" ? "$" + Math.round(cop / RATE).toLocaleString("en-US") : "$" + cop.toLocaleString("es-CO");
-    });
-    document.querySelectorAll("[data-cur-unit]").forEach((el) => { el.textContent = cur === "usd" ? "USD" : "COP"; });
-    document.querySelectorAll("[data-currency-toggle]").forEach((b) => {
-      b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
-    });
-    // Quien calcule cifras propias (simulador) se entera del cambio
-    document.dispatchEvent(new CustomEvent("ep:cur", { detail: cur }));
-  };
-
-  const swap = (fn) => {
-    root.setAttribute("data-switching", "");
-    fn();
-    setTimeout(() => root.removeAttribute("data-switching"), 200);
-  };
-
-  let lang = localStorage.getItem("ep-lang") || "es";
-  let cur = localStorage.getItem("ep-cur") || "cop";
-  applyLang(lang); applyCur(cur);
-
-  document.querySelectorAll("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
-    lang = lang === "es" ? "en" : "es"; localStorage.setItem("ep-lang", lang); swap(() => applyLang(lang));
-  }));
-  document.querySelectorAll("[data-currency-toggle]").forEach((b) => b.addEventListener("click", () => {
-    cur = cur === "cop" ? "usd" : "cop"; localStorage.setItem("ep-cur", cur); swap(() => applyCur(cur));
-  }));
+  /* El dropdown pinta el texto de la opción elegida: hay que refrescarlo
+     cuando i18n.js traduce las opciones. */
+  document.addEventListener("ep:lang", syncSelects);
 
   /* --- Simulador de financiación ---
      Financiación directa sin intereses: cuota = (precio − inicial) / plazo.
@@ -356,10 +299,7 @@
     const termEl = $("[data-sim-term]");
 
     const state = { price: 0, init: 0, term: Number(termEl.value) };
-    const fmt = (cop) => {
-      const v = cur === "usd" ? Math.round(cop / RATE) : Math.round(cop);
-      return "$" + v.toLocaleString(cur === "usd" ? "en-US" : "es-CO");
-    };
+    const fmt = (cop) => window.EP_I18N.format(cop);
     // Rellena la pista del slider hasta el pulgar (WebKit no lo hace solo)
     const fill = (el, min, max) => {
       const p = max > min ? ((Number(el.value) - min) / (max - min)) * 100 : 0;
