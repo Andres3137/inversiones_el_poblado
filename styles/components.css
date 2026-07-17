@@ -95,8 +95,8 @@
   border-block-end-color:var(--ep-border);
 }
 .ep-nav__brand{display:flex;align-items:center}
-.ep-nav__brand img{height:clamp(58px,6vw,80px);width:auto;filter:brightness(0) invert(1);opacity:1;transition:height var(--ep-dur-base) var(--ep-ease-standard)}
-.ep-nav.is-scrolled .ep-nav__brand img{height:54px}
+.ep-nav__brand img{height:var(--ep-logo-nav);width:auto;filter:brightness(0) invert(1);opacity:1;transition:height var(--ep-dur-base) var(--ep-ease-standard)}
+.ep-nav.is-scrolled .ep-nav__brand img{height:var(--ep-logo-nav-scrolled)}
 .ep-nav__links{display:none;align-items:center;gap:clamp(var(--ep-space-5),2.6vw,var(--ep-space-8))}
 .ep-nav__link{
   font-size:1.0625rem;font-weight:600;letter-spacing:-.005em;color:var(--ep-carbon-100);
@@ -160,9 +160,6 @@
   min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
   padding-inline:var(--ep-grid-margin);padding-block:clamp(120px,18vh,190px) clamp(var(--ep-space-9),12vh,var(--ep-space-11))}
 
-/* Marca ya vive en el navbar: no se repite en el hero (una sola aparición en el primer viewport) */
-.ep-hero__logo{display:none}
-
 /* Descriptor (encima del título): frase editorial quieta */
 .ep-hero__mast{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:.02em;
   color:var(--ep-carbon-200);margin-block-end:var(--ep-space-6)}
@@ -177,9 +174,6 @@
 .ep-hero__lead{font-family:var(--ep-font-sans);font-size:var(--ep-fs-lead);font-weight:400;letter-spacing:-.005em;
   color:var(--ep-carbon-200);max-width:44ch;line-height:1.55;margin-block-end:var(--ep-space-8);margin-inline:auto}
 .ep-hero__actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:var(--ep-space-5)}
-
-/* Elementos heredados sin uso */
-.ep-hero__plate,.ep-hero__scroll,.ep-hero__cap{display:none}
 
 /* Reveal silencioso (solo un fade-up, una vez) */
 .ep-rise{opacity:0;transform:translateY(12px)}

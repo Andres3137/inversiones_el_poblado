@@ -1,106 +1,40 @@
 /* ============================================================
-   SECCIONES — nivel editorial, cada bloque con personalidad
-   Reutiliza tokens y ritmo del sistema. Motion con intención.
+   SECCIONES — campos de formulario y footer.
+   El resto de escenas vive en scenes.css (landing) y project.css
+   (páginas de proyecto).
    ============================================================ */
 
-/* Rótulos superiores (kickers) eliminados: cada sección abre con su gran título. */
-
-/* Título de sección */
-.ep-h2{font-family:var(--ep-font-display);font-weight:500;letter-spacing:-.02em;line-height:1.06;
-  font-size:clamp(2rem,4vw,3.4rem);text-wrap:balance}
-
-/* ============ 03 · QUIÉNES SOMOS (cálido, manifiesto) ============ */
-.ep-about{background:var(--ep-bg-warm);color:var(--ep-text-on-warm)}
-.ep-about__statement{font-family:var(--ep-font-display);font-weight:500;letter-spacing:-.025em;line-height:1.08;
-  font-size:clamp(1.9rem,4.4vw,3.6rem);max-width:20ch;color:var(--ep-carbon-900);margin-block-end:var(--ep-space-8)}
-.ep-about__statement em{font-style:italic;font-weight:400;color:var(--ep-copper-600)}
-.ep-about__cols{display:grid;gap:var(--ep-space-8);grid-template-columns:1fr}
-@media (min-width:900px){.ep-about__cols{grid-template-columns:1fr 1fr;align-items:end}}
-.ep-about__body p{font-size:var(--ep-fs-body-lg);color:var(--ep-carbon-600);line-height:1.6;max-width:44ch;margin-block-end:var(--ep-space-5)}
-.ep-about__meta{display:flex;flex-wrap:wrap;gap:var(--ep-space-8);margin-block-start:var(--ep-space-8)}
-.ep-about__meta .k{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);letter-spacing:0;text-transform:none;color:var(--ep-carbon-500);display:block;margin-block-end:6px}
-.ep-about__meta .v{font-family:var(--ep-font-display);font-size:var(--ep-fs-h3);font-weight:500;color:var(--ep-carbon-900)}
-.ep-about__figure{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--ep-copper-200)}
-.ep-about__figure img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04) saturate(.92) brightness(1.02);
-  transition:transform 1.2s var(--ep-ease-standard)}
-.ep-about__figure:hover img{transform:scale(1.04)}
-.ep-about__figure figcaption{position:absolute;left:var(--ep-space-4);bottom:var(--ep-space-4);
-  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:0;text-transform:none;color:var(--ep-carbon-25)}
-
-/* ============ 04 · PROYECTOS (índice interactivo) ============ */
-.ep-projects{background:var(--ep-bg-base)}
-.ep-projects__grid{display:grid;gap:var(--ep-space-8);grid-template-columns:1fr}
-@media (min-width:960px){.ep-projects__grid{grid-template-columns:1.15fr .85fr;align-items:start;gap:var(--ep-space-10)}}
-.ep-projects__list{margin-block-start:var(--ep-space-4)}
-.ep-project{display:flex;align-items:baseline;gap:var(--ep-space-4);width:100%;text-align:left;
-  padding-block:clamp(var(--ep-space-5),3vw,var(--ep-space-7));
-  border-block-start:1px solid var(--ep-border);
-  transition:border-color var(--ep-dur-fast) var(--ep-ease-standard)}
-.ep-project:last-of-type{border-block-end:1px solid var(--ep-border)}
-.ep-project__idx{font-family:var(--ep-font-mono);font-size:var(--ep-fs-micro);letter-spacing:.1em;color:var(--ep-text-muted);flex:0 0 auto;padding-block-start:.5em}
-.ep-project__name{font-family:var(--ep-font-display);font-weight:500;letter-spacing:-.02em;line-height:1.05;
-  font-size:clamp(1.6rem,3.4vw,2.6rem);color:var(--ep-text-secondary);
-  transition:color var(--ep-dur-fast) var(--ep-ease-standard),transform var(--ep-dur-fast) var(--ep-ease-ascenso),opacity var(--ep-dur-fast)}
-.ep-project__loc{display:block;font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:400;letter-spacing:0;text-transform:none;color:var(--ep-text-muted);margin-block-start:6px}
-.ep-project__meta{margin-inline-start:auto;text-align:right;flex:0 0 auto;padding-block-start:.9em;
-  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);letter-spacing:0;text-transform:none;color:var(--ep-text-muted)}
-/* Enfoque: la fila activa se ilumina, las demás se atenúan */
-.ep-project:hover .ep-project__name,.ep-project:focus-visible .ep-project__name,.ep-project.is-active .ep-project__name{color:var(--ep-text-primary);transform:translateX(10px)}
-.ep-project:hover .ep-project__idx,.ep-project.is-active .ep-project__idx{color:var(--ep-accent)}
-.ep-projects__list:hover .ep-project:not(:hover) .ep-project__name{opacity:.45}
-/* Preview: imagen grande que cambia por proyecto */
-.ep-projects__preview{position:relative;overflow:hidden;aspect-ratio:4/5;
-  border:1px solid var(--ep-border);background:var(--ep-surface-1);box-shadow:var(--ep-elev-3)}
-@media (min-width:960px){.ep-projects__preview{position:sticky;top:120px}}
-.ep-projects__preview img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:contrast(1.06) saturate(.88) brightness(.92);
-  transition:opacity var(--ep-dur-base) var(--ep-ease-standard),transform 1.4s var(--ep-ease-standard)}
-.ep-projects__preview.is-swapping img{opacity:0}
-.ep-projects__preview::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(180deg,transparent 55%,rgba(13,11,9,.65))}
-.ep-projects__preview .cap{position:absolute;z-index:2;left:var(--ep-space-5);bottom:var(--ep-space-5);
-  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:0;text-transform:none;color:var(--ep-carbon-50)}
-.ep-projects__preview .cap b{color:var(--ep-copper-300);font-weight:600}
-
-/* ============ 12 · INVITACIÓN (CTA) ============ */
-.ep-invite{position:relative;background:var(--ep-bg-inset);overflow:hidden}
-.ep-invite__inner{max-width:640px;margin-inline:auto;text-align:center}
-.ep-invite__title{font-family:var(--ep-font-display);font-weight:500;letter-spacing:-.02em;line-height:1.08;
-  font-size:clamp(2rem,4.4vw,3.4rem);color:var(--ep-carbon-25);margin-block-end:var(--ep-space-4)}
-.ep-invite__lead{font-size:var(--ep-fs-body-lg);color:var(--ep-carbon-300);line-height:1.55;margin-block-end:var(--ep-space-8);max-width:46ch;margin-inline:auto}
-.ep-invite__form{display:grid;gap:var(--ep-space-5);text-align:left;margin-block-end:var(--ep-space-6)}
-@media (min-width:640px){.ep-invite__form{grid-template-columns:1fr 1fr}.ep-invite__form .full{grid-column:1/-1}}
-/* Input underline editorial */
+/* ============ CAMPOS DE FORMULARIO (underline editorial) ============ */
 .ep-field{position:relative}
-.ep-field input,.ep-field select{width:100%;background:transparent;border:none;border-block-end:1px solid var(--ep-border);
-  padding:var(--ep-space-3) 0;color:var(--ep-text-primary);font-family:var(--ep-font-sans);font-size:var(--ep-fs-body);font-weight:500;
+.ep-field input,.ep-field textarea{width:100%;background:transparent;border:none;
+  border-block-end:1px solid var(--ep-border);
+  padding:var(--ep-space-3) 0;color:var(--ep-text-primary);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-body);font-weight:500;
   transition:border-color var(--ep-dur-fast) var(--ep-ease-standard)}
-.ep-field input::placeholder{color:var(--ep-text-muted);font-weight:400}
-.ep-field input:focus,.ep-field select:focus{outline:none;border-block-end-color:var(--ep-accent)}
-.ep-field label{display:block;font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:0;
-  text-transform:none;color:var(--ep-text-muted);margin-block-end:var(--ep-space-2)}
-.ep-invite__actions{display:flex;flex-wrap:wrap;gap:var(--ep-space-4);align-items:center;justify-content:center}
-.ep-invite__note{margin-block-start:var(--ep-space-5);font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);
-  letter-spacing:0;text-transform:none;color:var(--ep-text-muted)}
+.ep-field textarea{resize:vertical;min-height:88px;line-height:1.5}
+.ep-field input::placeholder,.ep-field textarea::placeholder{color:var(--ep-text-muted);font-weight:400}
+.ep-field input:focus,.ep-field textarea:focus{outline:none;border-block-end-color:var(--ep-accent)}
+.ep-field label{display:block;font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);
+  font-weight:500;color:var(--ep-text-muted);margin-block-end:var(--ep-space-2)}
 
-/* ============ 13 · FOOTER (cierre cinematográfico) ============ */
+/* ============ FOOTER (cierre cinematográfico) ============ */
 .ep-footer{background:var(--ep-bg-inset);border-block-start:1px solid var(--ep-border);
   padding-block:clamp(var(--ep-space-10),12vw,var(--ep-space-12)) var(--ep-space-7)}
-/* La identidad cierra con la marca: logo grande junto a la info, columnas al lado */
+/* La identidad cierra con la marca: logo grande junto a la info, columnas al lado.
+   Dos columnas de enlaces (Proyectos · Explorar): la marca se queda con el aire. */
 .ep-footer__cols{display:grid;gap:var(--ep-space-8) var(--ep-space-7);grid-template-columns:1fr 1fr;
   padding-block-end:var(--ep-space-8);border-block-end:1px solid var(--ep-border)}
-@media (min-width:768px){.ep-footer__cols{grid-template-columns:1.6fr 1fr 1fr 1fr;align-items:start}}
+@media (min-width:768px){.ep-footer__cols{grid-template-columns:2fr 1fr 1fr;align-items:start}}
 .ep-footer__brand{grid-column:1 / -1}
 @media (min-width:768px){.ep-footer__brand{grid-column:auto}}
-.ep-footer__brand img{height:clamp(72px,9vw,120px);width:auto;filter:brightness(0) invert(1);opacity:.96;
+.ep-footer__brand img{height:var(--ep-logo-footer);width:auto;filter:brightness(0) invert(1);opacity:.96;
   margin-block-end:var(--ep-space-5)}
 .ep-footer__brand p{color:var(--ep-text-muted);font-size:var(--ep-fs-caption);max-width:34ch;line-height:1.5}
-.ep-footer__col h4{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;letter-spacing:0;text-transform:none;
+.ep-footer__col h4{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:500;
   color:var(--ep-text-muted);margin-block-end:var(--ep-space-4)}
 .ep-footer__col a{display:block;color:var(--ep-text-secondary);font-size:var(--ep-fs-body);padding-block:6px;
   transition:color var(--ep-dur-fast)}
 .ep-footer__col a:hover{color:var(--ep-accent)}
-.ep-footer__bottom .ep-mp{position:relative}
 .ep-footer__bottom{display:flex;flex-wrap:wrap;gap:var(--ep-space-4);justify-content:space-between;
   padding-block-start:var(--ep-space-6);
-  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);letter-spacing:0;text-transform:none;color:var(--ep-text-muted)}
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-muted)}

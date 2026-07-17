@@ -82,36 +82,22 @@
     });
   }
 
-  /* --- Hero: video de fondo opcional (data-hero-video) --- */
-  const heroVideo = document.querySelector("[data-hero-video]");
-  if (heroVideo && !reduce) {
-    const src = heroVideo.getAttribute("data-src");
-    if (src) {
-      const slow = parseFloat(heroVideo.dataset.slow || "1");
-      heroVideo.querySelector("source")?.setAttribute("src", src);
-      heroVideo.hidden = false; heroVideo.load();
-      const setRate = () => { if (slow !== 1) heroVideo.playbackRate = slow; };
-      heroVideo.addEventListener("loadedmetadata", setRate, { once: true });
-      heroVideo.addEventListener("playing", () => heroVideo.classList.add("is-live"), { once: true });
-      const tryPlay = () => heroVideo.play?.().then(setRate).catch(() => {});
-      if (heroVideo.readyState >= 2) tryPlay();
-      else heroVideo.addEventListener("canplay", tryPlay, { once: true });
-    }
-  }
-
   /* --- Parallax sutil --- */
   const paras = document.querySelectorAll("[data-parallax]");
   if (!reduce && paras.length && "requestAnimationFrame" in window) {
     let ticking = false;
+    // En móvil la deriva es la mitad: menos movimiento, más elegancia
+    const amp = () => (window.innerWidth <= 1023 ? 14 : 30);
     const update = () => {
       const vh = window.innerHeight || document.documentElement.clientHeight;
+      const a = amp();
       paras.forEach((el) => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;
         const center = r.top + r.height / 2;
         const p = Math.max(-1, Math.min(1, (center - vh / 2) / vh));
         const speed = parseFloat(el.dataset.speed || "1");
-        el.style.transform = "translate3d(0," + (p * -30 * speed).toFixed(1) + "px,0)";
+        el.style.transform = "translate3d(0," + (p * -a * speed).toFixed(1) + "px,0)";
       });
       ticking = false;
     };
@@ -145,6 +131,156 @@
     });
   }
 
+  /* --- Visor de planos: zoom, desplazamiento y pantalla completa ---
+     Un plano se lee acercándose. Todo con transform (nunca width/height):
+     escala y desplazamiento en una sola matriz, compuesta por la GPU.      */
+  const viewer = document.querySelector("[data-viewer]");
+  const planOpen = document.querySelector("[data-plan-open]");
+  if (viewer && planOpen) {
+    const stage = viewer.querySelector("[data-viewer-stage]");
+    const img = viewer.querySelector("[data-viewer-img]");
+    const pct = viewer.querySelector("[data-viewer-pct]");
+    const MAX = 6;
+    let scale = 1, fit = 1, x = 0, y = 0, natural = { w: 0, h: 0 };
+
+    const apply = (eased) => {
+      img.classList.toggle("is-eased", !!eased);
+      img.style.transform = `translate(-50%,-50%) translate(${x}px,${y}px) scale(${scale})`;
+      pct.textContent = Math.round((scale / fit) * 100) + "%";
+      viewer.querySelector("[data-viewer-out]").disabled = scale <= fit * 1.01;
+      if (eased) setTimeout(() => img.classList.remove("is-eased"), 380);
+    };
+
+    // Encaja el plano completo en pantalla: ese encuadre es el 100%
+    const fitToStage = () => {
+      const r = stage.getBoundingClientRect();
+      if (!natural.w || !natural.h) return;
+      fit = Math.min((r.width - 48) / natural.w, (r.height - 140) / natural.h);
+      scale = fit; x = 0; y = 0;
+      apply(false);
+    };
+
+    // Limita el desplazamiento para que el plano no se pierda fuera de vista
+    const clamp = () => {
+      const r = stage.getBoundingClientRect();
+      const w = natural.w * scale, h = natural.h * scale;
+      const mx = Math.max(0, (w - r.width) / 2), my = Math.max(0, (h - r.height) / 2);
+      x = Math.min(mx, Math.max(-mx, x));
+      y = Math.min(my, Math.max(-my, y));
+    };
+
+    const zoomTo = (next, cx, cy) => {
+      const r = stage.getBoundingClientRect();
+      const px = (cx ?? r.width / 2) - r.width / 2;
+      const py = (cy ?? r.height / 2) - r.height / 2;
+      const k = next / scale;
+      x = px - (px - x) * k;   // el punto bajo el cursor se queda quieto
+      y = py - (py - y) * k;
+      scale = next;
+      clamp(); apply(true);
+    };
+    const step = (f) => zoomTo(Math.min(MAX * fit, Math.max(fit, scale * f)));
+
+    const open = () => {
+      const src = planOpen.dataset.planSrc;
+      const cap = planOpen.dataset.planCap || "";
+      viewer.querySelector("[data-viewer-cap]").innerHTML = cap;
+      img.alt = planOpen.dataset.planAlt || "";
+      const load = () => {
+        natural = { w: img.naturalWidth, h: img.naturalHeight };
+        img.style.width = natural.w + "px";
+        fitToStage();
+      };
+      if (img.getAttribute("src") !== src) {
+        img.addEventListener("load", load, { once: true });
+        img.src = src;
+      } else load();
+      viewer.classList.add("is-open");
+      viewer.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      viewer.querySelector("[data-viewer-close]").focus();
+    };
+    const close = () => {
+      if (document.fullscreenElement) document.exitFullscreen?.();
+      viewer.classList.remove("is-open");
+      viewer.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      planOpen.focus();
+    };
+
+    planOpen.addEventListener("click", open);
+    viewer.querySelector("[data-viewer-close]").addEventListener("click", close);
+    viewer.querySelector("[data-viewer-in]").addEventListener("click", () => step(1.5));
+    viewer.querySelector("[data-viewer-out]").addEventListener("click", () => step(1 / 1.5));
+    viewer.querySelector("[data-viewer-reset]").addEventListener("click", () => fitToStage());
+    viewer.querySelector("[data-viewer-full]").addEventListener("click", () => {
+      if (document.fullscreenElement) document.exitFullscreen?.();
+      else viewer.requestFullscreen?.().catch(() => {});
+    });
+
+    // Rueda = zoom sobre el cursor
+    stage.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      const r = stage.getBoundingClientRect();
+      zoomTo(Math.min(MAX * fit, Math.max(fit, scale * (e.deltaY < 0 ? 1.12 : 1 / 1.12))),
+             e.clientX - r.left, e.clientY - r.top);
+    }, { passive: false });
+
+    // Arrastre con puntero (ratón y táctil)
+    let drag = null;
+    stage.addEventListener("pointerdown", (e) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      drag = { px: e.clientX, py: e.clientY };
+      stage.setPointerCapture(e.pointerId);
+      stage.classList.add("is-panning");
+    });
+    stage.addEventListener("pointermove", (e) => {
+      if (!drag) return;
+      x += e.clientX - drag.px; y += e.clientY - drag.py;
+      drag = { px: e.clientX, py: e.clientY };
+      clamp(); apply(false);
+    });
+    const endDrag = () => { drag = null; stage.classList.remove("is-panning"); };
+    stage.addEventListener("pointerup", endDrag);
+    stage.addEventListener("pointercancel", endDrag);
+    stage.addEventListener("dblclick", (e) => {
+      const r = stage.getBoundingClientRect();
+      if (scale > fit * 1.05) fitToStage();
+      else zoomTo(fit * 2.5, e.clientX - r.left, e.clientY - r.top);
+    });
+
+    // Pellizco en táctil
+    const pts = new Map();
+    let pinch = 0;
+    stage.addEventListener("pointerdown", (e) => pts.set(e.pointerId, e));
+    stage.addEventListener("pointermove", (e) => {
+      if (!pts.has(e.pointerId)) return;
+      pts.set(e.pointerId, e);
+      if (pts.size !== 2) return;
+      drag = null;
+      const [a, b] = [...pts.values()];
+      const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
+      if (pinch) {
+        const r = stage.getBoundingClientRect();
+        zoomTo(Math.min(MAX * fit, Math.max(fit, scale * (d / pinch))),
+               (a.clientX + b.clientX) / 2 - r.left, (a.clientY + b.clientY) / 2 - r.top);
+      }
+      pinch = d;
+    });
+    const dropPt = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch = 0; };
+    stage.addEventListener("pointerup", dropPt);
+    stage.addEventListener("pointercancel", dropPt);
+
+    window.addEventListener("resize", () => { if (viewer.classList.contains("is-open")) fitToStage(); });
+    document.addEventListener("keydown", (e) => {
+      if (!viewer.classList.contains("is-open")) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "+" || e.key === "=") step(1.5);
+      else if (e.key === "-") step(1 / 1.5);
+      else if (e.key === "0") fitToStage();
+    });
+  }
+
   /* --- FAQ: acordeón (altura animada) --- */
   document.querySelectorAll("[data-qa]").forEach((qa) => {
     const q = qa.querySelector(".pp-qa__q");
@@ -158,6 +294,30 @@
         a.addEventListener("transitionend", function te() { if (qa.hasAttribute("data-open")) a.style.height = "auto"; a.removeEventListener("transitionend", te); }); }
     });
   });
+
+  /* --- Ubicación: Google Maps listo para conectar ---
+     Se activa SOLO si [data-map] trae lat y lng reales. Sin coordenadas
+     no se pinta ningún mapa (nada ficticio): manda la fotografía y se
+     muestra el aviso de pendiente. El iframe se inyecta aquí, no en el
+     HTML, para no pedir nada a Google mientras no haya coordenadas.     */
+  const mapEl = document.querySelector("[data-map]");
+  if (mapEl) {
+    const { lat, lng, zoom, label } = mapEl.dataset;
+    const ok = lat && lng && !isNaN(parseFloat(lat)) && !isNaN(parseFloat(lng));
+    if (ok) {
+      const q = encodeURIComponent(`${lat},${lng}`);
+      const z = zoom || "15";
+      const iframe = document.createElement("iframe");
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.title = label || "Ubicación del proyecto";
+      iframe.allowFullscreen = true;
+      iframe.src = `https://www.google.com/maps?q=${q}&z=${z}&output=embed`;
+      mapEl.appendChild(iframe);
+      mapEl.classList.add("is-live");
+      document.querySelector("[data-map-pending]")?.remove();
+    }
+  }
 
   /* --- Dropdown personalizado (idéntico a la landing) --- */
   const selects = [...document.querySelectorAll("[data-select]")];
@@ -195,13 +355,15 @@
   const SHARED = {
     es: {
       "skip": "Saltar al contenido",
-      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.cta": "Solicitar información",
+      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.sim": "Simulador",
       "crumb.back": "Volver al portafolio",
       "sec.summary": "Resumen ejecutivo", "sec.gallery": "Galería", "sec.plan": "Masterplan", "sec.features": "Características",
       "sec.why": "Por qué invertir", "sec.process": "Proceso de compra", "sec.location": "Ubicación", "sec.faq": "Preguntas frecuentes",
       "sec.related": "Otros proyectos",
       "gallery.note": "Fotografías del proyecto y su entorno. Material de referencia.",
       "plan.tag": "Plano · demo", "plan.legendTitle": "Distribución general",
+      "plan.open": "Ampliar plano", "viewer.fit": "Ajustar",
+      "loc.pending": "Mapa interactivo · pendiente de coordenadas reales",
       "process.title": "Un proceso claro, <em>sin letra pequeña.</em>",
       "step1.h": "Conversación inicial", "step1.p": "Nos cuentas qué buscas. Te compartimos disponibilidad, precios y proyección — con discreción.",
       "step2.h": "Visita guiada", "step2.p": "Recorremos el proyecto contigo, lote a lote, para que elijas con los pies en la tierra.",
@@ -209,25 +371,27 @@
       "step4.h": "Escrituración", "step4.p": "Formalizamos la compra con acompañamiento jurídico de principio a fin.",
       "cta.title": "Solicita información de <em>este proyecto.</em>",
       "cta.lead": "Te compartimos disponibilidad, precios y proyección de valorización — con discreción y sin compromiso.",
-      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o WhatsApp", "form.contact.ph": "Cómo te contactamos",
+      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o teléfono", "form.contact.ph": "Cómo te contactamos",
       "form.project": "Proyecto de interés", "form.all": "Todo el portafolio",
       "form.msg": "Mensaje", "form.msg.ph": "Cuéntanos qué buscas (opcional)",
       "cta.submit": "Solicitar información", "cta.note": "Respondemos con discreción · Sin compromiso",
       "related.title": "Otros proyectos del portafolio", "card.go": "Ver proyecto",
       "footer.tagline": "Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.",
-      "footer.explore": "Explorar", "footer.request": "Solicitar información",
+      "footer.explore": "Explorar", "footer.finance": "Financiación",
       "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registro y aliado financiero · pendiente",
       "state.dev": "En desarrollo", "state.soon": "Próximamente", "common.demo": "Cifras de referencia · demo"
     },
     en: {
       "skip": "Skip to content",
-      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.cta": "Request information",
+      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.sim": "Simulator",
       "crumb.back": "Back to portfolio",
       "sec.summary": "Executive summary", "sec.gallery": "Gallery", "sec.plan": "Masterplan", "sec.features": "Features",
       "sec.why": "Why invest", "sec.process": "Buying process", "sec.location": "Location", "sec.faq": "FAQ",
       "sec.related": "Other projects",
       "gallery.note": "Photographs of the project and its surroundings. Reference material.",
       "plan.tag": "Plan · demo", "plan.legendTitle": "General layout",
+      "plan.open": "Enlarge plan", "viewer.fit": "Fit",
+      "loc.pending": "Interactive map · pending real coordinates",
       "process.title": "A clear process, <em>no fine print.</em>",
       "step1.h": "First conversation", "step1.p": "You tell us what you're after. We share availability, prices and projections — discreetly.",
       "step2.h": "Guided visit", "step2.p": "We walk the project with you, lot by lot, so you choose with your feet on the ground.",
@@ -235,13 +399,13 @@
       "step4.h": "Deeds", "step4.p": "We formalize the purchase with legal guidance from start to finish.",
       "cta.title": "Request information about <em>this project.</em>",
       "cta.lead": "We share availability, prices and appreciation projections — discreetly and with no commitment.",
-      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or WhatsApp", "form.contact.ph": "How we reach you",
+      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or phone", "form.contact.ph": "How we reach you",
       "form.project": "Project of interest", "form.all": "The whole portfolio",
       "form.msg": "Message", "form.msg.ph": "Tell us what you're after (optional)",
       "cta.submit": "Request information", "cta.note": "We reply discreetly · No commitment",
       "related.title": "Other projects in the portfolio", "card.go": "View project",
       "footer.tagline": "Land investment in the Llano. Countryside land plots in Acacías and Villavicencio.",
-      "footer.explore": "Explore", "footer.request": "Request information",
+      "footer.explore": "Explore", "footer.finance": "Financing",
       "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registration and financial partner · pending",
       "state.dev": "In development", "state.soon": "Coming soon", "common.demo": "Reference figures · demo"
     }
@@ -260,8 +424,10 @@
       if (v != null) el.setAttribute("placeholder", v);
     });
     root.setAttribute("lang", lang);
-    const b = document.querySelector("[data-lang-label]");
-    if (b) b.textContent = lang === "en" ? "English" : "Español";
+    // Hay dos juegos de controles (navbar y menú móvil): se actualizan todos
+    document.querySelectorAll("[data-lang-label]").forEach((el) => {
+      el.textContent = lang === "en" ? "English" : "Español";
+    });
     syncSelects();
   };
 
@@ -273,8 +439,9 @@
       el.textContent = cur === "usd" ? "$" + Math.round(cop / RATE).toLocaleString("en-US") : "$" + cop.toLocaleString("es-CO");
     });
     document.querySelectorAll("[data-cur-unit]").forEach((el) => { el.textContent = cur === "usd" ? "USD" : "COP"; });
-    const b = document.querySelector("[data-currency-toggle]");
-    if (b) b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
+    document.querySelectorAll("[data-currency-toggle]").forEach((b) => {
+      b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
+    });
   };
 
   const swap = (fn) => { root.setAttribute("data-switching", ""); fn(); setTimeout(() => root.removeAttribute("data-switching"), 200); };
@@ -283,10 +450,10 @@
   let cur = localStorage.getItem("ep-cur") || "cop";
   applyLang(lang); applyCur(cur);
 
-  document.querySelector("[data-lang-toggle]")?.addEventListener("click", () => {
+  document.querySelectorAll("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
     lang = lang === "es" ? "en" : "es"; localStorage.setItem("ep-lang", lang); swap(() => applyLang(lang));
-  });
-  document.querySelector("[data-currency-toggle]")?.addEventListener("click", () => {
+  }));
+  document.querySelectorAll("[data-currency-toggle]").forEach((b) => b.addEventListener("click", () => {
     cur = cur === "cop" ? "usd" : "cop"; localStorage.setItem("ep-cur", cur); swap(() => applyCur(cur));
-  });
+  }));
 })();

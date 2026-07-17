@@ -9,7 +9,7 @@
 .ep-loader__inner{display:flex;flex-direction:column;align-items:center;gap:var(--ep-space-7);
   transform:translateY(0);opacity:1;
   transition:transform var(--ep-dur-slow) var(--ep-ease-ascenso),opacity var(--ep-dur-base) var(--ep-ease-standard)}
-.ep-loader__mark{height:clamp(96px,13vw,150px);width:auto;filter:brightness(0) invert(1);opacity:.97}
+.ep-loader__mark{height:var(--ep-logo-loader);width:auto;filter:brightness(0) invert(1);opacity:.97}
 .ep-loader__line{position:relative;width:120px;height:1px;background:rgba(237,230,218,.14);overflow:hidden}
 .ep-loader__line i{position:absolute;inset:0 100% 0 0;background:var(--ep-copper-400);
   animation:ep-load 1.05s var(--ep-ease-ascenso) forwards}

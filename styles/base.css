@@ -19,21 +19,6 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 ul{list-style:none}
 
 /* ---- Tipografía de marca ---- */
-.ep-overline{
-  font-family:var(--ep-font-mono);
-  font-size:var(--ep-fs-micro);
-  letter-spacing:var(--ep-tracking-mono);
-  text-transform:uppercase;
-  color:var(--ep-accent);
-}
-.ep-mono{font-family:var(--ep-font-mono);letter-spacing:.04em}
-.ep-display{
-  font-family:var(--ep-font-display);
-  font-weight:300;
-  line-height:var(--ep-lh-tight);
-  letter-spacing:var(--ep-tracking-display);
-}
-.ep-serif{font-family:var(--ep-font-serif-text);font-weight:400}
 /* Deck / subtítulo — voz funcional (General Sans), identidad compartida con menú/labels/botones */
 .ep-lead{font-family:var(--ep-font-sans);font-weight:400;font-size:var(--ep-fs-lead);
   line-height:1.55;letter-spacing:-.005em;color:var(--ep-text-secondary)}

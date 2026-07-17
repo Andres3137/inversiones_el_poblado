@@ -185,7 +185,116 @@
 }
 
 /* ============================================================
-   ESCENA 04 · INVITACIÓN — escena de contacto (no formulario suelto)
+   ESCENA 04 · LA FINANCIACIÓN — cómo se compra + simulador.
+   Fondo inset (un peldaño más oscuro que el portafolio): misma
+   paleta, otra profundidad. Reutiliza .ep-select, .ep-field y .ep-fig.
+   ============================================================ */
+.ep-fin{background:var(--ep-bg-inset);border-block-start:1px solid var(--ep-border)}
+.ep-fin__head{max-width:var(--ep-content-max);margin-inline:auto;margin-block-end:clamp(var(--ep-space-8),6vw,var(--ep-space-10))}
+.ep-fin__title{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.025em;line-height:1.04;
+  font-size:clamp(2.2rem,5vw,4rem);color:var(--ep-carbon-25);max-width:14ch;text-wrap:balance}
+.ep-fin__title em{font-style:normal;font-weight:600;color:var(--ep-copper-300)}
+.ep-fin__lead{margin-block-start:var(--ep-space-5);max-width:46ch}
+
+/* --- Modos de compra: tres lecturas, no un bloque de texto --- */
+.ep-fin__modes{display:grid;grid-template-columns:1fr;gap:0;
+  border-block-start:1px solid var(--ep-border);margin-block-end:clamp(var(--ep-space-9),7vw,var(--ep-space-11))}
+@media (min-width:820px){.ep-fin__modes{grid-template-columns:repeat(3,1fr);border-block-start:0}}
+.ep-mode{padding-block:clamp(var(--ep-space-6),3vw,var(--ep-space-7));
+  border-block-end:1px solid var(--ep-border)}
+@media (min-width:820px){.ep-mode{border-block:1px solid var(--ep-border);border-block-end:0;
+  padding-inline-end:var(--ep-space-7);padding-block:var(--ep-space-7) 0;min-height:230px}}
+.ep-mode__k{display:block;font-family:var(--ep-font-display);font-weight:600;font-size:1.5rem;
+  letter-spacing:-.02em;line-height:1;color:var(--ep-copper-400)}
+.ep-mode__k::before{content:"";display:block;width:24px;height:2px;background:var(--ep-copper-500);
+  margin-block-end:var(--ep-space-4)}
+.ep-mode__h{font-family:var(--ep-font-display);font-weight:600;font-size:clamp(1.2rem,2vw,1.5rem);
+  letter-spacing:-.015em;color:var(--ep-carbon-25);margin-block:var(--ep-space-4) var(--ep-space-3)}
+.ep-mode__p{font-size:var(--ep-fs-caption);line-height:1.6;color:var(--ep-text-secondary);max-width:34ch}
+/* La cifra que define el modo (separación desde · plazos · escritura) */
+.ep-mode__v{display:inline-flex;align-items:baseline;gap:.35em;margin-block-start:var(--ep-space-5);
+  font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;
+  font-size:clamp(1.1rem,1.8vw,1.35rem);color:var(--ep-copper-300)}
+.ep-mode__v small{font-family:var(--ep-font-sans);font-weight:400;font-size:.62em;color:var(--ep-text-muted)}
+
+/* --- Simulador: tarjeta de vidrio, controles a la izquierda, cifras vivas a la derecha --- */
+.ep-sim{display:grid;grid-template-columns:1fr;gap:clamp(var(--ep-space-7),4vw,var(--ep-space-9));
+  padding:clamp(var(--ep-space-6),4vw,var(--ep-space-9));
+  background:rgba(20,17,14,.55);border:1px solid rgba(216,181,145,.2);border-radius:var(--ep-radius-lg);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
+@media (min-width:900px){.ep-sim{grid-template-columns:1fr 1fr;align-items:start}}
+.ep-sim__legend{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ep-copper-300);margin-block-end:var(--ep-space-6);
+  display:flex;align-items:center;gap:var(--ep-space-3)}
+.ep-sim__legend::before{content:"";width:26px;height:1px;background:var(--ep-copper-500)}
+.ep-sim__controls{display:flex;flex-direction:column;gap:var(--ep-space-6)}
+
+/* Plazo: control propio (no un select más) */
+.ep-sim__termhead{display:flex;align-items:baseline;justify-content:space-between;gap:var(--ep-space-4);
+  margin-block-end:var(--ep-space-3)}
+.ep-sim__termval{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.02em;
+  font-size:1.35rem;color:var(--ep-carbon-25);white-space:nowrap}
+.ep-sim__termval small{font-family:var(--ep-font-sans);font-weight:400;font-size:.58em;
+  color:var(--ep-text-muted);margin-inline-start:.35em}
+.ep-range{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+.ep-range::-webkit-slider-runnable-track{height:2px;border-radius:2px;
+  background:linear-gradient(90deg,var(--ep-copper-500) var(--p,0%),var(--ep-carbon-700) var(--p,0%))}
+.ep-range::-moz-range-track{height:2px;border-radius:2px;background:var(--ep-carbon-700)}
+.ep-range::-moz-range-progress{height:2px;border-radius:2px;background:var(--ep-copper-500)}
+.ep-range::-webkit-slider-runnable-track{transition:background var(--ep-dur-instant) linear}
+.ep-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;
+  margin-block-start:-8px;border-radius:50%;background:var(--ep-carbon-25);
+  border:1px solid var(--ep-copper-400);box-shadow:0 2px 10px -2px rgba(0,0,0,.7);
+  transition:transform var(--ep-dur-fast) var(--ep-ease-ascenso),box-shadow var(--ep-dur-fast)}
+.ep-range::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--ep-carbon-25);
+  border:1px solid var(--ep-copper-400);box-shadow:0 2px 10px -2px rgba(0,0,0,.7)}
+.ep-range:hover::-webkit-slider-thumb{transform:scale(1.12);box-shadow:0 0 18px -2px rgba(176,122,72,.5)}
+.ep-range:focus-visible{outline:none}
+.ep-range:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(176,122,72,.28)}
+.ep-sim__ticks{display:flex;align-items:baseline;justify-content:space-between;gap:var(--ep-space-3);
+  margin-block-start:var(--ep-space-2);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-micro);color:var(--ep-text-muted);
+  font-variant-numeric:tabular-nums}
+/* Porcentaje del lote: la lectura que da sentido al slider */
+.ep-sim__pct{font-weight:600;color:var(--ep-copper-300)}
+
+/* Salida: la cuota manda, el resto acompaña */
+.ep-sim__out{display:flex;flex-direction:column}
+.ep-sim__quota{padding-block-end:var(--ep-space-6);border-block-end:1px solid var(--ep-border)}
+.ep-sim__quotal{display:block;font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);
+  color:var(--ep-text-muted);margin-block-end:var(--ep-space-3)}
+.ep-sim__quotan{display:block;font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.03em;
+  line-height:.94;color:var(--ep-carbon-25);font-size:clamp(2.4rem,5.4vw,3.8rem)}
+.ep-sim__quotan small{font-size:.3em;font-family:var(--ep-font-sans);font-weight:400;
+  color:var(--ep-copper-300);letter-spacing:0;margin-inline-start:.4em}
+.ep-sim__quotax{display:block;margin-block-start:var(--ep-space-3);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-copper-300)}
+
+/* Barra de reparto: inicial vs saldo. Un dato, no un adorno. */
+.ep-sim__bar{display:flex;height:6px;border-radius:var(--ep-radius-pill);overflow:hidden;
+  background:var(--ep-carbon-700);margin-block:var(--ep-space-6) var(--ep-space-4)}
+.ep-sim__bar i{display:block;height:100%;transition:width var(--ep-dur-base) var(--ep-ease-standard)}
+.ep-sim__bar .a{background:var(--ep-copper-400)}
+.ep-sim__bar .b{background:var(--ep-carbon-500)}
+.ep-sim__keys{display:flex;flex-wrap:wrap;gap:var(--ep-space-5);
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-micro);color:var(--ep-text-muted)}
+.ep-sim__key{display:inline-flex;align-items:center;gap:var(--ep-space-2)}
+.ep-sim__key::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--ep-carbon-500)}
+.ep-sim__key--a::before{background:var(--ep-copper-400)}
+/* Desglose */
+.ep-sim__rows{margin-block-start:var(--ep-space-6);display:flex;flex-direction:column}
+.ep-sim__row{display:flex;align-items:baseline;justify-content:space-between;gap:var(--ep-space-5);
+  padding-block:var(--ep-space-4);border-block-start:1px solid var(--ep-border)}
+.ep-sim__row .k{font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-muted)}
+.ep-sim__row .v{font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.015em;
+  font-size:clamp(1rem,1.6vw,1.2rem);color:var(--ep-carbon-25);white-space:nowrap}
+.ep-sim__row--total .v{color:var(--ep-copper-300)}
+.ep-sim__note{margin-block-start:var(--ep-space-6);font-family:var(--ep-font-sans);
+  font-size:var(--ep-fs-micro);color:var(--ep-text-muted);line-height:1.6;max-width:52ch}
+
+/* ============================================================
+   ESCENA 05 · INVITACIÓN — escena de contacto (no formulario suelto)
    Foto que sangra + tarjeta de vidrio flotante + palabra gigante.
    ============================================================ */
 .ep-cta{position:relative;overflow:hidden;background:var(--ep-bg-inset);isolation:isolate;
@@ -208,6 +317,13 @@
   box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
 .ep-cta__form{display:grid;gap:var(--ep-space-5)}
 @media (min-width:560px){.ep-cta__form{grid-template-columns:1fr 1fr}.ep-cta__form .full{grid-column:1/-1}}
-.ep-cta__actions{display:flex;flex-wrap:wrap;gap:var(--ep-space-4);align-items:center;margin-block-start:var(--ep-space-6)}
-.ep-cta__note{margin-block-start:var(--ep-space-5);font-family:var(--ep-font-sans);
-  font-size:var(--ep-fs-caption);color:var(--ep-text-muted)}
+/* Una sola acción: ocupa todo el ancho de la tarjeta. No hay segunda
+   opción que la acompañe, así que manda sin dejar hueco a su lado. */
+.ep-cta__actions{display:flex;margin-block-start:var(--ep-space-7)}
+.ep-cta__actions .ep-btn{width:100%}
+.ep-cta__note{margin-block-start:var(--ep-space-5);text-align:center;
+  font-family:var(--ep-font-sans);font-size:var(--ep-fs-caption);color:var(--ep-text-muted);
+  transition:color var(--ep-dur-fast) var(--ep-ease-standard)}
+/* Respuesta del formulario: el aviso cambia de tono, no de sitio */
+.ep-cta__note[data-tone="warn"]{color:var(--ep-copper-300)}
+.ep-cta__note[data-tone="ok"]{color:var(--ep-success-fg)}

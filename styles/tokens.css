@@ -39,6 +39,13 @@
   --ep-border:var(--ep-carbon-700);
   --ep-border-warm:var(--ep-copper-200);
   --ep-border-focus:var(--ep-copper-400);
+  /* ---- Semantic · Líneas de marca (hairlines) ----
+     Los consumen brand.css (marco catastral, cifras) y scenes.css
+     (guion de localización, pastillas de servicios). Valores originales
+     de brand.css, movidos aquí: los tokens viven en tokens.css. */
+  --ep-line:rgba(176,122,72,.32);          /* hairline cobre */
+  --ep-line-strong:rgba(196,150,106,.55);  /* hairline cobre de acento */
+  --ep-line-warm:rgba(122,82,48,.30);      /* hairline sobre marfil */
 
   /* ---- Opacidades ---- */
   --ep-opacity-disabled:.38; --ep-opacity-muted:.64; --ep-opacity-veil:.72;
@@ -57,8 +64,6 @@
      ============================================================ */
   --ep-font-display:"General Sans",system-ui,-apple-system,"Segoe UI",sans-serif; /* grotesca de marca (títulos) */
   --ep-font-sans:"General Sans",system-ui,-apple-system,"Segoe UI",sans-serif;    /* misma familia: UI/cuerpo */
-  --ep-font-serif-text:var(--ep-font-sans);   /* sin serif: alias a la grotesca (compat) */
-  --ep-font-mono:"Space Mono",ui-monospace,"SFMono-Regular",monospace; /* solo datos técnicos */
 
   --ep-fs-display-1:clamp(2.75rem,7vw,5.5rem);
   --ep-fs-display-2:clamp(2.25rem,5vw,4rem);
@@ -78,6 +83,26 @@
   --ep-space-1:4px;  --ep-space-2:8px;   --ep-space-3:12px; --ep-space-4:16px;
   --ep-space-5:24px; --ep-space-6:32px;  --ep-space-7:48px; --ep-space-8:64px;
   --ep-space-9:96px; --ep-space-10:128px;--ep-space-11:160px;--ep-space-12:200px;
+
+  /* ============================================================
+     MARCA · tamaños del logo — un solo sitio para todos.
+     El archivo vive en assets/marca/logo/logo_el-poblado.svg y se
+     consume en 3 lugares (loader · navbar · footer) × 5 páginas.
+
+     CAMBIAR EL LOGO = reemplazar ese único archivo. Nada más.
+
+     OJO: el SVG actual NO es vectorial — es un PNG de 1920×1920
+     incrustado (0 paths, 868 KB), cuadrado y con aire alrededor de
+     la marca. Cuando llegue el vector real, si trae otra proporción
+     (lo normal: más ancho que alto), se reajusta AQUÍ y se propaga
+     a todo el sitio. En móvil se reajustan en responsive.css.
+     El color lo fuerza CSS (brightness(0) invert(1)), así que el
+     vector puede venir en cualquier color.
+     ============================================================ */
+  --ep-logo-loader:clamp(96px,13vw,150px);
+  --ep-logo-nav:clamp(58px,6vw,80px);
+  --ep-logo-nav-scrolled:54px;
+  --ep-logo-footer:clamp(72px,9vw,120px);
 
   /* ---- Grid ---- */
   --ep-grid-margin:clamp(20px,6vw,120px);

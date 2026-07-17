@@ -61,29 +61,6 @@
     reveals.forEach((el) => io.observe(el));
   }
 
-  /* --- Count-up de estadísticas (asciende al entrar) --- */
-  const nums = document.querySelectorAll("[data-count]");
-  const runCount = (el) => {
-    const target = parseFloat(el.dataset.count);
-    const dur = 1100, pad = el.dataset.pad === "true";
-    if (reduce) { el.textContent = pad ? String(target).padStart(2, "0") : target; return; }
-    const start = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - start) / dur, 1);
-      const eased = 1 - Math.pow(1 - p, 3);           // easeOutCubic (ascenso)
-      const val = Math.round(target * eased);
-      el.textContent = pad ? String(val).padStart(2, "0") : val;
-      if (p < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  };
-  if (nums.length) {
-    const io2 = new IntersectionObserver((entries, obs) => {
-      entries.forEach((e) => { if (e.isIntersecting) { runCount(e.target); obs.unobserve(e.target); } });
-    }, { threshold: 0.6 });
-    nums.forEach((n) => io2.observe(n));
-  }
-
   /* --- Hero: reveal editorial escalonado (una vez, al cargar) --- */
   const heroRise = document.querySelectorAll(".ep-hero .ep-rise");
   if (heroRise.length) {
@@ -92,50 +69,17 @@
     } else {
       // la lámina entra al final; el texto asciende línea a línea
       window.requestAnimationFrame(() => {
-        heroRise.forEach((el, i) => {
-          const isPlate = el.classList.contains("ep-hero__plate");
-          const delay = isPlate ? 200 : 120 + i * 110;
-          setTimeout(() => el.classList.add("is-in"), delay);
-        });
+        heroRise.forEach((el, i) => setTimeout(() => el.classList.add("is-in"), 120 + i * 110));
       });
     }
-  }
-
-  /* --- Proyectos: índice interactivo con preview que cambia --- */
-  const projList = document.querySelector("[data-projects]");
-  const projPrev = document.querySelector("[data-preview]");
-  if (projList && projPrev) {
-    const pImg = projPrev.querySelector("[data-preview-img]");
-    const pCap = projPrev.querySelector("[data-preview-cap]");
-    const rows = [...projList.querySelectorAll(".ep-project")];
-    // preload
-    rows.forEach((r) => { const i = new Image(); i.src = r.dataset.img; });
-    let current = null;
-    const activate = (row) => {
-      if (!row || row === current) return;
-      current = row;
-      rows.forEach((r) => r.classList.toggle("is-active", r === row));
-      projPrev.classList.add("is-swapping");
-      const swap = () => {
-        pImg.src = row.dataset.img;
-        pCap.innerHTML = row.dataset.name + " <b>· " + row.dataset.loc + "</b>";
-        projPrev.classList.remove("is-swapping");
-      };
-      if (reduce) swap();
-      else setTimeout(swap, 200);
-    };
-    rows.forEach((r) => {
-      r.addEventListener("pointerenter", () => activate(r));
-      r.addEventListener("focus", () => activate(r));
-      r.addEventListener("click", () => activate(r));
-    });
   }
 
   /* --- Hero: video de fondo (MP-01, temporal) ---
      Se activa solo sin prefers-reduced-motion. Cuando reproduce, se funde
      por encima de la fotografía (poster). Si autoplay falla, queda la foto.  */
   const heroVideo = document.querySelector("[data-hero-video]");
-  if (heroVideo && !reduce) {
+  const saveData = navigator.connection?.saveData === true;
+  if (heroVideo && !reduce && !saveData) {
     const src = heroVideo.getAttribute("data-src");
     if (src) {
       const slow = parseFloat(heroVideo.dataset.slow || "1");
@@ -156,15 +100,18 @@
   const paras = document.querySelectorAll("[data-parallax]");
   if (!reduce && paras.length && "requestAnimationFrame" in window) {
     let ticking = false;
+    // En móvil la deriva es la mitad: menos movimiento, más elegancia
+    const amp = () => (window.innerWidth <= 1023 ? 16 : 34);
     const update = () => {
       const vh = window.innerHeight || document.documentElement.clientHeight;
+      const a = amp();
       paras.forEach((el) => {
         const r = el.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;   // fuera de vista: no calcular
         const center = r.top + r.height / 2;
         const p = Math.max(-1, Math.min(1, (center - vh / 2) / vh));
         const speed = parseFloat(el.dataset.speed || "1");
-        el.style.transform = "translate3d(0," + (p * -34 * speed).toFixed(1) + "px,0)";
+        el.style.transform = "translate3d(0," + (p * -a * speed).toFixed(1) + "px,0)";
       });
       ticking = false;
     };
@@ -179,7 +126,8 @@
      cambia de escala a distinto ritmo. Muy sutil, nunca un carrusel.
      Solo desktop (>=960px) y sin prefers-reduced-motion.                    */
   const stackEl = document.querySelector("[data-terr-stack]");
-  const wide = window.matchMedia("(min-width: 960px)");
+  // ≥1024 = stack vivo. Por debajo el stack es un carrusel con snap (CSS): no se anima.
+  const wide = window.matchMedia("(min-width: 1024px)");
   if (stackEl && !reduce && wide.matches) {
     const section = stackEl.closest(".ep-terr");
     const cards = [...stackEl.querySelectorAll(".ep-terr__card")].map((el) => ({
@@ -207,7 +155,6 @@
   const selects = [...document.querySelectorAll("[data-select]")];
   selects.forEach((sel) => {
     const btn = sel.querySelector("[data-select-btn]");
-    const list = sel.querySelector("[data-select-list]");
     const valEl = sel.querySelector("[data-select-value]");
     const input = sel.querySelector("[data-select-input]");
     const opts = [...sel.querySelectorAll(".ep-select__opt")];
@@ -220,6 +167,8 @@
       o.classList.add("is-selected"); o.setAttribute("aria-selected", "true");
       valEl.textContent = o.textContent.trim(); if (input) input.value = o.dataset.value || o.textContent.trim();
       close(); btn.focus();
+      // El dropdown es propio: avisa del cambio como lo haría un <select> nativo
+      sel.dispatchEvent(new CustomEvent("ep:select", { bubbles: true, detail: { option: o, value: o.dataset.value } }));
     };
     btn.addEventListener("click", (e) => { e.stopPropagation(); sel.hasAttribute("data-open") ? close() : open(); });
     opts.forEach((o, i) => {
@@ -244,7 +193,7 @@
   const I18N = {
     es: {
       "skip": "Saltar al contenido",
-      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.cta": "Solicitar información",
+      "nav.home": "Inicio", "nav.territory": "Territorio", "nav.projects": "Proyectos", "nav.about": "Nosotros", "nav.contact": "Contacto", "nav.sim": "Simulador",
       "hero.mast": "Parcelaciones campestres en el Meta",
       "hero.title": "La tierra es la inversión<br />que <em>no deja de crecer.</em>",
       "hero.lead": "Parcelaciones campestres en Acacías y Villavicencio. Tu lote propio, en una zona que apenas comienza a valorizarse.",
@@ -267,7 +216,8 @@
       "origin.mk1": "Región", "origin.mk2": "Proyectos", "origin.mk3": "Municipios",
       "port.title": "Cuatro proyectos. Una misma <em>tierra que crece.</em>",
       "port.note": "Cifras de referencia para visualizar el proyecto. Se sustituyen por los datos definitivos del cliente.",
-      "serv.water": "Agua", "serv.power": "Energía", "serv.roads": "Vías internas", "serv.gas": "Gas natural", "serv.gate": "Portería", "serv.roadsWork": "Vías en obra", "serv.access": "Acceso", "serv.design": "En diseño",
+      "serv.water": "Agua", "serv.power": "Energía", "serv.green": "Zonas verdes", "serv.design": "En diseño",
+      "serv.roads12": "Vías de 12 m", "serv.roads14": "Vías hasta 14 m", "serv.roads12w": "Vías de 12 m · en obra",
       "spec.lots": "Lotes proyectados", "spec.area": "Área por lote", "spec.from": "Precio desde · demo", "spec.phase": "Fase actual", "spec.opening": "Apertura estimada",
       "val.appr": "Valorización +", "val.entry": "Precio de entrada", "val.list": "Lista privada",
       "state.dev": "En desarrollo", "state.soon": "Próximamente",
@@ -275,15 +225,25 @@
       "p2.desc": "Naturaleza abierta a minutos de la ciudad. Un entorno de potreros, agua y horizonte para quien busca campo con plusvalía urbana cercana.", "p2.valt": "Cercanía a Villavicencio con precio de campo. Proyección de ejemplo.", "p2.cta": "Ver disponibilidad",
       "p3.desc": "Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.", "p3.valt": "Etapa temprana: el momento de mayor recorrido. Proyección de ejemplo.", "p3.cta": "Conocer proyecto",
       "p4.desc": "El próximo capítulo. Un proyecto en definición para quienes quieran entrar desde el primer trazo, cuando el precio es apenas una promesa.", "p4.valt": "Acceso anticipado a la primera etapa antes del lanzamiento.", "p4.cta": "Unirme a la lista", "p4.phasev": "Diseño",
+      "fin.title": "Tu lote, <em>a tu ritmo.</em>",
+      "fin.lead": "Tres formas de comprar, sin banco de por medio. La financiación es directa con nosotros y sin intereses.",
+      "fin.m1h": "Pago de contado", "fin.m1p": "Pagas el valor total del lote y pasas directo a escrituración, sin plazos ni cuotas.", "fin.m1v": "Escrituración inmediata",
+      "fin.m2h": "Separación", "fin.m2p": "Apartas el lote que elegiste y lo sacamos de disponibilidad mientras defines la compra.", "fin.from": "Desde",
+      "fin.m3h": "Financiación directa", "fin.m3p": "Sin banco y sin intereses: acuerdas la cuota inicial y el plazo directamente con nosotros.", "fin.m3v": "meses · sin intereses",
+      "fin.simLegend": "Simulador", "fin.proj": "Proyecto", "fin.init": "Cuota inicial", "fin.term": "Plazo", "fin.mo": "meses",
+      "fin.quota": "Cuota mensual aproximada", "fin.quotax": "cuotas iguales, sin intereses",
+      "fin.kInit": "Cuota inicial", "fin.kFin": "Saldo a financiar",
+      "fin.rPrice": "Valor del lote · demo", "fin.rFin": "Valor financiado", "fin.rTotal": "Total a pagar",
+      "fin.note": "Cálculo aproximado sobre precios de referencia (demo). No constituye una oferta comercial: los valores definitivos se confirman en la asesoría.",
       "cta.title": "Solicita acceso al <em>portafolio privado.</em>", "cta.lead": "Te compartimos disponibilidad, precios y proyección de valorización de cada proyecto — con discreción.",
-      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o WhatsApp", "form.contact.ph": "Cómo te contactamos", "form.project": "Proyecto de interés", "form.all": "Todo el portafolio",
+      "form.name": "Nombre", "form.name.ph": "Tu nombre", "form.contact": "Correo o teléfono", "form.contact.ph": "Cómo te contactamos", "form.project": "Proyecto de interés", "form.all": "Todo el portafolio",
       "cta.submit": "Solicitar información", "cta.note": "Respondemos con discreción · Sin compromiso",
       "footer.tagline": "Inversión en tierra en el Llano. Parcelaciones campestres en Acacías y Villavicencio.",
-      "footer.explore": "Explorar", "footer.request": "Solicitar información", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registro y aliado financiero · pendiente"
+      "footer.explore": "Explorar", "footer.finance": "Financiación", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registro y aliado financiero · pendiente"
     },
     en: {
       "skip": "Skip to content",
-      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.cta": "Request information",
+      "nav.home": "Home", "nav.territory": "Territory", "nav.projects": "Projects", "nav.about": "About us", "nav.contact": "Contact", "nav.sim": "Simulator",
       "hero.mast": "Countryside land plots in the Meta region",
       "hero.title": "Land is the investment<br />that <em>keeps on growing.</em>",
       "hero.lead": "Countryside land plots in Acacías and Villavicencio. Your own lot, in an area just beginning to appreciate.",
@@ -306,7 +266,8 @@
       "origin.mk1": "Region", "origin.mk2": "Projects", "origin.mk3": "Municipalities",
       "port.title": "Four projects. One same <em>land that grows.</em>",
       "port.note": "Reference figures to visualize the project. To be replaced with the client's final data.",
-      "serv.water": "Water", "serv.power": "Power", "serv.roads": "Internal roads", "serv.gas": "Natural gas", "serv.gate": "Gatehouse", "serv.roadsWork": "Roads in progress", "serv.access": "Access", "serv.design": "In design",
+      "serv.water": "Water", "serv.power": "Power", "serv.green": "Green areas", "serv.design": "In design",
+      "serv.roads12": "12 m roads", "serv.roads14": "Roads up to 14 m", "serv.roads12w": "12 m roads · in progress",
       "spec.lots": "Projected lots", "spec.area": "Area per lot", "spec.from": "Price from · demo", "spec.phase": "Current phase", "spec.opening": "Estimated opening",
       "val.appr": "Appreciation +", "val.entry": "Entry price", "val.list": "Private list",
       "state.dev": "In development", "state.soon": "Coming soon",
@@ -314,11 +275,21 @@
       "p2.desc": "Open nature minutes from the city. A setting of pastures, water and horizon for those seeking country land with nearby urban upside.", "p2.valt": "Close to Villavicencio at country prices. Example projection.", "p2.cta": "Check availability",
       "p3.desc": "Infrastructure underway: compacted roads, machinery at work and access portals. The early stage, where value is just beginning.", "p3.valt": "Early stage: the moment with the most upside. Example projection.", "p3.cta": "Discover project",
       "p4.desc": "The next chapter. A project in definition for those who want to enter from the first line, when the price is still just a promise.", "p4.valt": "Early access to the first stage before launch.", "p4.cta": "Join the list", "p4.phasev": "Design",
+      "fin.title": "Your lot, <em>at your own pace.</em>",
+      "fin.lead": "Three ways to buy, with no bank involved. Financing is direct with us and interest-free.",
+      "fin.m1h": "Cash payment", "fin.m1p": "You pay the full value of the lot and go straight to the deed — no terms, no installments.", "fin.m1v": "Immediate deed",
+      "fin.m2h": "Reservation", "fin.m2p": "You reserve the lot you chose and we take it off availability while you settle the purchase.", "fin.from": "From",
+      "fin.m3h": "Direct financing", "fin.m3p": "No bank, no interest: you agree the down payment and the term directly with us.", "fin.m3v": "months · interest-free",
+      "fin.simLegend": "Simulator", "fin.proj": "Project", "fin.init": "Down payment", "fin.term": "Term", "fin.mo": "months",
+      "fin.quota": "Approximate monthly payment", "fin.quotax": "equal installments, interest-free",
+      "fin.kInit": "Down payment", "fin.kFin": "Balance to finance",
+      "fin.rPrice": "Lot value · demo", "fin.rFin": "Financed amount", "fin.rTotal": "Total to pay",
+      "fin.note": "Approximate calculation on reference prices (demo). This is not a commercial offer: final values are confirmed during the advisory.",
       "cta.title": "Request access to the <em>private portfolio.</em>", "cta.lead": "We share availability, prices and appreciation projections for each project — discreetly.",
-      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or WhatsApp", "form.contact.ph": "How we reach you", "form.project": "Project of interest", "form.all": "The whole portfolio",
+      "form.name": "Name", "form.name.ph": "Your name", "form.contact": "Email or phone", "form.contact.ph": "How we reach you", "form.project": "Project of interest", "form.all": "The whole portfolio",
       "cta.submit": "Request information", "cta.note": "We reply discreetly · No commitment",
       "footer.tagline": "Land investment in the Llano. Countryside land plots in Acacías and Villavicencio.",
-      "footer.explore": "Explore", "footer.request": "Request information", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registration and financial partner · pending"
+      "footer.explore": "Explore", "footer.finance": "Financing", "footer.copy": "© 2026 Inversiones El Poblado · Meta, Colombia", "footer.legal": "Registration and financial partner · pending"
     }
   };
 
@@ -333,8 +304,10 @@
       if (v != null) el.setAttribute("placeholder", v);
     });
     document.documentElement.setAttribute("lang", lang);
-    const b = document.querySelector("[data-lang-label]");
-    if (b) b.textContent = lang === "en" ? "English" : "Español";
+    // Hay dos juegos de controles (navbar y menú móvil): se actualizan todos
+    document.querySelectorAll("[data-lang-label]").forEach((el) => {
+      el.textContent = lang === "en" ? "English" : "Español";
+    });
     syncSelects();
   };
 
@@ -346,8 +319,11 @@
       el.textContent = cur === "usd" ? "$" + Math.round(cop / RATE).toLocaleString("en-US") : "$" + cop.toLocaleString("es-CO");
     });
     document.querySelectorAll("[data-cur-unit]").forEach((el) => { el.textContent = cur === "usd" ? "USD" : "COP"; });
-    const b = document.querySelector("[data-currency-toggle]");
-    if (b) b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
+    document.querySelectorAll("[data-currency-toggle]").forEach((b) => {
+      b.innerHTML = cur === "usd" ? 'COP<span aria-hidden="true"> / </span><b>USD</b>' : '<b>COP</b><span aria-hidden="true"> / </span>USD';
+    });
+    // Quien calcule cifras propias (simulador) se entera del cambio
+    document.dispatchEvent(new CustomEvent("ep:cur", { detail: cur }));
   };
 
   const swap = (fn) => {
@@ -360,12 +336,78 @@
   let cur = localStorage.getItem("ep-cur") || "cop";
   applyLang(lang); applyCur(cur);
 
-  document.querySelector("[data-lang-toggle]")?.addEventListener("click", () => {
+  document.querySelectorAll("[data-lang-toggle]").forEach((b) => b.addEventListener("click", () => {
     lang = lang === "es" ? "en" : "es"; localStorage.setItem("ep-lang", lang); swap(() => applyLang(lang));
-  });
-  document.querySelector("[data-currency-toggle]")?.addEventListener("click", () => {
+  }));
+  document.querySelectorAll("[data-currency-toggle]").forEach((b) => b.addEventListener("click", () => {
     cur = cur === "cop" ? "usd" : "cop"; localStorage.setItem("ep-cur", cur); swap(() => applyCur(cur));
-  });
+  }));
+
+  /* --- Simulador de financiación ---
+     Financiación directa sin intereses: cuota = (precio − inicial) / plazo.
+     El estado se guarda SIEMPRE en COP; la moneda solo afecta a la lectura.
+     Los precios son de referencia (demo) hasta que lleguen los reales.      */
+  const sim = document.querySelector("[data-sim]");
+  if (sim) {
+    const SEPARACION = 3000000;               // separación mínima (dato real del cliente)
+    const $ = (s) => sim.querySelector(s);
+    const selOpt = () => sim.querySelector(".ep-select__opt.is-selected");
+    const initEl = $("[data-sim-init]");
+    const termEl = $("[data-sim-term]");
+
+    const state = { price: 0, init: 0, term: Number(termEl.value) };
+    const fmt = (cop) => {
+      const v = cur === "usd" ? Math.round(cop / RATE) : Math.round(cop);
+      return "$" + v.toLocaleString(cur === "usd" ? "en-US" : "es-CO");
+    };
+    // Rellena la pista del slider hasta el pulgar (WebKit no lo hace solo)
+    const fill = (el, min, max) => {
+      const p = max > min ? ((Number(el.value) - min) / (max - min)) * 100 : 0;
+      el.style.setProperty("--p", p.toFixed(2) + "%");
+    };
+
+    const paint = () => {
+      const financed = Math.max(0, state.price - state.init);
+      const quota = state.term > 0 ? financed / state.term : 0;
+      const pct = state.price > 0 ? (state.init / state.price) * 100 : 0;
+
+      $("[data-sim-initval]").textContent = fmt(state.init);
+      $("[data-sim-initpct]").textContent = Math.round(pct) + "%";
+      $("[data-sim-initmin]").textContent = fmt(SEPARACION);
+      $("[data-sim-initmax]").textContent = fmt(state.price);
+      $("[data-sim-quota]").textContent = fmt(quota);
+      $("[data-sim-price]").textContent = fmt(state.price);
+      $("[data-sim-fin]").textContent = fmt(financed);
+      $("[data-sim-total]").textContent = fmt(state.init + quota * state.term);
+      $("[data-sim-termval]").textContent = state.term;
+      $("[data-sim-termx]").textContent = state.term;
+      $("[data-sim-bara]").style.width = pct.toFixed(1) + "%";
+      $("[data-sim-barb]").style.width = (100 - pct).toFixed(1) + "%";
+
+      fill(initEl, SEPARACION, state.price);
+      fill(termEl, 6, 24);
+    };
+
+    // El slider se mueve siempre en COP: la moneda solo cambia la lectura
+    const setPrice = (p) => {
+      state.price = p;
+      initEl.min = SEPARACION;
+      initEl.max = p;
+      state.init = Math.min(p, Math.max(SEPARACION, Math.round(p * 0.2)));  // arranque: 20%
+      initEl.value = state.init;
+      paint();
+    };
+
+    sim.addEventListener("ep:select", (e) => {
+      const p = Number(e.detail.option.dataset.price) || 0;
+      if (p) setPrice(p);
+    });
+    initEl.addEventListener("input", () => { state.init = Number(initEl.value); paint(); });
+    termEl.addEventListener("input", () => { state.term = Number(termEl.value); paint(); });
+    document.addEventListener("ep:cur", paint);
+
+    setPrice(Number(selOpt()?.dataset.price) || 0);
+  }
 
   /* --- Scroll-spy: enlace activo según la sección visible --- */
   const navLinks = [...document.querySelectorAll(".ep-nav__link")];

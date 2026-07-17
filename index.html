@@ -20,13 +20,15 @@
   <!-- Una sola familia de marca: General Sans (pesos 400–700) -->
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles/tokens.css?v=22" />
-  <link rel="stylesheet" href="styles/base.css?v=22" />
-  <link rel="stylesheet" href="styles/components.css?v=22" />
-  <link rel="stylesheet" href="styles/sections.css?v=22" />
-  <link rel="stylesheet" href="styles/scenes.css?v=22" />
-  <link rel="stylesheet" href="styles/brand.css?v=22" />
-  <link rel="stylesheet" href="styles/loader.css?v=22" />
+  <link rel="stylesheet" href="styles/tokens.css?v=26" />
+  <link rel="stylesheet" href="styles/base.css?v=26" />
+  <link rel="stylesheet" href="styles/components.css?v=26" />
+  <link rel="stylesheet" href="styles/sections.css?v=26" />
+  <link rel="stylesheet" href="styles/scenes.css?v=26" />
+  <link rel="stylesheet" href="styles/brand.css?v=26" />
+  <link rel="stylesheet" href="styles/loader.css?v=26" />
+  <!-- Responsive: siempre el último. Todo vive en media queries ≤1023.98px -->
+  <link rel="stylesheet" href="styles/responsive.css?v=26" />
 
   <!-- Datos estructurados (SEO · autoridad) -->
   <script type="application/ld+json">
@@ -69,9 +71,37 @@
           <span class="ep-toggle__globe" aria-hidden="true"></span><span data-lang-label>Español</span>
         </button>
         <button class="ep-toggle" type="button" data-currency-toggle aria-label="Cambiar moneda"><b>COP</b><span aria-hidden="true"> / </span>USD</button>
-        <a class="ep-btn ep-btn--primary ep-btn--sm" href="#contacto" data-i18n="nav.cta">Más información</a>
+        <a class="ep-btn ep-btn--primary ep-btn--sm" href="#financiacion" data-i18n="nav.sim">Simulador</a>
+        <!-- Solo móvil/tablet: abre el menú fullscreen -->
+        <button class="ep-burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="ep-menu" aria-label="Abrir menú">
+          <span></span><span></span>
+        </button>
       </div>
     </nav>
+
+    <!-- ============ MENÚ FULLSCREEN (móvil/tablet) ============
+         Panel translúcido con blur: el video sigue vivo detrás.
+         La marca no se duplica — el logo del navbar crece al abrir. -->
+    <div class="ep-menu" id="ep-menu" data-menu aria-hidden="true">
+      <div class="ep-menu__inner">
+        <nav class="ep-menu__nav" aria-label="Menú">
+          <a class="ep-menu__link" href="#inicio" data-i18n="nav.home">Inicio</a>
+          <a class="ep-menu__link" href="#territorio" data-i18n="nav.territory">Territorio</a>
+          <a class="ep-menu__link" href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+          <a class="ep-menu__link" href="#nosotros" data-i18n="nav.about">Nosotros</a>
+          <a class="ep-menu__link" href="#contacto" data-i18n="nav.contact">Contacto</a>
+        </nav>
+        <div class="ep-menu__foot">
+          <div class="ep-menu__toggles">
+            <button class="ep-toggle ep-toggle--lang" type="button" data-lang-toggle aria-label="Cambiar idioma · Change language" title="Español / English">
+              <span class="ep-toggle__globe" aria-hidden="true"></span><span data-lang-label>Español</span>
+            </button>
+            <button class="ep-toggle" type="button" data-currency-toggle aria-label="Cambiar moneda"><b>COP</b><span aria-hidden="true"> / </span>USD</button>
+          </div>
+          <a class="ep-btn ep-btn--primary ep-menu__cta" href="#financiacion" data-i18n="nav.sim">Simulador</a>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main id="main" class="ep-stage">
@@ -229,7 +259,7 @@
           <p class="ep-proj__loc" data-i18n="p1.loc">Acacías · Proyecto principal</p>
           <h3 class="ep-proj__name">Villas del Poblado</h3>
           <p class="ep-proj__desc" data-i18n="p1.desc">La parcelación insignia. Lotes con vías, redes y energía instaladas, casas ya construidas y una comunidad que empieza a habitar la tierra.</p>
-          <div class="ep-proj__serv"><span data-i18n="serv.water">Agua</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.roads">Vías internas</span><span data-i18n="serv.gas">Gas natural</span></div>
+          <div class="ep-proj__serv"><span data-i18n="serv.roads12">Vías de 12 m</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.water">Agua</span><span data-i18n="serv.green">Zonas verdes</span></div>
           <!-- datos de ejemplo (MP-09) -->
           <div class="ep-proj__spec">
             <div class="ep-fig"><span class="ep-fig__n">96</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
@@ -253,7 +283,7 @@
           <p class="ep-proj__loc">Villavicencio</p>
           <h3 class="ep-proj__name">Llanerita Campestre</h3>
           <p class="ep-proj__desc" data-i18n="p2.desc">Naturaleza abierta a minutos de la ciudad. Un entorno de potreros, agua y horizonte para quien busca campo con plusvalía urbana cercana.</p>
-          <div class="ep-proj__serv"><span data-i18n="serv.water">Agua</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.roads">Vías internas</span><span data-i18n="serv.gate">Portería</span></div>
+          <div class="ep-proj__serv"><span data-i18n="serv.roads14">Vías hasta 14 m</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.water">Agua</span><span data-i18n="serv.green">Zonas verdes</span></div>
           <div class="ep-proj__spec">
             <div class="ep-fig"><span class="ep-fig__n">60</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
             <div class="ep-fig"><span class="ep-fig__n">500–900<small>m²</small></span><span class="ep-fig__l" data-i18n="spec.area">Área por lote</span></div>
@@ -276,7 +306,7 @@
           <p class="ep-proj__loc">Apiay · Villavicencio</p>
           <h3 class="ep-proj__name">Villas de Apiay</h3>
           <p class="ep-proj__desc" data-i18n="p3.desc">Infraestructura en marcha: vías compactadas, maquinaria en obra y portales de acceso. La etapa temprana, donde el valor apenas comienza.</p>
-          <div class="ep-proj__serv"><span data-i18n="serv.roadsWork">Vías en obra</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.access">Acceso</span></div>
+          <div class="ep-proj__serv"><span data-i18n="serv.roads12w">Vías de 12 m · en obra</span><span data-i18n="serv.power">Energía</span><span data-i18n="serv.water">Agua</span><span data-i18n="serv.green">Zonas verdes</span></div>
           <div class="ep-proj__spec">
             <div class="ep-fig"><span class="ep-fig__n">48</span><span class="ep-fig__l" data-i18n="spec.lots">Lotes proyectados</span></div>
             <div class="ep-fig"><span class="ep-fig__n">600–1.200<small>m²</small></span><span class="ep-fig__l" data-i18n="spec.area">Área por lote</span></div>
@@ -313,7 +343,108 @@
       </article>
     </section>
 
-    <!-- ============ ESCENA 04 · INVITACIÓN (contacto) ============ -->
+    <!-- ============ ESCENA 04 · LA FINANCIACIÓN (modos + simulador) ============
+         Datos reales del cliente: separación desde $3.000.000, financiación
+         directa 6–24 meses sin intereses. Los PRECIOS siguen siendo demo. -->
+    <section class="ep-fin ep-section" id="financiacion" aria-labelledby="fin-title">
+      <div class="ep-container">
+        <header class="ep-fin__head">
+          <h2 class="ep-fin__title ep-reveal" id="fin-title" data-i18n="fin.title">Tu lote, <em>a tu ritmo.</em></h2>
+          <p class="ep-fin__lead ep-lead ep-reveal" data-delay="120" data-i18n="fin.lead">Tres formas de comprar, sin banco de por medio. La financiación es directa con nosotros y sin intereses.</p>
+        </header>
+
+        <div class="ep-fin__modes">
+          <article class="ep-mode ep-scene-in">
+            <span class="ep-mode__k">01</span>
+            <h3 class="ep-mode__h" data-i18n="fin.m1h">Pago de contado</h3>
+            <p class="ep-mode__p" data-i18n="fin.m1p">Pagas el valor total del lote y pasas directo a escrituración, sin plazos ni cuotas.</p>
+            <span class="ep-mode__v" data-i18n="fin.m1v">Escrituración inmediata</span>
+          </article>
+          <article class="ep-mode ep-scene-in" data-delay="80">
+            <span class="ep-mode__k">02</span>
+            <h3 class="ep-mode__h" data-i18n="fin.m2h">Separación</h3>
+            <p class="ep-mode__p" data-i18n="fin.m2p">Apartas el lote que elegiste y lo sacamos de disponibilidad mientras defines la compra.</p>
+            <span class="ep-mode__v"><span data-i18n="fin.from">Desde</span>&nbsp;<span data-cop="3000000">$3.000.000</span> <small data-cur-unit>COP</small></span>
+          </article>
+          <article class="ep-mode ep-scene-in" data-delay="160">
+            <span class="ep-mode__k">03</span>
+            <h3 class="ep-mode__h" data-i18n="fin.m3h">Financiación directa</h3>
+            <p class="ep-mode__p" data-i18n="fin.m3p">Sin banco y sin intereses: acuerdas la cuota inicial y el plazo directamente con nosotros.</p>
+            <span class="ep-mode__v">6–24&nbsp;<small data-i18n="fin.m3v">meses · sin intereses</small></span>
+          </article>
+        </div>
+
+        <!-- Simulador. Villa Luisa no aparece: está en diseño y no tiene precio. -->
+        <div class="ep-sim ep-scene-in" data-sim>
+          <div class="ep-sim__controls">
+            <p class="ep-sim__legend" data-i18n="fin.simLegend">Simulador</p>
+
+            <div class="ep-field">
+              <label id="sim-proj-label" data-i18n="fin.proj">Proyecto</label>
+              <div class="ep-select" data-select data-sim-select>
+                <button type="button" class="ep-select__btn" data-select-btn aria-haspopup="listbox" aria-expanded="false" aria-labelledby="sim-proj-label">
+                  <span data-select-value>Villas del Poblado (Acacías)</span>
+                  <span class="ep-select__chev" aria-hidden="true"></span>
+                </button>
+                <ul class="ep-select__list" role="listbox" data-select-list tabindex="-1" aria-labelledby="sim-proj-label">
+                  <li class="ep-select__opt is-selected" role="option" data-value="poblado" data-price="85000000" aria-selected="true">Villas del Poblado (Acacías)</li>
+                  <li class="ep-select__opt" role="option" data-value="llanerita" data-price="62000000" aria-selected="false">Llanerita Campestre</li>
+                  <li class="ep-select__opt" role="option" data-value="apiay" data-price="48000000" aria-selected="false">Villas de Apiay</li>
+                </ul>
+                <input type="hidden" data-select-input value="poblado" />
+              </div>
+            </div>
+
+            <div>
+              <div class="ep-sim__termhead">
+                <label for="sim-init" data-i18n="fin.init">Cuota inicial</label>
+                <span class="ep-sim__termval"><span data-sim-initval>$0</span> <small data-cur-unit>COP</small></span>
+              </div>
+              <input class="ep-range" id="sim-init" type="range" step="100000" data-sim-init
+                aria-describedby="sim-initpct" />
+              <div class="ep-sim__ticks">
+                <span data-sim-initmin>$0</span>
+                <span class="ep-sim__pct" id="sim-initpct" data-sim-initpct role="status">20%</span>
+                <span data-sim-initmax>$0</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="ep-sim__termhead">
+                <label for="sim-term" data-i18n="fin.term">Plazo</label>
+                <span class="ep-sim__termval"><span data-sim-termval>12</span> <small data-i18n="fin.mo">meses</small></span>
+              </div>
+              <input class="ep-range" id="sim-term" type="range" min="6" max="24" step="1" value="12" data-sim-term />
+              <div class="ep-sim__ticks" aria-hidden="true"><span>6</span><span>24</span></div>
+            </div>
+          </div>
+
+          <div class="ep-sim__out">
+            <div class="ep-sim__quota">
+              <span class="ep-sim__quotal" data-i18n="fin.quota">Cuota mensual aproximada</span>
+              <span class="ep-sim__quotan"><span data-sim-quota>$0</span> <small data-cur-unit>COP</small></span>
+              <span class="ep-sim__quotax"><span data-sim-termx>12</span> <span data-i18n="fin.quotax">cuotas iguales, sin intereses</span></span>
+            </div>
+
+            <div class="ep-sim__bar" aria-hidden="true"><i class="a" data-sim-bara></i><i class="b" data-sim-barb></i></div>
+            <div class="ep-sim__keys">
+              <span class="ep-sim__key ep-sim__key--a" data-i18n="fin.kInit">Cuota inicial</span>
+              <span class="ep-sim__key" data-i18n="fin.kFin">Saldo a financiar</span>
+            </div>
+
+            <div class="ep-sim__rows">
+              <div class="ep-sim__row"><span class="k" data-i18n="fin.rPrice">Valor del lote · demo</span><span class="v"><span data-sim-price>$0</span> <small data-cur-unit>COP</small></span></div>
+              <div class="ep-sim__row"><span class="k" data-i18n="fin.rFin">Valor financiado</span><span class="v"><span data-sim-fin>$0</span> <small data-cur-unit>COP</small></span></div>
+              <div class="ep-sim__row ep-sim__row--total"><span class="k" data-i18n="fin.rTotal">Total a pagar</span><span class="v"><span data-sim-total>$0</span> <small data-cur-unit>COP</small></span></div>
+            </div>
+
+            <p class="ep-sim__note" data-i18n="fin.note">Cálculo aproximado sobre precios de referencia (demo). No constituye una oferta comercial: los valores definitivos se confirman en la asesoría.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ESCENA 05 · INVITACIÓN (contacto) ============ -->
     <section class="ep-cta" id="contacto" aria-labelledby="invite-title">
       <div class="ep-cta__photo" aria-hidden="true">
         <!-- foto temporal (MP-07) -->
@@ -325,9 +456,9 @@
         <p class="ep-cta__lead ep-reveal" data-delay="120" data-i18n="cta.lead">Te compartimos disponibilidad, precios y proyección de valorización de cada proyecto — con discreción.</p>
 
         <div class="ep-cta__card ep-scene-in">
-          <form class="ep-cta__form" onsubmit="return false" novalidate>
-            <div class="ep-field"><label for="f-name" data-i18n="form.name">Nombre</label><input id="f-name" type="text" data-i18n-ph="form.name.ph" placeholder="Tu nombre" /></div>
-            <div class="ep-field"><label for="f-contact" data-i18n="form.contact">Correo o WhatsApp</label><input id="f-contact" type="text" data-i18n-ph="form.contact.ph" placeholder="Cómo te contactamos" /></div>
+          <form class="ep-cta__form" data-form novalidate>
+            <div class="ep-field"><label for="f-name" data-i18n="form.name">Nombre</label><input id="f-name" name="nombre" type="text" autocomplete="name" data-i18n-ph="form.name.ph" placeholder="Tu nombre" /></div>
+            <div class="ep-field"><label for="f-contact" data-i18n="form.contact">Correo o teléfono</label><input id="f-contact" name="contacto" type="text" autocomplete="email" data-i18n-ph="form.contact.ph" placeholder="Cómo te contactamos" /></div>
             <div class="ep-field full">
               <label id="f-proj-label" data-i18n="form.project">Proyecto de interés</label>
               <!-- Dropdown personalizado (no <select> nativo) -->
@@ -348,10 +479,9 @@
             </div>
           </form>
           <div class="ep-cta__actions">
-            <button class="ep-btn ep-btn--primary" type="button" data-i18n="cta.submit">Solicitar información</button>
-            <a class="ep-btn ep-btn--ghost" href="#contacto"><span>WhatsApp</span> <span class="ep-btn__arrow" aria-hidden="true">→</span></a>
+            <button class="ep-btn ep-btn--primary" type="button" data-form-submit data-i18n="cta.submit">Solicitar información</button>
           </div>
-          <p class="ep-cta__note" data-i18n="cta.note">Respondemos con discreción · Sin compromiso</p>
+          <p class="ep-cta__note" data-form-note role="status" data-i18n="cta.note">Respondemos con discreción · Sin compromiso</p>
         </div>
       </div>
     </section>
@@ -376,12 +506,8 @@
           <h4 data-i18n="footer.explore">Explorar</h4>
           <a href="#territorio" data-i18n="nav.territory">Territorio</a>
           <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-          <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
-        </div>
-        <div class="ep-footer__col">
-          <h4 data-i18n="nav.contact">Contacto</h4>
-          <a href="#contacto" data-i18n="footer.request">Solicitar información</a>
-          <a href="#contacto">WhatsApp</a>
+          <a href="#financiacion" data-i18n="footer.finance">Financiación</a>
+          <a href="#contacto" data-i18n="nav.contact">Contacto</a>
         </div>
       </div>
       <div class="ep-footer__bottom">
@@ -391,6 +517,8 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=22" defer></script>
+  <script src="js/nav.js?v=26" defer></script>
+  <script src="js/form.js?v=26" defer></script>
+  <script src="js/main.js?v=26" defer></script>
 </body>
 </html>

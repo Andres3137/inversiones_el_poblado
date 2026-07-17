@@ -1,24 +1,11 @@
 /* ============================================================
-   LENGUAJE VISUAL "EL POBLADO" — recursos gráficos propios
-   Reutilizables en toda la landing. No efectos sueltos: sistema.
-   1· Mojón (marcador topográfico)   2· Marco catastral (esquinas)
-   3· Trama de parcelas (patrón)     4· Cifra El Poblado
-   5· Línea de lindero (divisor)
+   LENGUAJE VISUAL "EL POBLADO" — recursos gráficos propios.
+   1 · Marco catastral (esquinas de lindero sobre la fotografía)
+   2 · Cifra El Poblado (forma única de presentar un dato)
+   Los tokens --ep-line* viven en tokens.css.
    ============================================================ */
-:root{
-  --ep-line:rgba(176,122,72,.32);        /* hairline cobre */
-  --ep-line-strong:rgba(196,150,106,.55);
-  --ep-line-warm:rgba(122,82,48,.30);     /* sobre marfil */
-}
 
-/* 1 · MOJÓN — punto de amojonamiento (anillo + centro). Recurso disponible;
-   ya no se usa como rótulo superior (kickers eliminados). */
-.ep-mojon{display:inline-block;width:11px;height:11px;border-radius:50%;
-  border:1px solid var(--ep-line-strong);position:relative;flex:0 0 auto}
-.ep-mojon::after{content:"";position:absolute;inset:0;margin:auto;width:3px;height:3px;border-radius:50%;
-  background:var(--ep-copper-400)}
-
-/* 2 · MARCO CATASTRAL — esquinas de lindero sobre las imágenes.
+/* 1 · MARCO CATASTRAL — esquinas de lindero sobre las imágenes.
    Envolver una <figure> con .ep-plot; las esquinas se dibujan encima. */
 .ep-plot{position:relative}
 .ep-plot::after{content:"";position:absolute;inset:10px;z-index:4;pointer-events:none;
@@ -35,16 +22,7 @@
 .ep-plot--warm::after{--c:var(--ep-line-warm)}
 .ep-plot--tight::after{inset:0}
 
-/* 3 · TRAMA DE PARCELAS — subdivisión catastral finísima como textura.
-   Se aplica como capa de fondo (elemento .ep-parcela dentro de una sección). */
-.ep-parcela{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Cg fill='none' stroke='%23B07A48' stroke-width='0.6' stroke-opacity='0.5'%3E%3Cpath d='M0 96 H320 M0 210 H320 M120 0 V320 M232 0 V320'/%3E%3Cpath d='M120 96 L232 96 L232 210 L120 210 Z'/%3E%3Cpath d='M0 40 H120 M0 260 H120 M232 150 H320 M60 0 V96 M180 210 V320 M280 0 V150'/%3E%3C/g%3E%3C/svg%3E");
-  background-size:clamp(220px,26vw,340px);
-  -webkit-mask-image:radial-gradient(120% 120% at 50% 40%,#000,transparent 78%);
-          mask-image:radial-gradient(120% 120% at 50% 40%,#000,transparent 78%)}
-.ep-parcela--warm{opacity:.45}
-
-/* 4 · CIFRA EL POBLADO — numeral serif + tick de lindero + label.
+/* 2 · CIFRA EL POBLADO — numeral + tick de lindero + label.
    Forma única de presentar datos en toda la landing. */
 .ep-fig{position:relative}
 .ep-fig__n{display:block;font-family:var(--ep-font-display);font-weight:600;letter-spacing:-.025em;
@@ -59,13 +37,3 @@
 .ep-fig--warm .ep-fig__n{color:var(--ep-carbon-900)}
 .ep-fig--warm .ep-fig__l{color:var(--ep-carbon-500)}
 .ep-fig--warm .ep-fig__l::before{background:var(--ep-line-warm)}
-
-/* 5 · LÍNEA DE LINDERO — divisor con quiebre en ángulo + tick final.
-   Sustituye reglas planas en transiciones. */
-.ep-lindero{position:relative;width:100%;height:40px;pointer-events:none}
-.ep-lindero::before{content:"";position:absolute;left:0;top:50%;width:clamp(60px,10vw,140px);height:1px;
-  background:var(--ep-line-strong)}
-.ep-lindero::after{content:"";position:absolute;left:clamp(60px,10vw,140px);top:calc(50% - 8px);
-  width:1px;height:16px;background:var(--ep-line-strong)}
-
-@media (prefers-reduced-motion:reduce){.ep-parcela{opacity:.4}}
